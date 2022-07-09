@@ -1,0 +1,8 @@
+<mat-form-field fxFlex="auto">
+    <mat-label>{{label}}</mat-label>
+    <mat-select matInput [formControl]="value" (selectionChange)="changeValue($event)">
+        <mat-option *ngFor="let item of options" [value]="item.key">
+            {{item.nombre}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

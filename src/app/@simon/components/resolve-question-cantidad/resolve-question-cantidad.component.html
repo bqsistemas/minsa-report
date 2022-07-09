@@ -1,0 +1,13 @@
+<p *ngIf="question.resolve.withInstructions" class="text-secondary">
+    Nota: {{ question.resolve.instructions }}
+</p>
+<div class="px-4" fxLayout="column" fxLayoutGap="16px">
+    <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+        <mat-form-field fxFlex="40" fxFlex.xs="auto" fxFlex.sm="auto">
+            <input [formControl]="control" placeholder="Ingresar respuesta ..." matInput [readonly]="readOnly">
+            <mat-hint *ngIf="question.resolve.withScore">Valor debe estar entre {{min}} y {{max}}</mat-hint>
+            <mat-error *ngIf="control.hasError('min')">El valor mínimo es {{min}}</mat-error>
+            <mat-error *ngIf="control.hasError('max')">El valor máximo es {{max}}</mat-error>
+        </mat-form-field>
+    </div>
+</div>

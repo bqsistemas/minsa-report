@@ -1,0 +1,76 @@
+<div @stagger>
+    <div class="text-center p-gutter pb-24 header">
+        <div class="container">
+            <h2 @fadeInUp class="display-2 mt-16 mb-8">Bienvenid@!</h2>
+        </div>
+
+        <div class="text-left mt-24 mb-12 container" gdAlignColumns="start start" gdColumns="1fr 1fr"
+            gdColumns.lt-md="1fr" gdGap="24px">
+
+            <div @fadeInUp class="card max-w-full overflow-hidden p-3">
+                <mat-nav-list>
+                    <h3 mat-subheader>Preguntas frecuentes</h3>
+                    <a (click)="question.onClick(question)" *ngFor="let question of accountSettings; trackBy: trackById"
+                        class="rounded overflow-hidden" mat-list-item>
+                        <mat-icon [icIcon]="question.icon" mat-list-icon></mat-icon>
+                        <span matLine>{{ question.label }}</span>
+                    </a>
+                </mat-nav-list>
+            </div>
+
+            <div @fadeInUp class="card max-w-full overflow-hidden p-3">
+                <mat-nav-list>
+                    <h3 mat-subheader>¿Qués lo nuevo en SIMON - Monitoreo 3.0?</h3>
+                    <a (click)="question.onClick(question)" *ngFor="let question of apiHelp; trackBy: trackById"
+                        class="rounded overflow-hidden" mat-list-item>
+                        <mat-icon [icIcon]="question.icon" mat-list-icon></mat-icon>
+                        <span matLine>{{ question.label }}</span>
+                    </a>
+                </mat-nav-list>
+            </div>
+
+            <!--<div @fadeInUp class="card max-w-full overflow-hidden p-3">
+                <mat-nav-list>
+                    <h3 mat-subheader>Billing</h3>
+                    <a (click)="question.onClick(question)" *ngFor="let question of billing; trackBy: trackById"
+                        class="rounded overflow-hidden" mat-list-item>
+                        <mat-icon [icIcon]="question.icon" mat-list-icon></mat-icon>
+                        <span matLine>{{ question.label }}</span>
+                    </a>
+                </mat-nav-list>
+            </div>
+
+            <div @fadeInUp class="card max-w-full overflow-hidden p-3">
+                <mat-nav-list>
+                    <h3 mat-subheader>First Steps</h3>
+                    <a (click)="question.onClick(question)" *ngFor="let question of firstSteps; trackBy: trackById"
+                        class="rounded overflow-hidden" mat-list-item>
+                        <mat-icon [icIcon]="question.icon" mat-list-icon></mat-icon>
+                        <span matLine>{{ question.label }}</span>
+                    </a>
+                </mat-nav-list>
+            </div>-->
+        </div>
+    </div>
+
+    <div @fadeInUp class="bg-card py-16 px-gutter footer">
+        <h2 class="display-1 mt-0 mb-4 text-center">Aún tienes consultas?</h2>
+        <h3 class="subheading-2 text-hint text-center max-w-lg mx-auto m-0">Podemos ayudarte a encontrar una respuesta,
+            para eso tienes los siguientes canales,
+            siempre estaremos prestos para resolver tus dudas.</h3>
+
+        <div class="mt-16 max-w-3xl mx-auto" fxLayout="row" fxLayout.xs="column" fxLayoutGap="24px">
+            <a class="text-center p-6 border rounded" fxFlex routerLinkActive>
+                <ic-icon [icon]="icPhoneInTalk" class="text-hint" size="42px"></ic-icon>
+                <h3 class="title mb-0 mt-4">(01) 615 5819</h3>
+                <h4 class="subheading-2 m-0 text-hint">Atención de lunes a viernes de 9:00 a.m. a 6:00 p.m.</h4>
+            </a>
+
+            <a class="text-center p-6 border rounded" fxFlex routerLinkActive>
+                <ic-icon [icon]="icMail" class="text-hint" size="42px"></ic-icon>
+                <h3 class="title mb-0 mt-4">alertasimon@minedu.gob.pe</h3>
+                <h4 class="subheading-2 m-0 text-hint">Atención de lunes a viernes de 9:00 a.m. a 6:00 p.m.</h4>
+            </a>
+        </div>
+    </div>
+</div>

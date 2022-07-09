@@ -1,0 +1,46 @@
+import { Sede } from '../sede/sede';
+import { VisitaMuestra } from '../visita-muestra/visita-muestra';
+
+export class Muestra {
+    id: string;
+    idInstrumento: string;
+    idTipoMuestra: string;
+    tipoMuestraDescripcion: string;
+    tipoDocumento: number;
+    idTipoDocumento: number;
+    numeroDocumento: string;
+    nombres: string;
+    primerApellido: string;
+    segundoApellido: string;
+    apellidoPaterno: string;
+    apellidoMaterno: string;
+    anexo: string;
+    sede: Sede;
+    dre: string;
+    dreDescripcion: string;
+    ugelDescripcion: string;
+    idNivel: string;
+    nivelDescripcion: string;
+    ugel: string;
+    red: number;
+    redDescripcion: string;
+    codigoModular: string;
+    codigoLocal: string;
+    codigoInstitucion: string;
+    iieeNombre: string;
+    nombreInstitucion: string;
+    enuTipoMonitor: string;
+    tipoMonitorDescripcion: string;
+    monitorTipoDocumento: number;
+    monitorNumeroDocumento: string;
+    monitorNombres: string;
+    monitorPrimerApellido: string;
+    monitorSegundoApellido: string;
+    monitorSede: Sede;
+    esActivo: boolean;
+    esAnulado: boolean;
+    visitas: VisitaMuestra[];
+    muestras: Muestra[];
+    esReemplazado: boolean;
+    reemplazo: Muestra;
+}

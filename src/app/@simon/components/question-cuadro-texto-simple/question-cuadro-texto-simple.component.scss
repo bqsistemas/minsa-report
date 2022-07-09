@@ -1,0 +1,16 @@
+:host ::ng-deep{
+    .labels {
+
+      .label {
+        border-radius: var(--border-radius);
+        font: var(--font-caption);
+        height: 32px;
+        line-height: 32px;
+        margin-top: var(--padding-4);
+        min-width: 32px;
+        padding-left: var(--padding-8);
+        padding-right: var(--padding-8);
+        user-select: none;
+      }
+    }
+}

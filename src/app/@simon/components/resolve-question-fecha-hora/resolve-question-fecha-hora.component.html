@@ -1,0 +1,23 @@
+<p *ngIf="question.resolve.withInstructions" class="text-secondary">
+    Nota: {{ question.resolve.instructions }}
+</p>
+<div class="px-4" fxLayout="column" fxLayoutGap="16px">
+    <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+        <mat-form-field *ngIf="!question.resolve.withScore" fxFlex="40" fxFlex.xs="auto" fxFlex.sm="auto">
+            <input [formControl]="control" (click)="readOnly?null:formDatepickerRef.open()"
+                (focus)="readOnly?null:formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>
+            <mat-datepicker-toggle *ngIf="!readOnly" [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #formDatepickerRef></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field *ngIf="question.resolve.withScore" fxFlex="40" fxFlex.xs="auto">
+            <input [formControl]="control" [min]="minDate" [max]="maxDate"
+                (click)="readOnly?null:formDatepickerRef.open()" (focus)="readOnly?null:formDatepickerRef.open()"
+                [matDatepicker]="formDatepickerRef" matInput readonly>
+            <mat-datepicker-toggle *ngIf="!readOnly" [for]="formDatepickerRef" matSuffix>
+            </mat-datepicker-toggle>
+            <mat-datepicker #formDatepickerRef></mat-datepicker>
+            <mat-hint *ngIf="question.resolve.withScore">Valor debe estar entre {{minDate | date: 'dd/MM/yyyy'}} y
+                {{maxDate | date: 'dd/MM/yyyy'}}</mat-hint>
+        </mat-form-field>
+    </div>
+</div>

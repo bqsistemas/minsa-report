@@ -1,0 +1,23 @@
+<div class="card overflow-auto w-full" fxLayout="column">
+    <div *ngIf="instrumentos.length > 0" class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field appearance="standard" fxFlex="auto">
+            <mat-label>Instrumento</mat-label>
+            <mat-select [formControl]="idInstrumento">
+                <mat-option [value]="'-1'" selected>Todos</mat-option>
+                <mat-option *ngFor="let instrumento of instrumentos" [value]="instrumento.id">{{instrumento.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="!isLoading" fxLayout="row" fxFlex="auto">
+        <highcharts-chart *ngIf="dataRegiones && dataRegiones.length > 0" [Highcharts]="Highcharts"
+            [options]="chartOptions" style="width: 100%; max-height: 400px; display: block;">
+        </highcharts-chart>
+        <div *ngIf="!dataRegiones || dataRegiones.length == 0" class="p-2" fxLayout="row" fxLayoutAlign="center"
+            fxFlex="auto">
+            <div class="w-full p-gutter text-center">
+                <h2 class="subheading-1 text-hint m-0">No existe datos!</h2><br>
+            </div>
+        </div>
+    </div>
+</div>

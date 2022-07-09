@@ -1,0 +1,13 @@
+<button *ngIf="textButton" (click)="fnActionFunction()" [ngClass]="class?class:[]"
+    [color]="colorButton? colorButton: 'primary'" mat-raised-button type="button">{{textButton}}
+    <ic-icon *ngIf="icon && !statusButton.value" [icon]="icon" inline="true" size="20px"></ic-icon>
+    <mat-icon *ngIf="statusButton.value">
+        <mat-spinner [color]="color? color : 'warn'" diameter="20">
+        </mat-spinner>
+    </mat-icon>
+</button>
+
+<button *ngIf="!textButton" (click)="fnActionFunction()" [ngClass]="class?class:[]"
+    [color]="colorButton? colorButton: 'primary'" mat-mini-fab type="button">
+    <mat-icon [icIcon]="icon"></mat-icon>
+</button>

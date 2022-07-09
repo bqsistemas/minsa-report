@@ -1,0 +1,124 @@
+<ng-container *ngIf="form" [formGroup]="form">
+    <div class="px-6 pt-2" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+            <h2 class="caption">Ejemplo</h2>
+        </div>
+        <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+            <mat-form-field fxFlex="40">
+                <input placeholder="Ingresar respuesta ..." matInput readonly>
+                <mat-hint>Caja para ingresar la respuesta en valor numérico.</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div *ngIf="form.get('resolve').get('withScore').value" class="px-6 pt-2" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+            <h2 *ngIf="form.get('resolve').get('withScore').value" class="caption" fxFlex="10">Resp. correcta</h2>
+            <h2 class="caption" fxFlex="65">Intervalos de calificación</h2>
+            <h2 *ngIf="form.get('resolve').get('withScore').value" class="caption" fxFlex="25">Puntos</h2>
+        </div>
+        <ng-container formGroupName="resolve">
+            <div *ngFor="let item of form.get('resolve').get('options')['controls']; index as i" fxLayout="row"
+                fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+                <mat-slide-toggle fxFlex="10" *ngIf="form.get('resolve').get('withScore').value"
+                    [formControl]="item.get('isCorrect')" color="warn" style="padding-top: 1em !important;">
+                </mat-slide-toggle>
+                <div fxFlex="auto" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+                    <mat-form-field fxFlex="auto">
+                        <mat-label>Desde</mat-label>
+                        <input [formControl]="item.get('scoreMin')" [value]="item.get('scoreMin').value" type="text"
+                            matInput>
+                    </mat-form-field>
+                    <span style="padding-top: 1em !important;"> - </span>
+                    <mat-form-field fxFlex="auto">
+                        <mat-label>Hasta</mat-label>
+                        <input [formControl]="item.get('scoreMax')" [value]="item.get('scoreMax').value" type="text"
+                            matInput>
+                    </mat-form-field>
+                </div>
+                <mat-form-field *ngIf="form.get('resolve').get('withScore').value" fxFlex="150px" class="mx-4">
+                    <button (click)="fnEditScore(item, false)" mat-icon-button matPrefix type="button">
+                        <mat-icon [icIcon]="icMinus"></mat-icon>
+                    </button>
+                    <input class="text-center" matInput [formControl]="item.get('score')"
+                        [value]="item.get('score').value" readonly>
+                    <button (click)="fnEditScore(item, true)" class="ml-4" mat-icon-button matSuffix type="button">
+                        <mat-icon [icIcon]="icPlus"></mat-icon>
+                    </button>
+                </mat-form-field>
+                <button (click)="fnAddItem(i)" class="ml-2 mt-2" mat-icon-button color="primary">
+                    <mat-icon [icIcon]="icPlusCircle"></mat-icon>
+                </button>
+                <button *ngIf="flagShowMinus" (click)="fnRemoveItem(i)" class="ml-2 mt-2" mat-icon-button
+                    color="primary">
+                    <mat-icon [icIcon]="icMinusCircle"></mat-icon>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+    <ng-container formGroupName="configuration">
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <div @fadeInUp fxFlex="auto" fxFlex.xs="auto">
+                <div class="px-6 py-2 border-b" fxLayout="row" fxLayoutAlign="start center">
+                    <h2 class="body-2 m-0">Condiciones</h2>
+                </div>
+                <div class="px-6 py-2" fxLayout="column">
+                    <div *ngIf="form.get('configuration').get('score').value" fxLayout="column">
+                        <mat-checkbox color="warn" [formControl]="form.get('resolve').get('withScore')"
+                            [checked]="form.get('resolve').get('withScore').value">Con
+                            calificación por alternativa
+                        </mat-checkbox>
+                    </div>
+                    <div *ngIf="form.get('configuration').get('otherOption').value" fxLayout="column">
+                        <mat-checkbox color="warn" [formControl]="form.get('resolve').get('withOtherOption')"
+                            [checked]="form.get('resolve').get('withOtherOption').value">Agregar una opción de respuesta
+                            "OTRO"
+                        </mat-checkbox>
+                        <vex-other-option-form [controlValue]="form.get('resolve').get('formatOtherOption')"
+                            *ngIf="form.get('resolve').get('withOtherOption').value"></vex-other-option-form>
+                    </div>
+                    <div *ngIf="form.get('configuration').get('instructions').value" fxLayout="column">
+                        <mat-checkbox color="warn" [formControl]="form.get('resolve').get('withInstructions')"
+                            [checked]="form.get('resolve').get('withInstructions').value">Agregar instrucciones
+                        </mat-checkbox>
+                        <mat-form-field *ngIf="form.get('resolve').get('withInstructions').value"
+                            class="mt-2 px-6 vex-dense-form-field body-1">
+                            <textarea #lengthInstruccion [formControl]="form.get('resolve').get('instructions')"
+                                [value]="form.get('resolve').get('instructions').value" cdkAutosizeMinRows="5" matInput
+                                matTextareaAutosize placeholder="Colocar aquí instrucciones ..."></textarea>
+                            <mat-hint align="start">Máximo 1000 caracteres</mat-hint>
+                            <mat-hint align="end">{{lengthInstruccion.value.length}}/1000</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <div @fadeInUp fxFlex="auto" fxFlex.xs="auto">
+                <div class="px-6 py-2 border-b" fxLayout="row" fxLayoutAlign="start center">
+                    <h2 class="body-2 m-0">Etiquetas <span class="text-hint">(Presiona Enter o Coma por cada
+                            etiqueta)</span></h2>
+                </div>
+                <div class="px-6 py-2" fxLayout="column">
+                    <mat-form-field class="example-chip-list" fxFlex="auto" appearance="standard">
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                            <mat-chip *ngFor="let etiqueta of etiquetas" class="text-white bg-green-500"
+                                [selectable]="true" [removable]="true" (removed)="remove(etiqueta)">
+                                {{etiqueta}}
+                                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Nueva etiqueta" [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                                (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="px-6 py-2" fxLayoutAlign="end center" fxLayoutGap="8px">
+            <button (click)="fnCancel()" mat-button type="button">Cancelar</button>
+            <button (click)="fnPreview()" mat-button type="button">Vista previa</button>
+            <button (click)="fnSave()" color="primary" mat-raised-button type="button">Guardar</button>
+        </div>
+    </ng-container>
+</ng-container>

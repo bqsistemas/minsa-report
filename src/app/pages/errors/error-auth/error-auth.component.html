@@ -1,0 +1,27 @@
+<div class="w-full p-gutter text-center">
+  <img class="w-full max-w-lg mx-auto mb-6" src="assets/img/illustrations/idea.svg">
+
+  <h1 class="display-2 font-medium m-0">Bienvenido!</h1>
+  <h2 class="headline m-0 mt-2">Para acceder a SIMON 3.0, debe ingresar con sus credenciales en <a class="text-red-500"
+      [href]="environment.simon">https://simon.minedu.gob.pe/</a></h2>
+
+  <div class="h-12 max-w-md w-full mx-auto mt-6" fxLayout="row" fxLayoutAlign="center">
+    <form [formGroup]="form">
+      <div fxLayout="column">
+        <mat-form-field class="mt-6">
+          <mat-label>DNI</mat-label>
+          <input cdkFocusInitial formControlName="user" matInput>
+        </mat-form-field>
+        <mat-form-field class="mt-6">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" cdkFocusInitial formControlName="password" matInput>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <button (click)="fnLogin()" class="rounded-full max-w-full w-200" color="primary" mat-raised-button
+          type="button">Ingresar</button>
+      </div>
+    </form>
+    <!--<button (click)="fnReturn()" class="rounded-full max-w-full w-200" color="primary" mat-raised-button type="button">Ir a página de ingreso</button>-->
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<p *ngIf="question.resolve.withInstructions" class="text-secondary">
+    Nota: {{ question.resolve.instructions }}
+</p>
+<div class="px-4" fxLayout="column" fxLayoutGap="16px">
+    <div fxLayout="row" fxLayoutGap="0px" fxLayoutGap.lt-sm="0">
+        <mat-form-field fxFlex="70" fxFlex.xs="auto" fxFlex.sm="auto">
+            <textarea [formControl]="control" cdkAutosizeMinRows="5" matInput matTextareaAutosize
+                placeholder="Ingresar comentario ..." [readonly]="readOnly"></textarea>
+            <mat-hint>Caja de texto con un máximo de 1000 carácteres.</mat-hint>
+        </mat-form-field>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="px-6" [ngClass]="!control.enabled?['bg-gray-200']:[]" fxFlex="auto">
+    <h2 [ngClass]="control.touched && !control.valid && control.enabled? ['text-red-500']:!control.enabled?['text-gray-500']:[]"
+        class="font-bold subheading-2 mt-0 mb-4">
+        {{number}} - {{ question?.resolve?.title }}</h2>
+    <ng-container [ngSwitch]="question?.type">
+        <!--vex-resolve-question-opcion-multiple-->
+        <vex-resolve-question-opcion-multiple [question]="question" [controlOther]="controlOther"
+            [codigoItem]="codigoItem" [control]="control" (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.multipleOpcion">
+        </vex-resolve-question-opcion-multiple>
+        <!--vex-resolve-question-casilla-verificacion-->
+        <vex-resolve-question-casilla-verificacion [question]="question" [controlOther]="controlOther"
+            [codigoItem]="codigoItem" [control]="control" (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.casillaVerificacion">
+        </vex-resolve-question-casilla-verificacion>
+        <!--vex-resolve-question-ranking-estrellas-->
+        <vex-resolve-question-ranking-estrellas [question]="question" [codigoItem]="codigoItem" [control]="control"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.rankinkEstrella">
+        </vex-resolve-question-ranking-estrellas>
+        <!--vex-resolve-question-carga-archivos-->
+        <vex-resolve-question-carga-archivos [question]="question" [codigoItem]="codigoItem" [control]="control"
+            [controlSize]="controlSize" [controlExtension]="controlExtension" [controlNameFile]="controlNameFile"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.cargaArchivos">
+        </vex-resolve-question-carga-archivos>
+        <!--vex-resolve-question-cuadro-texto-simple-->
+        <vex-resolve-question-cuadro-texto-simple [question]="question" [codigoItem]="codigoItem" [control]="control"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.cuadroTextoSimple">
+        </vex-resolve-question-cuadro-texto-simple>
+        <!--vex-resolve-question-cuadro-comentario-->
+        <vex-resolve-question-cuadro-comentario [question]="question" [codigoItem]="codigoItem" [control]="control"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly"
+            *ngSwitchCase="environment.typesQuestion.cuadroComentario">
+        </vex-resolve-question-cuadro-comentario>
+        <!--vex-resolve-question-cantidad-->
+        <vex-resolve-question-cantidad [question]="question" [codigoItem]="codigoItem" [control]="control"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly" *ngSwitchCase="environment.typesQuestion.Cantidad">
+        </vex-resolve-question-cantidad>
+        <!--vex-resolve-question-fecha-hora-->
+        <vex-resolve-question-fecha-hora [question]="question" [codigoItem]="codigoItem" [control]="control"
+            (changeValue)="fnChange($event)" [readOnly]="readOnly" *ngSwitchCase="environment.typesQuestion.FechaHora">
+        </vex-resolve-question-fecha-hora>
+    </ng-container>
+</div>

@@ -1,0 +1,44 @@
+<div gdRows="1fr 1fr" class="card relative hover:shadow-16 trans-shadow cursor-pointer" matRipple>
+  <div class="px-6 py-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8x">
+    <div>
+      <ngx-skeleton-loader [theme]="{
+            width: '150px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{
+            width: '250px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+    </div>
+  </div>
+
+  <div class="px-6 py-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8x">
+    <ngx-skeleton-loader [theme]="{
+            width: '100px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            width: '100px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+  </div>
+  <button matTooltip="Incluir la descripción del componente aquí"
+    class="absolute top-0 right-0 mt-1 ml-2 text-hint z-50" mat-icon-button matTooltipPosition="after" type="button">
+    <ngx-skeleton-loader appearance="circle" [theme]="{ width: '15px', height: '15px' }">
+    </ngx-skeleton-loader>
+  </button>
+  <ngx-skeleton-loader class="rounded  px-2 font-medium text-xs absolute top-2 right-10" [theme]="{
+        width: '50px',
+        'border-radius': '0',
+        height: '15px',
+        'margin-bottom': '10px'
+    }"></ngx-skeleton-loader>
+</div>

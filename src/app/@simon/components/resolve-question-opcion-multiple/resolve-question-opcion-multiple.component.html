@@ -1,0 +1,27 @@
+<p *ngIf="question.resolve.withInstructions" class="text-secondary mb-2">
+    Nota: {{ question.resolve.instructions }}
+</p>
+<div *ngIf="showWithDescriptions" (click)="fnOpenDescriptionsOfOptions()"
+    class="px-gutter py-2 flex flex-row cursor-pointer select-none items-center text-primary ltr:rounded-bl rtl:rounded-br relative hover:bg-primary-light trans-ease-out"
+    matRipple>
+    <ic-icon [icon]="icComment" [inline]="true" size="20px"></ic-icon>
+    <p class="font-medium ltr:ml-2 rtl:mr-2">Descripciones de las alternativas</p>
+</div>
+<div class="px-4" fxLayout="column" fxLayoutGap="16px">
+    <mat-radio-group [formControl]="control" fxLayout="column" class="radio" fxLayoutGap="8px">
+        <div *ngIf="readOnly" class="absolute top-0 right-0 bottom-0 left-0 w-full h-full z-40">
+        </div>
+        <mat-radio-button *ngFor="let option of question.resolve.options" [value]="option.code"
+            class="example-radio-button">
+            {{ option.title }}
+        </mat-radio-button>
+        <mat-radio-button *ngIf="question.resolve.withOtherOption" [value]="'OTHER'" class="example-radio-button">
+            Otro(s)
+        </mat-radio-button>
+    </mat-radio-group>
+    <div fxLayout="row">
+        <mat-form-field *ngIf="showOther && controlOther" fxFlex="80" fxFlex.xs="auto">
+            <input [formControl]="controlOther" placeholder="Ingresa aquí otro ..." matInput [readonly]="readOnly">
+        </mat-form-field>
+    </div>
+</div>

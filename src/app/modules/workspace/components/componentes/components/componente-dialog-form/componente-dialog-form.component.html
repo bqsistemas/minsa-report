@@ -1,0 +1,52 @@
+<form [formGroup]="form">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+        <p class="flex-auto text-lg font-medium">{{ form.get('codigo')?.value || 'Nuevo componente' }}</p>
+
+        <!--<button [matMenuTriggerFor]="settingsMenu" class="text-secondary" mat-icon-button type="button">
+            <mat-icon [icIcon]="icMoreVert"></mat-icon>
+        </button>-->
+
+        <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+            <mat-icon [icIcon]="icClose"></mat-icon>
+        </button>
+    </div>
+
+    <mat-divider class="-mx-6 text-border"></mat-divider>
+
+    <mat-dialog-content fxLayout="column">
+        <mat-form-field class="mt-6">
+            <mat-label>Nombre</mat-label>
+            <input #lengthNombre cdkFocusInitial formControlName="nombre" matInput>
+            <mat-hint align="start">Máximo 300 caracteres</mat-hint>
+            <mat-hint align="end">{{lengthNombre.value.length}}/300</mat-hint>
+            <mat-icon [icIcon]="icShortText" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <textarea #lengthDescripcion cdkAutosizeMinRows="3" matTextareaAutosize formControlName="descripcion"
+                matInput></textarea>
+            <mat-hint align="start">Máximo 1000 caracteres</mat-hint>
+            <mat-hint align="end">{{lengthDescripcion.value.length}}/1000</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Referencia</mat-label>
+            <textarea #lengthReferencia cdkAutosizeMinRows="3" matTextareaAutosize formControlName="referencia"
+                matInput></textarea>
+            <mat-hint align="start">Máximo 1000 caracteres</mat-hint>
+            <mat-hint align="end">{{lengthReferencia.value.length}}/1000</mat-hint>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">Cancelar</button>
+        <vex-button-action-form *ngIf="(!componente || componente?.esActivo)" [textButton]="'Guardar'"
+            [statusButton]="statusButtonSave" (actionFunction)="fnAction()"></vex-button-action-form>
+    </mat-dialog-actions>
+</form>
+
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+    <button mat-menu-item>
+        <mat-icon [icIcon]="icDelete"></mat-icon>
+        <span>Eliminar</span>
+    </button>
+</mat-menu>

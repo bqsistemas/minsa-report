@@ -1,0 +1,9 @@
+<mat-form-field *ngIf="!takeUserSede" fxFlex="auto">
+    <mat-label>Buscar.. (Código módular o nombre IIEE)</mat-label>
+    <input cdkFocusInitial [formControl]="value" matInput autocomplete="off">
+    <mat-icon [icIcon]="icSearch" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
+</mat-form-field>
+<mat-form-field *ngIf="takeUserSede" fxFlex="auto">
+    <mat-label>{{label}}</mat-label>
+    <input matInput readonly [value]="value.value?.nombreSede">
+</mat-form-field>
