@@ -58,7 +58,7 @@ export class AutocompleteIieeComponent implements OnInit {
     }
     if (this.takeUserSede) {
       // trae y setea la sede por defecto del usuario
-      this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
+      /* this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
         this.userRol = value;
         if (!this.value.value) {
           this.value.setValue({
@@ -69,7 +69,7 @@ export class AutocompleteIieeComponent implements OnInit {
           });
         }
         this.cd.markForCheck();
-      }));
+      })); */
     } else {
     }
   }

@@ -28,7 +28,6 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Rol } from 'src/app/core/models/rol/rol';
 import { User } from '@core/models/user/user';
 // components
-import { RolSedeSelectorComponent } from 'src/app/core/components/rol-sede-selector/rol-sede-selector.component';
 
 export interface OnlineStatus {
   id: 'online' | 'away' | 'dnd' | 'offline';
@@ -129,9 +128,9 @@ export class ToolbarUserDropdownComponent implements OnInit {
     private popoverRef: PopoverRef<ToolbarUserDropdownComponent>,
     private dialog: MatDialog,
   ) {
-    this._authService.rolSede$.subscribe((value) => {
-      this.rolSede = value;
-    });
+    // this._authService.rolSede$.subscribe((value) => {
+    //   this.rolSede = value;
+    // });
     this.user = this._authService.getUser();
   }
 
@@ -150,12 +149,5 @@ export class ToolbarUserDropdownComponent implements OnInit {
     this._authService.postLogout();
   }
   openRolSelector() {
-    const dialogRef = this.dialog.open(RolSedeSelectorComponent, {
-      width: '600px',
-      data: {
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
   }
 }

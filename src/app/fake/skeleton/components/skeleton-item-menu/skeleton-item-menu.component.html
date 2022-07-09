@@ -1,0 +1,27 @@
+<div gdRows="1fr 1fr" class="card relative hover:shadow-16 trans-shadow cursor-pointer" matRipple>
+    <div class="px-6 py-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8x">
+        <div>
+            <ngx-skeleton-loader [theme]="{
+            width: '200px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+        </div>
+    </div>
+
+    <div class="px-6 py-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8x">
+        <ngx-skeleton-loader [theme]="{
+            width: '150px',
+            'border-radius': '0',
+            height: '15px',
+            'margin-bottom': '10px'
+          }"></ngx-skeleton-loader>
+    </div>
+    <ngx-skeleton-loader class="rounded  px-2 font-medium text-xs absolute top-2 right-10" [theme]="{
+        width: '50px',
+        'border-radius': '0',
+        height: '15px',
+        'margin-bottom': '10px'
+    }"></ngx-skeleton-loader>
+</div>

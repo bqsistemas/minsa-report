@@ -27,7 +27,6 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 // models
 import { Rol } from 'src/app/core/models/rol/rol';
 // components
-import { RolSedeSelectorComponent } from 'src/app/core/components/rol-sede-selector/rol-sede-selector.component';
 
 @Component({
   selector: 'vex-toolbar',
@@ -76,9 +75,9 @@ export class ToolbarComponent implements OnInit {
     private popoverService: PopoverService,
     private dialog: MatDialog,
   ) {
-    this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
+    /* this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
       this.rolSede = value;
-    }));
+    })); */
   }
 
   ngOnInit() {
@@ -119,12 +118,5 @@ export class ToolbarComponent implements OnInit {
     this.layoutService.openSearch();
   }
   openRolSelector() {
-    const dialogRef = this.dialog.open(RolSedeSelectorComponent, {
-      width: '600px',
-      data: {
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
   }
 }

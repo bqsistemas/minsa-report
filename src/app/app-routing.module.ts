@@ -47,9 +47,9 @@ const routes: Routes = [
   {
     path: '',
     component: CustomLayoutComponent,
-    resolve: { enums: ResolveGetEnums, roles_sede: ResolveGetRoles },
+    resolve: { /* enums: ResolveGetEnums */ },
     children: childrenRoutes,
-    canActivate: [AdminGuard]
+    // canActivate: [AdminGuard]
   },
   {
     path: 'auth/:id',

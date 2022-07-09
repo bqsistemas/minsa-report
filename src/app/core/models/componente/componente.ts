@@ -1,5 +1,3 @@
-import { Resultado } from '../resultado/resultado';
-
 export class Componente {
     id: any;
     key: string;
@@ -14,7 +12,6 @@ export class Componente {
     cantidadIndicadores: number;
     cantidadResultados: number;
     cantidadItems: number;
-    resultados: Resultado[];
     // auxiliar
     select: boolean;
     children: any[];

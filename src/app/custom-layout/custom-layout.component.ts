@@ -47,11 +47,6 @@ export class CustomLayoutComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router) {
 
-    if (!this.route.snapshot.data.roles_sede.success) {
-      localStorage.removeItem(environment.codeJwt);
-      location.href = '';
-    } else {
-    }
   }
 
   ngOnInit() {

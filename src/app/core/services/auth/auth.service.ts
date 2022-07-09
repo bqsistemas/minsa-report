@@ -10,7 +10,6 @@ import { environment } from './../../../../environments/environment';
 // models
 import { User } from '../../models/user/user';
 import { Rol } from '../../models/rol/rol';
-import { Institucion } from '@core/models/institucion/institucion';
 import { AuxiliarService } from '../auxiliar/auxiliar.service';
 import { CryptService } from '../crypt/crypt.service';
 
@@ -23,12 +22,6 @@ export class AuthService {
   idInicioSesion$ = this.idInicioSesion.asObservable();
   private user = new BehaviorSubject<User>(null);
   user$ = this.user.asObservable();
-  private rolSede = new BehaviorSubject<Rol>(null);
-  rolSede$ = this.rolSede.asObservable();
-  private sedes = new BehaviorSubject<Rol[]>(null);
-  sedes$ = this.sedes.asObservable();
-  private institucion = new BehaviorSubject<Institucion>(null);
-  institucion$ = this.institucion.asObservable();
   public menus: any[];
 
   constructor(
@@ -113,9 +106,6 @@ export class AuthService {
     this.userData = value;
     this.user.next(value);
   }
-  setInstitucion(value: Institucion) {
-    this.institucion.next(value);
-  }
   setIdInicioSesion(value: string) {
     this.idInicioSesion.next(value);
   }
@@ -126,13 +116,11 @@ export class AuthService {
     } else {
       this.setRolSede(value[0]);
     }
-    this.setInstitucion(null);
     // si el rol por defecto es director, entonces traer los datos de la institución educativa
     if (environment.roles.directorIIEE === currentRolSede?.codigoRol) {
       await this._auxiliarService.getInstitucionEducativa(currentRolSede.codigoSede, currentRolSede.anexo).then((value: any) => {
         if (value.success) {
           value.data.codigoSede = value.data.codigoModular;
-          this.setInstitucion(value.data);
         } else {
           console.log('error al traer institución');
         }
@@ -141,10 +129,8 @@ export class AuthService {
       });
     }
 
-    this.sedes.next(value);
   }
   setRolSede(value: Rol) {
-    this.rolSede.next(value);
     localStorage.setItem(environment.codeTokenRolSede, this._crypService.encryptUsingAES256(value.codigoRol
       + '|' + value.codigoSede + '|' + value.anexo + '|' + value.tipoSedeIndice));
   }
@@ -153,9 +139,6 @@ export class AuthService {
   }
   getMenus() {
     return this.menus;
-  }
-  getRolSede() {
-    return this.rolSede$;
   }
   getUser() {
     const token = localStorage.getItem(environment.codeJwt);

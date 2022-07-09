@@ -21,7 +21,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { SimonModule } from '../../../../@simon/simon.module';
 import { SkeletonModule } from '../../../../fake/skeleton/skeleton.module';
 
 import { CoreModule } from '../../../../core/core.module';
@@ -60,7 +59,6 @@ import { ComponenteDialogFormComponent } from './components/componente-dialog-fo
     MatInputModule,
     MatTooltipModule,
 
-    SimonModule,
     SkeletonModule
   ],
   entryComponents: [

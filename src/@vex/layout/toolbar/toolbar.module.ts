@@ -18,8 +18,6 @@ import { NavigationItemModule } from '../../components/navigation-item/navigatio
 import { MegaMenuModule } from '../../components/mega-menu/mega-menu.module';
 import { ContainerModule } from '../../directives/container/container.module';
 
-import { RolSedeSelectorComponent } from 'src/app/core/components/rol-sede-selector/rol-sede-selector.component';
-
 
 @NgModule({
   declarations: [ToolbarComponent],
@@ -44,7 +42,6 @@ import { RolSedeSelectorComponent } from 'src/app/core/components/rol-sede-selec
   ],
   exports: [ToolbarComponent],
   entryComponents: [
-    RolSedeSelectorComponent
   ]
 })
 export class ToolbarModule {

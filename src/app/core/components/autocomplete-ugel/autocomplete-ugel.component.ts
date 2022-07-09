@@ -59,7 +59,7 @@ export class AutocompleteUgelComponent implements OnInit {
     }
     if (this.takeUserSede) {
       // trae y setea la sede por defecto del usuario
-      this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
+      /* this.subscriptions.add(this._authService.rolSede$.subscribe((value) => {
         this.userRol = value;
         if (!this.value.value) {
           this.value.setValue({
@@ -70,7 +70,7 @@ export class AutocompleteUgelComponent implements OnInit {
           });
         }
         this.cd.markForCheck();
-      }));
+      })); */
     } else {
       this.subscriptions.add(this.parent.valueChanges.subscribe((value) => {
         if (value) {

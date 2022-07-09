@@ -50,7 +50,7 @@ export class SidenavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.subscriptions.add(this._authService.rolSede$.subscribe((userRolSede: Rol) => {
+    /* this.subscriptions.add(this._authService.rolSede$.subscribe((userRolSede: Rol) => {
       this.loadingMenu = true;
       this.rolSede = userRolSede;
       this._authService.postGetMenus(userRolSede.codigoRol).then((value: any) => {
@@ -67,7 +67,7 @@ export class SidenavComponent implements OnInit {
         this.loadingMenu = false;
         console.log("error obteniendo menú");
       });
-    }));
+    })); */
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

@@ -9,10 +9,12 @@ import { IconModule } from '@visurel/iconify-angular';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { SkeletonComponenteCardComponent } from './components/skeleton-componente-card/skeleton-componente-card.component';
+import { SkeletonItemMenuComponent } from './components/skeleton-item-menu/skeleton-item-menu.component';
 
 @NgModule({
   declarations: [
-    SkeletonComponenteCardComponent
+    SkeletonComponenteCardComponent,
+    SkeletonItemMenuComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { SkeletonComponenteCardComponent } from './components/skeleton-component
     IconModule
   ],
   exports: [
+    SkeletonItemMenuComponent,
     SkeletonComponenteCardComponent
   ]
 })
