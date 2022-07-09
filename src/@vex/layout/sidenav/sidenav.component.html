@@ -10,7 +10,7 @@
     </button>
   </div>
 
-  <div *ngIf="!loadingMenu" class="sidenav-items flex-auto" vexScrollbar>
+  <div *ngIf="!loadingMenu" class="sidenav-items flex-auto pt-0" style="padding-top: 0px !important;" vexScrollbar>
     <vex-sidenav-item *ngFor="let item of itemsMenu" [item]="item" [level]="0">
     </vex-sidenav-item>
   </div>

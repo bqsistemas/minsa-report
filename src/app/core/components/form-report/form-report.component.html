@@ -1,0 +1,76 @@
+<form [formGroup]="form">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+    </div>
+
+    <mat-divider class="-mx-6 text-border"></mat-divider>
+
+    <mat-dialog-content fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" class="pt-4 px-2">
+        <mat-form-field fxFlex="auto">
+            <mat-label>Departamento</mat-label>
+            <mat-select matInput [formControl]="form.controls.departamento">
+                <mat-option *ngFor="let item of departamentoData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Provincia</mat-label>
+            <mat-select matInput [formControl]="form.controls.provincia">
+                <mat-option *ngFor="let item of provinciaData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Distrito</mat-label>
+            <mat-select matInput [formControl]="form.controls.distrito">
+                <mat-option *ngFor="let item of distritoData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Tipo Población</mat-label>
+            <mat-select matInput [formControl]="form.controls.tipoPoblacion">
+                <mat-option *ngFor="let item of tipoPoblacionData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Grupo Etario</mat-label>
+            <mat-select matInput [formControl]="form.controls.grupoEtario">
+                <mat-option *ngFor="let item of grupoEtarioData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Sexo</mat-label>
+            <mat-select matInput [formControl]="form.controls.sexo">
+                <mat-option *ngFor="let item of sexoData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Mes</mat-label>
+            <mat-select matInput [formControl]="form.controls.mes">
+                <mat-option *ngFor="let item of mesData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Periodo</mat-label>
+            <mat-select matInput [formControl]="form.controls.periodo">
+                <mat-option *ngFor="let item of periodoData" [value]="item.id">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+    </mat-dialog-actions>
+</form>

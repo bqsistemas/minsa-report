@@ -3,17 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 import icLayers from '@iconify/icons-ic/twotone-layers';
 import icHome from '@iconify/icons-ic/twotone-home';
-import icSettings from '@iconify/icons-ic/twotone-settings';
-import icCalendarDay from '@iconify/icons-ic/twotone-calendar-today';
-import icPlayListAddCheck from '@iconify/icons-ic/twotone-playlist-add-check';
-import icTimeLine from '@iconify/icons-ic/twotone-timeline';
-import icPeople from '@iconify/icons-ic/twotone-people';
 import icApps from '@iconify/icons-ic/twotone-apps';
-import icListAlt from '@iconify/icons-ic/twotone-list-alt';
-import icShowChart from '@iconify/icons-ic/twotone-show-chart';
-import icWidgets from '@iconify/icons-ic/twotone-widgets';
-import icFeaturedPlayList from '@iconify/icons-ic/twotone-featured-play-list';
-import icQuestionAnswer from '@iconify/icons-ic/twotone-question-answer';
+import icAssessment from '@iconify/icons-ic/twotone-assessment';
 import theme from '../@vex/utils/tailwindcss';
 import { environment } from './environment';
 
@@ -33,30 +24,32 @@ export const environmentMenu = {
         {
           type: 'link',
           label: 'VIH',
-          route: '/app/configuracion/componentes',
-          routePassport: 'Simepp/maestros/ComponenteBusqueda',
-          icon: icApps
+          route: '/app/workspace/vih',
+          icon: icAssessment
         },
         {
           type: 'link',
           label: 'TMI',
-          route: '/app/configuracion/componentes',
-          routePassport: 'Simepp/maestros/ComponenteBusqueda',
-          icon: icApps
+          route: '/app/workspace/tmi',
+          icon: icAssessment
         },
         {
           type: 'link',
           label: 'HEPATITIS',
-          route: '/app/configuracion/componentes',
-          routePassport: 'Simepp/maestros/ComponenteBusqueda',
-          icon: icApps
+          route: '/app/workspace/hepatitis',
+          icon: icAssessment
         },
         {
           type: 'link',
           label: 'ITS',
-          route: '/app/configuracion/componentes',
-          routePassport: 'Simepp/maestros/ComponenteBusqueda',
-          icon: icApps
+          route: '/app/workspace/its',
+          icon: icAssessment
+        },
+        {
+          type: 'link',
+          label: 'Dato manual',
+          route: '/app/workspace/manual',
+          icon: icAssessment
         }
       ]
     }

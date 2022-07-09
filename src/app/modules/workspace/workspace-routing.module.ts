@@ -9,8 +9,24 @@ const routes: VexRoutes = [
     path: '',
     children: [
       {
-        path: 'componentes',
-        loadChildren: () => import('./components/componentes/componentes.module').then(m => m.ComponentesModule)
+        path: 'vih',
+        loadChildren: () => import('./components/vih/vih.module').then(m => m.VihModule)
+      },
+      {
+        path: 'tmi',
+        loadChildren: () => import('./components/tmi/tmi.module').then(m => m.TmiModule)
+      },
+      {
+        path: 'its',
+        loadChildren: () => import('./components/its/its.module').then(m => m.ItsModule)
+      },
+      {
+        path: 'hepatitis',
+        loadChildren: () => import('./components/hepatitis/hepatitis.module').then(m => m.HepatitisModule)
+      },
+      {
+        path: 'manual',
+        loadChildren: () => import('./components/manual/manual.module').then(m => m.ManualModule)
       },
     ]
   }

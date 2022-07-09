@@ -8,26 +8,26 @@ import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { stagger40ms } from '../../../../../@vex/animations/stagger.animation';
 import { MatDialog } from '@angular/material/dialog';
-import icMenu from '@iconify/icons-ic/twotone-menu';
+import icAssessment from '@iconify/icons-ic/twotone-assessment';
 
 @Component({
-  selector: 'vex-componentes',
-  templateUrl: './componentes.component.html',
-  styleUrls: ['./componentes.component.scss'],
+  selector: 'vex-tmi',
+  templateUrl: './tmi.component.html',
+  styleUrls: ['./tmi.component.scss'],
   animations: [
     stagger40ms,
     scaleIn400ms,
     fadeInRight400ms
   ]
 })
-export class ComponentesComponent implements OnInit {
+export class TmiComponent implements OnInit {
   menuOpen = false;
 
   activeCategory: 'frequently' | 'starred' | 'all' | 'family' | 'friends' | 'colleagues' | 'business' = 'all';
 
   icStar = icStar;
   icApps = icApps;
-  icMenu = icMenu;
+  icAssessment = icAssessment;
 
   constructor(private dialog: MatDialog) { }
 

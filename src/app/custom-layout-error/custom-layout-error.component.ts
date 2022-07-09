@@ -81,7 +81,7 @@ export class CustomLayoutErrorComponent implements OnInit, OnDestroy {
       layout: 'horizontal',
       boxed: false,
       sidenav: {
-        title: 'SIMON',
+        title: 'MINSA',
         imageUrl: 'assets/img/simon/logo-simon.svg',
         showCollapsePin: true,
         state: 'expanded'

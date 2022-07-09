@@ -1,0 +1,18 @@
+<div class="w-full h-full flex flex-col">
+    <div class="px-gutter pt-2 pb-2 bg-primary-500 flex-none">
+        <div class="flex items-center" vexContainer>
+            <button (click)="openMenu()" @scaleIn class="sm:hidden text-primary-contrast-500" mat-icon-button
+                type="button">
+                <mat-icon [icIcon]="icAssessment"></mat-icon>
+            </button>
+            <h2 class="headline text-primary-contrast-500 m-0 flex items-center w-full max-w-xxxs mr-6">
+                <ic-icon @scaleIn [icon]="icAssessment" class="hidden sm:block"></ic-icon>
+                <span @fadeInRight class="ml-4 block">ITS</span>
+            </h2>
+        </div>
+    </div>
+
+    <div class="card h-auto overflow-hidden">
+        <vex-form-report></vex-form-report>
+    </div>
+</div>

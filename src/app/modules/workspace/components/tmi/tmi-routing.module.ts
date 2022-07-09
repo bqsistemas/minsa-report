@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { VexRoutes } from '../../../../../@vex/interfaces/vex-route.interface';
 
 // components
-import { ComponentesComponent } from './componentes.component';
+import { TmiComponent } from './tmi.component';
 
 const routes: VexRoutes = [
   {
     path: '',
-    component: ComponentesComponent,
+    component: TmiComponent,
     data: {
       scrollDisabled: true,
       toolbarShadowEnabled: true
@@ -21,4 +21,4 @@ const routes: VexRoutes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ComponentesRoutingModule { }
+export class TmiRoutingModule { }

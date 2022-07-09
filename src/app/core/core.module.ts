@@ -34,6 +34,7 @@ import { AutocompleteIieeComponent } from './components/autocomplete-iiee/autoco
 import { ComboComponenteComponent } from './components/combo-componente/combo-componente.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ButtonActionFormComponent } from './components/button-action-form/button-action-form.component';
+import { FormReportComponent } from './components/form-report/form-report.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ButtonActionFormComponent } from './components/button-action-form/butto
     AutocompleteIieeComponent,
     ComboComponenteComponent,
     ConfirmDialogComponent,
-    ButtonActionFormComponent],
+    ButtonActionFormComponent,
+    FormReportComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -80,7 +82,8 @@ import { ButtonActionFormComponent } from './components/button-action-form/butto
     AutocompleteUgelComponent,
     AutocompleteIieeComponent,
     ComboComponenteComponent,
-    ButtonActionFormComponent
+    ButtonActionFormComponent,
+    FormReportComponent
   ],
   entryComponents: [
   ]

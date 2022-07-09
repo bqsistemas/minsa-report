@@ -25,18 +25,15 @@ import { SkeletonModule } from '../../../../fake/skeleton/skeleton.module';
 
 import { CoreModule } from '../../../../core/core.module';
 
-import { ComponentesRoutingModule } from './componentes-routing.module';
-import { ComponentesComponent } from './componentes.component';
-import { ComponentesTableMenuComponent } from './components/componentes-table-menu/componentes-table-menu.component';
-import { ComponentesDataTableComponent } from './components/componentes-data-table/componentes-data-table.component';
-import { ComponenteDialogFormComponent } from './components/componente-dialog-form/componente-dialog-form.component';
+import { TmiRoutingModule } from './tmi-routing.module';
+import { TmiComponent } from './tmi.component';
 
 
 @NgModule({
-  declarations: [ComponentesComponent, ComponentesTableMenuComponent, ComponentesDataTableComponent, ComponenteDialogFormComponent],
+  declarations: [TmiComponent],
   imports: [
     CommonModule,
-    ComponentesRoutingModule,
+    TmiRoutingModule,
     CoreModule,
 
     FlexLayoutModule,
@@ -62,7 +59,6 @@ import { ComponenteDialogFormComponent } from './components/componente-dialog-fo
     SkeletonModule
   ],
   entryComponents: [
-    ComponenteDialogFormComponent
   ]
 })
-export class ComponentesModule { }
+export class TmiModule { }

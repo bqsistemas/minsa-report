@@ -1,13 +1,13 @@
 <div class="w-full h-full flex flex-col">
-    <div class="px-gutter pt-6 pb-20 bg-primary-500 flex-none">
+    <div class="px-gutter pt-2 pb-2 bg-primary-500 flex-none">
         <div class="flex items-center" vexContainer>
             <button (click)="openMenu()" @scaleIn class="sm:hidden text-primary-contrast-500" mat-icon-button
                 type="button">
-                <mat-icon [icIcon]="icMenu"></mat-icon>
+                <mat-icon [icIcon]="icAssessment"></mat-icon>
             </button>
             <h2 class="headline text-primary-contrast-500 m-0 flex items-center w-full max-w-xxxs mr-6">
-                <ic-icon @scaleIn [icon]="icApps" class="hidden sm:block"></ic-icon>
-                <span @fadeInRight class="ml-4 block">Componentes</span>
+                <ic-icon @scaleIn [icon]="icAssessment" class="hidden sm:block"></ic-icon>
+                <span @fadeInRight class="ml-4 block">DATO MANUAL</span>
             </h2>
         </div>
     </div>
@@ -15,19 +15,11 @@
     <div class="-mt-14 pt-0 overflow-hidden flex" vexContainer>
         <mat-drawer-container class="bg-transparent flex-auto flex">
             <mat-drawer [(opened)]="menuOpen" mode="over">
-                <vex-componentes-table-menu (openAddNew)="openContact()" class="sm:hidden">
-                </vex-componentes-table-menu>
             </mat-drawer>
             <mat-drawer-content class="p-gutter pt-0 flex-auto flex items-start">
-                <vex-componentes-table-menu (openAddNew)="openContact()" class="hidden sm:block mr-6">
-                </vex-componentes-table-menu>
-
                 <div class="card h-auto overflow-hidden flex-auto">
-                    <vex-componentes-data-table>
-                    </vex-componentes-data-table>
                 </div>
             </mat-drawer-content>
-
         </mat-drawer-container>
     </div>
 </div>
