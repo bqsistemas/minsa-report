@@ -50,24 +50,8 @@ export class SidenavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /* this.subscriptions.add(this._authService.rolSede$.subscribe((userRolSede: Rol) => {
-      this.loadingMenu = true;
-      this.rolSede = userRolSede;
-      this._authService.postGetMenus(userRolSede.codigoRol).then((value: any) => {
-        this.items = environmentMenu.menu;
-
-        this.fnFiltrarMenu(value.data);
-        this._authService.setMenus(this.itemsMenu);
-        this.loadingMenu = false;
-        if (!this.fnValidateAccessToRoute()) {
-          debugger;
-          this.router.navigate(['/pages/401']);
-        }
-      }).catch((value: any) => {
-        this.loadingMenu = false;
-        console.log("error obteniendo menú");
-      });
-    })); */
+    this.itemsMenu = environmentMenu.menu;
+    this.loadingMenu = false;
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -82,58 +66,5 @@ export class SidenavComponent implements OnInit {
 
   toggleCollapse() {
     this.collapsed ? this.layoutService.expandSidenav() : this.layoutService.collapseSidenav();
-  }
-  fnFiltrarMenu(dataMenu: Menu[]) {
-    let menu: any[] = JSON.parse(JSON.stringify(this.items));
-    menu.forEach((item) => {
-      if (item.children) {
-        item.children = this.fnFiltroMenu(item.children, dataMenu);
-        item.children.forEach(ele => {
-          if (ele.children) {
-            ele.children = this.fnFiltroMenu(ele.children, dataMenu);
-          }
-        });
-      }
-    });
-
-    menu = menu.filter(x => x.routePassport || (x.children?.length > 0));
-    menu.forEach((item) => {
-      if (item.children) {
-        item.children = item.children.filter(x => x.routePassport || (x.children && x.children?.length > 0));
-      }
-    });
-
-    this.itemsMenu = menu;
-    this.navigationService.items = menu;
-  }
-  fnFiltroMenu(children: any[], dataMenu: Menu[]) {
-    children = children.filter(x => !x.routePassport || (x.routePassport && dataMenu.some(y => y.urlMenu === x.routePassport)
-      && (!x.dontView || !x.dontView.some(y => y === this.rolSede.codigoRol))));
-    return children;
-  }
-  fnValidateAccessToRoute() {
-    return this.fnValidateRouteWithItemsMenu(this.itemsMenu, this.router.url);
-  }
-  fnValidateRouteWithItemsMenu(menu: any[], url: string) {
-    let authorized = false;
-    menu.forEach((item) => {
-      if (item.route && url.indexOf(item.route) >= 0) {
-        if (!item.dontView || (item.dontView && !item.dontView.some(y => y === this.rolSede.codigoRol))) {
-          authorized = true;
-        }
-      }
-      if (item.children?.length > 0) {
-        const response = this.fnValidateRouteWithItemsMenu(item.children, url);
-        if (response) {
-          authorized = true;
-        }
-      }
-    });
-
-    if (environmentMenu.menuAdicional.some(x => url.indexOf(x.url) >= 0 && x.roles.some(y => y === this.rolSede.codigoRol))) {
-      authorized = true;
-    }
-
-    return authorized;
   }
 }
