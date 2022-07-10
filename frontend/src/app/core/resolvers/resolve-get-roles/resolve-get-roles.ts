@@ -15,11 +15,11 @@ export class ResolveGetRoles implements Resolve<any> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        return this._authService.postListasedes().pipe(
+        /*return this._authService.postListasedes().pipe(
             map(async (data: any) => {
                 await this._authService.setSedes(data.data);
                 return data;
             })
-        ).toPromise();
+        ).toPromise();*/
     }
 }

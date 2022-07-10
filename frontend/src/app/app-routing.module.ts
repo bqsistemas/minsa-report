@@ -6,8 +6,6 @@ import { CustomLayoutPagesComponent } from './custom-layout-pages/custom-layout-
 import { VexRoutes } from '../@vex/interfaces/vex-route.interface';
 
 // resolvers
-import { ResolveGetEnums } from './core/resolvers/resolve-get-enums/resolve-get-enums';
-import { ResolveGetIgel } from './core/resolvers/resolve-get-igel/resolve-get-igel';
 import { ResolveGetRoles } from './core/resolvers/resolve-get-roles/resolve-get-roles';
 // guards
 import { AdminGuard } from './security/guards/admin.guard';

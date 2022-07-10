@@ -56,7 +56,7 @@ export class CustomLayoutErrorComponent implements OnInit, OnDestroy {
       const apellidoPaterno = apellido.split(' ')[0] ? apellido.split(' ')[0] : '';
       const apellidoMaterno = apellido.split(' ')[1] ? apellido.split(' ')[1] : '';
       if (time >= currentTime) {
-        this._authService.postGenerarToken({
+        /*this._authService.postGenerarToken({
           idInicioSesion,
           tipoDocumento,
           numeroDocumento,
@@ -67,7 +67,7 @@ export class CustomLayoutErrorComponent implements OnInit, OnDestroy {
           if (value.success) {
             this.router.navigate(['']);
           }
-        });
+        });*/
       }/* else {
         console.log('fuera de tiempo');
         this.router.navigate(['pages', 'ads']);

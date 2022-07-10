@@ -36,7 +36,7 @@ export class ErrorAuthComponent implements OnInit {
     });
   }
   fnLogin() {
-    if (this.form.valid) {
+    /*if (this.form.valid) {
       this._authService.postLogin(this.form.value).then((value: any) => {
         if (value.success) {
           this.router.navigate(['']);
@@ -46,6 +46,6 @@ export class ErrorAuthComponent implements OnInit {
       });
     } else {
       this.form.markAllAsTouched();
-    }
+    }*/
   }
 }

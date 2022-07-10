@@ -16,8 +16,6 @@ import { AuthInterceptor } from './security/interceptors/auth-interceptor';
 import { ErrorInterceptor } from './security/interceptors/error-interceptor';
 import { CryptInterceptor } from './security/interceptors/crypt-interceptor';
 // resolvers
-import { ResolveGetEnums } from './core/resolvers/resolve-get-enums/resolve-get-enums';
-import { ResolveGetIgel } from './core/resolvers/resolve-get-igel/resolve-get-igel';
 import { ResolveGetRoles } from './core/resolvers/resolve-get-roles/resolve-get-roles';
 
 import { environment } from './../environments/environment';
@@ -51,9 +49,7 @@ export function tokenGetter() {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: CryptInterceptor, multi: true },
-    ResolveGetEnums,
-    ResolveGetIgel,
+    // { provide: HTTP_INTERCEPTORS, useClass: CryptInterceptor, multi: true },
     ResolveGetRoles
   ],
   bootstrap: [AppComponent]

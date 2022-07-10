@@ -23,11 +23,11 @@ export class AdminGuard implements CanActivate {
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const tokenDecript = this.jwtHelper.decodeToken(token);
       if (tokenDecript.ID_INICIO_SESION) {
-        this._authService.postGenerarTokenRefresh().toPromise().then((value) => {
+        /* this._authService.postGenerarTokenRefresh().toPromise().then((value) => {
           if (!value) {
             this.router.navigate(['pages/ads']);
           }
-        });
+        });*/
         return true;
       } else {
         this.router.navigate(['pages/ads']);

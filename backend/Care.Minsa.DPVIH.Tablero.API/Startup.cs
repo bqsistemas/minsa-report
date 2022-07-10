@@ -30,10 +30,23 @@ namespace Care.Minsa.DPVIH.Tablero.API
 
         public IConfiguration Configuration { get; }
         private string BackendBPDB { get; set; }
+        private string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("http://localhost",
+                                                          "http://localhost:4200")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                                  });
+            });
+
             services.AddControllers(options =>
                 {
                     options.Filters.Add(new ServiceExceptionInterceptor());
@@ -77,6 +90,8 @@ namespace Care.Minsa.DPVIH.Tablero.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

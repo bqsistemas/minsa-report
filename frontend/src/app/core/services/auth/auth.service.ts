@@ -10,7 +10,6 @@ import { environment } from './../../../../environments/environment';
 // models
 import { User } from '../../models/user/user';
 import { Rol } from '../../models/rol/rol';
-import { AuxiliarService } from '../auxiliar/auxiliar.service';
 import { CryptService } from '../crypt/crypt.service';
 
 @Injectable({
@@ -28,12 +27,11 @@ export class AuthService {
     private httpclient: HttpClient,
     private httpAjaxService: HttpAjaxService,
     private jwtHelper: JwtHelperService,
-    private _crypService: CryptService,
-    private _auxiliarService: AuxiliarService
+    private _crypService: CryptService
   ) { }
   //comands
   postLogin(authParams: any) {
-    return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/login`, {
+    /* return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/login`, {
       user: authParams.user,
       password: authParams.password
     }).pipe(map((data: any) => {
@@ -47,10 +45,10 @@ export class AuthService {
       } else {
         return null;
       }
-    })).toPromise();
+    })).toPromise();*/
   }
   postGenerarToken(authParams: any) {
-    return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/generatetoken`, {
+    /*return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/generatetoken`, {
       tipoDocumento: authParams.tipoDocumento,
       numeroDocumento: authParams.numeroDocumento,
       nombre: authParams.nombre,
@@ -64,10 +62,10 @@ export class AuthService {
       localStorage.setItem(environment.codeJwt, data.data.token);
       this.startRefreshTokenTimer();
       return data;
-    })).toPromise();
+    })).toPromise();*/
   }
   postGenerarTokenRefresh() {
-    const authParams: User = this.userData ? this.userData : this.getUser();
+    /*const authParams: User = this.userData ? this.userData : this.getUser();
     return this.httpclient.post(`${environment.apis.seguridad}/auth/refreshtoken`, {
       tipoDocumento: authParams.idTipoDocumento,
       numeroDocumento: authParams.numeroDocumento,
@@ -86,7 +84,7 @@ export class AuthService {
       } else {
         return false;
       }
-    }));
+    }));*/
   }
   postLogout() {
     localStorage.removeItem(environment.codeJwt);
@@ -94,12 +92,12 @@ export class AuthService {
     location.href = environment.simon;
   }
   postListasedes() {
-    return this.httpclient.post(`${environment.apis.seguridad}/security/listasedes`, {});
+    //return this.httpclient.post(`${environment.apis.seguridad}/security/listasedes`, {});
   }
   postGetMenus(codigoRol: string) {
-    return this.httpclient.post(`${environment.apis.seguridad}/security/getmenus`, {
+    /*return this.httpclient.post(`${environment.apis.seguridad}/security/getmenus`, {
       codigoRol
-    }).toPromise();
+    }).toPromise();*/
   }
 
   setUser(value: User) {
@@ -108,37 +106,6 @@ export class AuthService {
   }
   setIdInicioSesion(value: string) {
     this.idInicioSesion.next(value);
-  }
-  async setSedes(value: Rol[]) {
-    const currentRolSede = this.getRolSedeFromLocalStorage(value);
-    if (currentRolSede) {
-      this.setRolSede(currentRolSede);
-    } else {
-      this.setRolSede(value[0]);
-    }
-    // si el rol por defecto es director, entonces traer los datos de la institución educativa
-    if (environment.roles.directorIIEE === currentRolSede?.codigoRol) {
-      await this._auxiliarService.getInstitucionEducativa(currentRolSede.codigoSede, currentRolSede.anexo).then((value: any) => {
-        if (value.success) {
-          value.data.codigoSede = value.data.codigoModular;
-        } else {
-          console.log('error al traer institución');
-        }
-      }).catch((value: any) => {
-        console.log('error al traer institución');
-      });
-    }
-
-  }
-  setRolSede(value: Rol) {
-    localStorage.setItem(environment.codeTokenRolSede, this._crypService.encryptUsingAES256(value.codigoRol
-      + '|' + value.codigoSede + '|' + value.anexo + '|' + value.tipoSedeIndice));
-  }
-  setMenus(value: any[]) {
-    this.menus = value;
-  }
-  getMenus() {
-    return this.menus;
   }
   getUser() {
     const token = localStorage.getItem(environment.codeJwt);
@@ -177,7 +144,7 @@ export class AuthService {
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(jwtToken.exp * 1000);
     const timeout = expires.getTime() - Date.now() - (60 * 1000);
-    this.refreshTokenTimeout = setTimeout(() => this.postGenerarTokenRefresh().subscribe(), timeout);
+    // this.refreshTokenTimeout = setTimeout(() => this.postGenerarTokenRefresh().subscribe(), timeout);
   }
 
   private stopRefreshTokenTimer() {

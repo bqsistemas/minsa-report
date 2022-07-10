@@ -2,6 +2,7 @@
 using Care.Minsa.DPVIH.Tablero.Application.Commands;
 using Care.Minsa.DPVIH.Tablero.Application.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class CommonController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -27,11 +27,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ScrollbarModule } from '../../@vex/components/scrollbar/scrollbar.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { ComboEnumComponent } from './components/combo-enum/combo-enum.component';
-import { AutocompleteDreComponent } from './components/autocomplete-dre/autocomplete-dre.component';
-import { AutocompleteUgelComponent } from './components/autocomplete-ugel/autocomplete-ugel.component';
-import { AutocompleteIieeComponent } from './components/autocomplete-iiee/autocomplete-iiee.component';
-import { ComboComponenteComponent } from './components/combo-componente/combo-componente.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ButtonActionFormComponent } from './components/button-action-form/button-action-form.component';
 import { FormReportComponent } from './components/form-report/form-report.component';
@@ -39,11 +34,6 @@ import { FormReportComponent } from './components/form-report/form-report.compon
 
 @NgModule({
   declarations: [
-    ComboEnumComponent,
-    AutocompleteDreComponent,
-    AutocompleteUgelComponent,
-    AutocompleteIieeComponent,
-    ComboComponenteComponent,
     ConfirmDialogComponent,
     ButtonActionFormComponent,
     FormReportComponent],
@@ -77,11 +67,6 @@ import { FormReportComponent } from './components/form-report/form-report.compon
     SkeletonModule
   ],
   exports: [
-    ComboEnumComponent,
-    AutocompleteDreComponent,
-    AutocompleteUgelComponent,
-    AutocompleteIieeComponent,
-    ComboComponenteComponent,
     ButtonActionFormComponent,
     FormReportComponent
   ],
