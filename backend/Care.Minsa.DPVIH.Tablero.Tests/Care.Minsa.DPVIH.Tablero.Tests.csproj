@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Care.Minsa.DPVIH.Tablero.Domain\Care.Minsa.DPVIH.Tablero.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

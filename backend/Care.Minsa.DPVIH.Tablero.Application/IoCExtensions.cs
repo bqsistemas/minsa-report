@@ -33,15 +33,6 @@ namespace Care.Minsa.DPVIH.Tablero.Application
             /// Validations area
             ///
             #region Validations area
-            // Client
-            services.AddSingleton<IValidator<CreateClientRequest>, CreateClientRequestValidator>();
-            services.AddSingleton<IValidator<UpdateClientRequest>, UpdateClientRequestValidator>();
-            // Account
-            services.AddSingleton<IValidator<CreateAccountRequest>, CreateAccountRequestValidator>();
-            services.AddSingleton<IValidator<UpdateAccountRequest>, UpdateAccountRequestValidator>();
-            // Transaction
-            services.AddSingleton<IValidator<CreateTransactionRequest>, CreateTransactionRequestValidator>();
-            services.AddSingleton<IValidator<UpdateTransactionRequest>, UpdateTransactionRequestValidator>();
             // Report
             services.AddSingleton<IValidator<ReportSummaryRequest>, ReportSummaryRequestValidator>();
             #endregion

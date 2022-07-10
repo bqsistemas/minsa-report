@@ -8,9 +8,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure
 {
     public interface IUnitOfWork
     {
-        IClientRepository ClientRepository { get; }
-        IAccountRepository AccountRepository { get; }
-        ITransactionRepository TransactionRepository { get; }
+        ITbMaestroIngresoRepository TbMaestroIngresoRepository { get; }
 
         void SaveChanges();
         Task SaveChangesAsync();

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Care.Minsa.DPVIH.Tablero.Application.Commands;
 using Care.Minsa.DPVIH.Tablero.Application.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,8 +31,8 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         [HttpGet]
         public async Task<IActionResult> Add([FromQuery] ReportSummaryRequest request)
         {
-            var client = await _mediator.Send(_mapper.Map<ReportSummaryCommand>(request));
-            return Ok(client);
+            // var client = await _mediator.Send(_mapper.Map<ReportSummaryCommand>(request));
+            return Ok(null);
         }
     }
 }

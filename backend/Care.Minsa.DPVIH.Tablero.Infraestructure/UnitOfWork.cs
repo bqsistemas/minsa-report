@@ -15,42 +15,16 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure
             _context = context;
         }
 
-        private IClientRepository _clientRepository;
-        public IClientRepository ClientRepository
+        private ITbMaestroIngresoRepository _tbMaestroIngresoRepository;
+        public ITbMaestroIngresoRepository TbMaestroIngresoRepository
         {
             get
             {
-                if (_clientRepository == null)
+                if (_tbMaestroIngresoRepository == null)
                 {
-                    _clientRepository = new ClientRepository(_context);
+                    _tbMaestroIngresoRepository = new TbMaestroIngresoRepository(_context);
                 }
-                return _clientRepository;
-            }
-        }
-
-        private IAccountRepository _accountRepository;
-        public IAccountRepository AccountRepository
-        {
-            get
-            {
-                if (_accountRepository == null)
-                {
-                    _accountRepository = new AccountRepository(_context);
-                }
-                return _accountRepository;
-            }
-        }
-
-        private ITransactionRepository _transactionRepository;
-        public ITransactionRepository TransactionRepository
-        {
-            get
-            {
-                if (_transactionRepository == null)
-                {
-                    _transactionRepository = new TransactionRepository(_context);
-                }
-                return _transactionRepository;
+                return _tbMaestroIngresoRepository;
             }
         }
 

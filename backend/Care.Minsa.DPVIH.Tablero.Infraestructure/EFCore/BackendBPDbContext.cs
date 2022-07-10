@@ -10,9 +10,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.EFCore
 {
     public class BackendBPDbContext : DbContext
     {
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Account> Account { get; set; }
-        public virtual DbSet<Transaction> Transaction { get; set; }
+        public virtual DbSet<TbMaestroIngreso> TbMaestroIngreso { get; set; }
         public BackendBPDbContext(DbContextOptions<BackendBPDbContext> options) 
             : base(options)
         {
@@ -25,9 +23,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.EFCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ClientEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new AccountEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new TransactionEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new TbMaestroIngresoEntityTypeConfiguration());
         }
     }
 }

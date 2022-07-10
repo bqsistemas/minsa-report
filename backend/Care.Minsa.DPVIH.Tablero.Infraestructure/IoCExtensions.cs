@@ -1,4 +1,7 @@
-﻿using Care.Minsa.DPVIH.Tablero.Infraestructure.EFCore;
+﻿using Care.Minsa.DPVIH.Tablero.Domain.Interfaces.Queries;
+using Care.Minsa.DPVIH.Tablero.Infraestructure.Dapper;
+using Care.Minsa.DPVIH.Tablero.Infraestructure.EFCore;
+using Care.Minsa.DPVIH.Tablero.Infraestructure.Queries;
 using Care.Minsa.DPVIH.Tablero.Infraestructure.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -18,18 +21,17 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure
             {
                 options.UseSqlServer(dbStringConnection);
             });
+            services.AddSingleton<DapperDbContext>();
 
             ///
             /// Repository area
             ///
             #region Repository area
             // Client
-            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<ITbMaestroIngresoRepository, TbMaestroIngresoRepository>();
+            services.AddScoped<IFiltrosReporteQuery, FiltrosReporteQuery>();
             // Account
-            services.AddScoped<IAccountRepository, AccountRepository>();
             // Transaction
-            services.AddScoped<ITransactionRepository, TransactionRepository>();
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
 
@@ -40,11 +42,11 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var tenantsDbContext = serviceScope.ServiceProvider.GetRequiredService<BackendBPDbContext>();
+                var backendDbContext = serviceScope.ServiceProvider.GetRequiredService<BackendBPDbContext>();
 
                 // Code First
                 // https://www.npgsql.org/efcore/
-                // tenantsDbContext.Database.Migrate();
+                // backendDbContext.Database.Migrate();
             }
         }
     }
