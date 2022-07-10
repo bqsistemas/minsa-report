@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.API", "Care.Minsa.DPVIH.Tablero.API\Care.Minsa.DPVIH.Tablero.API.csproj", "{462227C1-BB04-4018-9D87-E1F290995390}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. EntryPoint", "1. EntryPoint", "{DD58922F-241C-471E-91C1-78637813EC9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{9F2E247B-1F9C-4B40-8178-954A6AD0CAF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Adapters", "2. Adapters", "{0B4B422E-1DD4-4DE9-86F2-18862F7BB5E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Core", "4. Core", "{D545A5DD-D4EA-4C45-BC31-7084B5E7C080}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Test", "5. Test", "{2D8DE834-7CF7-4006-8C2C-A6EC83F23C5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.Application", "Care.Minsa.DPVIH.Tablero.Application\Care.Minsa.DPVIH.Tablero.Application.csproj", "{6A971845-8FB9-497C-AB66-37DE549C9875}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.Infraestructure", "Care.Minsa.DPVIH.Tablero.Infraestructure\Care.Minsa.DPVIH.Tablero.Infraestructure.csproj", "{EAC662CA-D647-49A3-A638-9405500525D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.Domain", "Care.Minsa.DPVIH.Tablero.Domain\Care.Minsa.DPVIH.Tablero.Domain.csproj", "{49EC5605-7516-415C-99B9-AC628301FA8F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.Core", "Care.Minsa.DPVIH.Tablero.Core\Care.Minsa.DPVIH.Tablero.Core.csproj", "{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Care.Minsa.DPVIH.Tablero.Tests", "Care.Minsa.DPVIH.Tablero.Tests\Care.Minsa.DPVIH.Tablero.Tests.csproj", "{F4D38224-BDA9-470B-9C6D-89C617F60930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{462227C1-BB04-4018-9D87-E1F290995390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462227C1-BB04-4018-9D87-E1F290995390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462227C1-BB04-4018-9D87-E1F290995390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462227C1-BB04-4018-9D87-E1F290995390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A971845-8FB9-497C-AB66-37DE549C9875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A971845-8FB9-497C-AB66-37DE549C9875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A971845-8FB9-497C-AB66-37DE549C9875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A971845-8FB9-497C-AB66-37DE549C9875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC662CA-D647-49A3-A638-9405500525D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC662CA-D647-49A3-A638-9405500525D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC662CA-D647-49A3-A638-9405500525D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC662CA-D647-49A3-A638-9405500525D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49EC5605-7516-415C-99B9-AC628301FA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49EC5605-7516-415C-99B9-AC628301FA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49EC5605-7516-415C-99B9-AC628301FA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49EC5605-7516-415C-99B9-AC628301FA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D38224-BDA9-470B-9C6D-89C617F60930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D38224-BDA9-470B-9C6D-89C617F60930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D38224-BDA9-470B-9C6D-89C617F60930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D38224-BDA9-470B-9C6D-89C617F60930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{462227C1-BB04-4018-9D87-E1F290995390} = {DD58922F-241C-471E-91C1-78637813EC9A}
+		{6A971845-8FB9-497C-AB66-37DE549C9875} = {0B4B422E-1DD4-4DE9-86F2-18862F7BB5E3}
+		{EAC662CA-D647-49A3-A638-9405500525D0} = {0B4B422E-1DD4-4DE9-86F2-18862F7BB5E3}
+		{49EC5605-7516-415C-99B9-AC628301FA8F} = {9F2E247B-1F9C-4B40-8178-954A6AD0CAF4}
+		{3A5E3FD5-FDDA-45CD-8817-0749361C1AE5} = {D545A5DD-D4EA-4C45-BC31-7084B5E7C080}
+		{F4D38224-BDA9-470B-9C6D-89C617F60930} = {2D8DE834-7CF7-4006-8C2C-A6EC83F23C5A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1649BD8C-DBF0-49F1-88AE-B9A6EBD79115}
+	EndGlobalSection
+EndGlobal
