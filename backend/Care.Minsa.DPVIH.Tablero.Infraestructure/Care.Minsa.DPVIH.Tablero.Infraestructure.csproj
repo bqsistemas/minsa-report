@@ -6,16 +6,32 @@
 
   <ItemGroup>
     <None Remove="Sql\Departamentos.sql" />
+    <None Remove="Sql\Disa.sql" />
     <None Remove="Sql\Distritos.sql" />
+    <None Remove="Sql\eSTABLECIMIENTO.sql" />
     <None Remove="Sql\Meses.sql" />
+    <None Remove="Sql\MicroRed.sql" />
     <None Remove="Sql\Provincias.sql" />
+    <None Remove="Sql\Red.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Sql\Departamentos.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sql\MicroRed.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sql\Establecimiento.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sql\Red.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sql\Distritos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sql\Disa.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Sql\Meses.sql">
