@@ -4,7 +4,7 @@
 
     <mat-divider class="-mx-6 text-border"></mat-divider>
 
-    <mat-dialog-content fxLayout="column" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" class="pt-4 px-2">
+    <mat-dialog-content fxLayout="column" fxLayoutGap="2px" fxLayoutGap.lt-sm="0" class="pt-2 px-2">
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>DISA</mat-label>
@@ -46,8 +46,6 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>Provincia</mat-label>
                 <mat-select matInput [formControl]="form.controls.provincia">
@@ -56,11 +54,29 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>Distrito</mat-label>
                 <mat-select matInput [formControl]="form.controls.distrito">
                     <mat-option *ngFor="let item of distritoData" [value]="item.distrito">
                         {{item.distritoDsc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="auto">
+                <mat-label>Etnia</mat-label>
+                <mat-select matInput [formControl]="form.controls.etnia">
+                    <mat-option *ngFor="let item of etniaData" [value]="item.etnia">
+                        {{item.etniaDsc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="auto">
+                <mat-label>Grupo Etario</mat-label>
+                <mat-select matInput [formControl]="form.controls.grupoEtario">
+                    <mat-option *ngFor="let item of grupoEtarioData" [value]="item.grupoEtario">
+                        {{item.grupoEtarioDsc}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -73,18 +89,18 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Mes</mat-label>
-                <mat-select matInput [formControl]="form.controls.mes">
-                    <mat-option *ngFor="let item of mesData" [value]="item.id">
+                <mat-label>Año</mat-label>
+                <mat-select matInput [formControl]="form.controls.anio">
+                    <mat-option *ngFor="let item of anioData" [value]="item.id">
                         {{item.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Periodo</mat-label>
-                <mat-select matInput [formControl]="form.controls.periodo">
-                    <mat-option *ngFor="let item of periodoData" [value]="item.id">
-                        {{item.name}}
+                <mat-label>Mes</mat-label>
+                <mat-select matInput [formControl]="form.controls.mes">
+                    <mat-option *ngFor="let item of mesData" [value]="item.mes">
+                        {{item.mesDsc}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -92,5 +108,13 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
+        <div fxLayout="row" fxLayoutAlign="center" class="my-1">
+            <button 
+                class="bg-green-500 text-contrast-white"
+                fxFlex="none"
+                mat-raised-button (click)="submitReport()"
+                type="button">Generar
+            </button>
+        </div>
     </mat-dialog-actions>
 </form>

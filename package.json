@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-extended-pdf-viewer": "^14.0.7"
+  }
+}

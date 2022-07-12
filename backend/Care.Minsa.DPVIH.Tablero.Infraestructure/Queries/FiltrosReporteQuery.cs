@@ -177,5 +177,41 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
+
+        public async Task<List<GrupoEtarioDto>> GetGruposEtarios()
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+
+                    var sql = Resource.Query("Sql//GrupoEtario.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<GrupoEtarioDto>(sql);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<EtniaDto>> GetEtnias()
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+
+                    var sql = Resource.Query("Sql//Etnia.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<EtniaDto>(sql);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

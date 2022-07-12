@@ -14,9 +14,8 @@ namespace Care.Minsa.DPVIH.Tablero.Application
         public static IServiceCollection AddApplicationDependencies(this IServiceCollection services)
         {
             ///
-            /// Instant area 
+            /// Report area
             ///
-            services.AddTransient<IClock>(x => SystemClock.Instance);
 
             ///
             /// Parameters area: Read environment variables

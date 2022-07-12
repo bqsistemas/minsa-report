@@ -16,7 +16,7 @@ import { AuthInterceptor } from './security/interceptors/auth-interceptor';
 import { ErrorInterceptor } from './security/interceptors/error-interceptor';
 import { CryptInterceptor } from './security/interceptors/crypt-interceptor';
 // resolvers
-import { ResolveGetRoles } from './core/resolvers/resolve-get-roles/resolve-get-roles';
+import { ResolveUser } from '@core/resolvers/resolve-user/resolve-user';
 
 import { environment } from './../environments/environment';
 
@@ -50,7 +50,7 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: CryptInterceptor, multi: true },
-    ResolveGetRoles
+    ResolveUser
   ],
   bootstrap: [AppComponent]
 })

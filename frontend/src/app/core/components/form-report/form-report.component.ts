@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -11,6 +11,9 @@ import { Red } from '@core/models/red/red';
 import { Microred } from '@core/models/microred/microred';
 import { Ubigeo } from '@core/models/ubigeo/ubigeo';
 import { Establecimiento } from '@core/models/establecimiento/establecimiento';
+import { GrupoEtario } from '@core/models/grupoEtario/grupo-etario';
+import { Mes } from '@core/models/mes/mes';
+import { Etnia } from '@core/models/etnia/etnia';
 
 
 @Component({
@@ -32,37 +35,43 @@ export class FormReportComponent implements OnInit {
   provinciaData: Ubigeo[] = []
   distritoData: Ubigeo[] = []
   establecimientoData: Establecimiento[] = []
+  grupoEtarioData: GrupoEtario[] = []
+  mesData: Mes[] = []
+  etniaData: Etnia[] = []
 
   //mockup data
-  tipoPoblacionData = [{
-    id: '1',
-    name: 'ABC'
-  }]
-  grupoEtarioData = [{
-    id: '1',
-    name: 'ABC'
-  }]
   sexoData = [{
-    id: '1',
+    id: 'M',
     name: 'Masculino'
   },{
-    id: '2',
+    id: 'F',
     name: 'Femenino'
   }]
-  mesData = [{
-    id: '1',
-    name: 'Enero'
+ 
+  anioData = [{
+    id: '2019',
+    name: '2019'
   },{
-    id: '2',
-    name: 'Febrero'
-  }]
-  periodoData = [{
-    id: '1',
-    name: 'Periodo A'
+    id: '2020',
+    name: '2020'
   },{
-    id: '2',
-    name: 'periodo B'
+    id: '2021',
+    name: '2021'
+  },{
+    id: '2022',
+    name: '2022'
+  },{
+    id: '2023',
+    name: '2023'
+  },{
+    id: '2024',
+    name: '2024'
+  },{
+    id: '2025',
+    name: '2025'
   }]
+
+  @Output() callReport = new EventEmitter<any[]>();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -74,6 +83,9 @@ export class FormReportComponent implements OnInit {
   ngOnInit(): void {
     this.fetchDisa()
     this.fetchDepartamento()
+    this.fetchMeses()
+    this.fetchEtnia()
+    this.fetchGrupoEtario()
 
     this.form.controls.disa.valueChanges.subscribe((disa) => {
       this.fetchRed(disa)
@@ -103,11 +115,11 @@ export class FormReportComponent implements OnInit {
       departamento: new FormControl('', []),
       provincia: new FormControl('', []),
       distrito: new FormControl('', []),
-      tipoPoblacion: new FormControl('', []),
+      etnia: new FormControl('', []),
       grupoEtario: new FormControl('', []),
       sexo: new FormControl('', []),
+      anio: new FormControl('', []),
       mes: new FormControl('', []),
-      periodo: new FormControl('', []),
     });
   }
   fetchDepartamento = () => {
@@ -158,5 +170,36 @@ export class FormReportComponent implements OnInit {
         this.establecimientoData = response
       })
       .catch((err) => console.log(err))
+  }
+  fetchMeses = () => {
+    this._commonService.getMeses()
+      .then((response: any) => {
+        this.mesData = response
+      })
+      .catch((err) => console.log(err))
+  }
+  fetchEtnia = () => {
+    this._commonService.getEtnias()
+      .then((response: any) => {
+        this.etniaData = response
+      })
+      .catch((err) => console.log(err))
+  }
+  fetchGrupoEtario = () => {
+    this._commonService.getGrupoEtarios()
+      .then((response: any) => {
+        this.grupoEtarioData = response
+      })
+      .catch((err) => console.log(err))
+  }
+
+  submitReport = () => {
+    if (this.form.valid) {
+      const values = Object.assign({}, this.form.value);
+      this._commonService.setLoadingReport(true)
+      this.callReport.emit(values);
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 }

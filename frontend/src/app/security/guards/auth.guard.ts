@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem(environment.codeJwt);
-
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
+    //  && !this.jwtHelper.isTokenExpired(token)
+    if (token) {
       this.router.navigate(['/']);
       return false;
     }

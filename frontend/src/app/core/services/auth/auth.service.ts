@@ -31,106 +31,47 @@ export class AuthService {
   ) { }
   //comands
   postLogin(authParams: any) {
-    /* return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/login`, {
-      user: authParams.user,
+    return this.httpAjaxService.post(`${environment.apis.apiLogin}`, {
+      username: authParams.username,
       password: authParams.password
     }).pipe(map((data: any) => {
-      if (data.success) {
-        const tokenDecript = this.jwtHelper.decodeToken(data.data.token);
-        data.data.user.idInicioSesion = environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.ID_INICIO_SESION) : tokenDecript.ID_INICIO_SESION;
-        this.setUser(data.data.user);
-        localStorage.setItem(environment.codeJwt, data.data.token);
-        this.startRefreshTokenTimer();
+      console.log(data)
+      if (data.auth_token) {
+        // this.setUser(data.data.user);
+        localStorage.setItem(environment.codeJwt, data.auth_token);
+        
         return data;
       } else {
         return null;
       }
-    })).toPromise();*/
-  }
-  postGenerarToken(authParams: any) {
-    /*return this.httpAjaxService.post(`${environment.apis.seguridad}/auth/generatetoken`, {
-      tipoDocumento: authParams.tipoDocumento,
-      numeroDocumento: authParams.numeroDocumento,
-      nombre: authParams.nombre,
-      apellidoPaterno: authParams.apellidoPaterno,
-      apellidoMaterno: authParams.apellidoMaterno,
-      idInicioSesion: authParams.idInicioSesion
-    }).pipe(map((data: any) => {
-      data.data.user.idInicioSesion = authParams.idInicioSesion;
-      data.data.user.idTipoDocumento = authParams.tipoDocumento;
-      this.setUser(data.data.user);
-      localStorage.setItem(environment.codeJwt, data.data.token);
-      this.startRefreshTokenTimer();
-      return data;
-    })).toPromise();*/
-  }
-  postGenerarTokenRefresh() {
-    /*const authParams: User = this.userData ? this.userData : this.getUser();
-    return this.httpclient.post(`${environment.apis.seguridad}/auth/refreshtoken`, {
-      tipoDocumento: authParams.idTipoDocumento,
-      numeroDocumento: authParams.numeroDocumento,
-      nombre: authParams.nombres,
-      apellidoPaterno: authParams.apellidoPaterno,
-      apellidoMaterno: authParams.apellidoMaterno,
-      idInicioSesion: authParams.idInicioSesion
-    }).pipe(map((data: any) => {
-      localStorage.removeItem(environment.codeJwt);
-      if (data.success) {
-        data.data.user.idInicioSesion = authParams.idInicioSesion;
-        this.setUser(data.data.user);
-        localStorage.setItem(environment.codeJwt, data.data.token);
-        this.startRefreshTokenTimer();
-        return true;
-      } else {
-        return false;
-      }
-    }));*/
+    })).toPromise();
   }
   postLogout() {
     localStorage.removeItem(environment.codeJwt);
     this.stopRefreshTokenTimer();
-    location.href = environment.simon;
+    location.href = "/";
   }
-  postListasedes() {
-    //return this.httpclient.post(`${environment.apis.seguridad}/security/listasedes`, {});
-  }
-  postGetMenus(codigoRol: string) {
-    /*return this.httpclient.post(`${environment.apis.seguridad}/security/getmenus`, {
-      codigoRol
-    }).toPromise();*/
+  setPermisos() {
+    return this.httpAjaxService.getWithOutPromise(`${environment.apis.apiSecurity}/permisos/`)
   }
 
   setUser(value: User) {
     this.userData = value;
     this.user.next(value);
   }
-  setIdInicioSesion(value: string) {
-    this.idInicioSesion.next(value);
-  }
   getUser() {
     const token = localStorage.getItem(environment.codeJwt);
     if (token) {
-      const tokenDecript = this.jwtHelper.decodeToken(token);
       return ({
-        nombres: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.NOMBRES) : tokenDecript.NOMBRES,
-        apellidoPaterno: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.APELLIDO_PATERNO) : tokenDecript.APELLIDO_PATERNO,
-        apellidoMaterno: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.APELLIDO_MATERNO) : tokenDecript.APELLIDO_MATERNO,
-        numeroDocumento: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.USUARIO_NUMERO_DOCUMENTO) : tokenDecript.USUARIO_NUMERO_DOCUMENTO,
-        idTipoDocumento: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.USUARIO_ID_TIPO_DOCUMENTO) : tokenDecript.USUARIO_ID_TIPO_DOCUMENTO,
-        idInicioSesion: environment.encrypt ? this._crypService.decryptUsingAES256(tokenDecript.ID_INICIO_SESION) : tokenDecript.ID_INICIO_SESION
+        nombres: this.userData?.nombres,
+        apellidoPaterno: this.userData?.apellidoPaterno,
+        apellidoMaterno: this.userData?.apellidoMaterno,
+        numeroDocumento: this.userData?.numeroDocumento,
+        tipoDocumento: this.userData?.tipoDocumento
       } as User);
     } else {
       return null;
     }
-  }
-  getRolSedeFromLocalStorage(sedes: Rol[]) {
-    const rolsede = this._crypService.decryptUsingAES256(localStorage.getItem(environment.codeTokenRolSede));
-    if (rolsede) {
-      const splitRolSede = rolsede.split('|');
-      return sedes.find(x => x.codigoRol === splitRolSede[0] && x.codigoSede === splitRolSede[1]
-        && x.anexo === splitRolSede[2] && x.tipoSedeIndice === Number(splitRolSede[3]));
-    }
-    return null;
   }
   // helper methods
 

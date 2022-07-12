@@ -20,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SkeletonModule } from '../../../../fake/skeleton/skeleton.module';
 
@@ -55,6 +56,7 @@ import { ItsComponent } from './its.component';
     MatSnackBarModule,
     MatInputModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
 
     SkeletonModule
   ],

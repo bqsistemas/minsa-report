@@ -6,7 +6,7 @@ import { WorkspaceRoutingModule } from './workspace-routing.module';
 @NgModule({
   imports: [
     CommonModule,
-    WorkspaceRoutingModule
+    WorkspaceRoutingModule,
   ]
 })
 export class WorkspaceModule {

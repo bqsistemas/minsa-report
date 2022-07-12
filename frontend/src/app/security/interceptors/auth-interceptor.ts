@@ -17,13 +17,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = localStorage.getItem(environment.codeJwt);
-
-        if (token && !this.jwtHelper.isTokenExpired(token)) {
-            const header = 'Bearer ' + token;
+        //  && !this.jwtHelper.isTokenExpired(token)
+        if (token) {
+            const header = 'Token ' + token;
             if (req.headers.get('Content-Type') == null || req.headers.get('Content-Type').toString() !== 'multipart/form-data') {
                 const headers = new HttpHeaders({
-                    Authorization: 'Bearer ' + token,
-                    apikey: environment.apiKey,
+                    Authorization: 'Token ' + token,
                     'Content-Type': 'application/json',
                 });
                 const reqWithAuth = req.clone({ headers: headers });
@@ -31,8 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
             }
             if (req.headers.get('Content-Type') != null && req.headers.get('Content-Type').toString() === 'multipart/form-data') {
                 const headers = new HttpHeaders({
-                    Authorization: 'Bearer ' + token,
-                    apikey: environment.apiKey
+                    Authorization: 'Token ' + token
                 });
                 headers['reportProgress'] = true;
                 headers['observe'] = 'events';
@@ -41,7 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
             }
         } else {
             const headers = new HttpHeaders({
-                apikey: environment.apiKey
             });
             const reqWithAuth = req.clone({ headers: headers });
             return next.handle(reqWithAuth);

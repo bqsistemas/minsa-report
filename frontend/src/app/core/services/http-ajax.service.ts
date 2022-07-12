@@ -20,8 +20,7 @@ export class HttpAjaxService {
     const token = ''; // this._authService.getToken();
     return {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + token, //JWT
-        'apikey': environment.apiKey,
+        'Authorization': 'Token ' + token, //JWT
         'Content-Type': 'application/json',
       })
     };
@@ -30,8 +29,7 @@ export class HttpAjaxService {
     let token = localStorage.getItem("jwt");
     return {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + token,
-        'apikey': environment.apiKey,
+        'Authorization': 'Token ' + token,
         'Content-Type': 'multipart/form-data',
       })
     };

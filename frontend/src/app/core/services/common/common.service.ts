@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpAjaxService } from './../http-ajax.service';
 import { environment } from './../../../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+
+  private loadingReport = new BehaviorSubject<boolean>(false);
+  loadingReport$ = this.loadingReport.asObservable();
 
   constructor(
     private httpAjaxService: HttpAjaxService
@@ -35,5 +39,15 @@ export class CommonService {
   }
   getEstablecimientos(disa: string, red: string, microred: string){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/establecimientos/${disa}/${red}/${microred}`)
+  }
+  getEtnias(){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/etnias`)
+  }
+  getGrupoEtarios(){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/grupoEtarios`)
+  }
+
+  setLoadingReport(value: boolean) {
+    this.loadingReport.next(value);
   }
 }

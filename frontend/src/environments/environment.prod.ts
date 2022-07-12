@@ -8,9 +8,10 @@ export const environment = {
   simon: 'http://localhost:35510/',
   codeJwt: '_jbq|minsa|minedu',
   codeTokenRolSede: '_jbq|minsa|rs',
-  apiKey: 'mFHxgPWCGNAPhifYXl3MEuVR3VkKTqvp',
   apis: {
-    backend: 'https://localhost:5001/api'
+    backend: 'https://localhost:5001/api',
+    apiLogin: 'http://devlogin.minsa.gob.pe/auth/login/',
+    apiSecurity: 'http://devlogin.minsa.gob.pe/api/v1'
   },
   enums: {
   }

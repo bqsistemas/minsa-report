@@ -6,7 +6,7 @@ import { CustomLayoutPagesComponent } from './custom-layout-pages/custom-layout-
 import { VexRoutes } from '../@vex/interfaces/vex-route.interface';
 
 // resolvers
-import { ResolveGetRoles } from './core/resolvers/resolve-get-roles/resolve-get-roles';
+import { ResolveUser } from '@core/resolvers/resolve-user/resolve-user';
 // guards
 import { AdminGuard } from './security/guards/admin.guard';
 import { AuthGuard } from './security/guards/auth.guard';
@@ -33,10 +33,6 @@ const childrenRoutes: VexRoutes = [
 ];
 const childrenRoutesPages: VexRoutes = [
   {
-    path: 'ads',
-    loadChildren: () => import('./pages/errors/error-auth/error-auth.module').then(m => m.ErrorAuthModule)
-  },
-  {
     path: '401',
     loadChildren: () => import('./pages/errors/error-unauthorized/error-unauthorized.module').then(m => m.ErrorUnauthorizedModule)
   }
@@ -45,13 +41,14 @@ const routes: Routes = [
   {
     path: '',
     component: CustomLayoutComponent,
-    resolve: { /* enums: ResolveGetEnums */ },
+    resolve: { user: ResolveUser },
     children: childrenRoutes,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard]
   },
   {
-    path: 'auth/:id',
-    component: CustomLayoutErrorComponent
+    path: 'auth/login',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'pages',

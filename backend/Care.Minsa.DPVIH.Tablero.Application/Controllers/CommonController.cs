@@ -30,7 +30,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         [HttpGet]
         [Route("departamentos")]
         public async Task<IActionResult> GetDepartamentos()
-        {
+        { 
             var departamentos = await _mediator.Send(new ListarDepartamentoCommand());
             return Ok(departamentos);
         }
@@ -82,6 +82,20 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         {
             var establecimientos = await _mediator.Send(new ListarEstablecimientoCommand(disa, red, microred));
             return Ok(establecimientos);
+        }
+        [HttpGet]
+        [Route("etnias")]
+        public async Task<IActionResult> GetEtnias()
+        {
+            var meses = await _mediator.Send(new ListarEtniaCommand());
+            return Ok(meses);
+        }
+        [HttpGet]
+        [Route("grupoEtarios")]
+        public async Task<IActionResult> GetGrupoEtarios()
+        {
+            var meses = await _mediator.Send(new ListarGrupoEtarioCommand());
+            return Ok(meses);
         }
     }
 }

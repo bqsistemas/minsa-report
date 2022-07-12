@@ -11,4 +11,8 @@ export class User {
     ultimoInicioSesion: Date;
     idInicioSesion: string;
     roles: Rol[];
+
+    // minsa
+    userName: string;
+    diresa: string[];
 }

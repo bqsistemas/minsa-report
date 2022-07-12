@@ -9,6 +9,8 @@
     <None Remove="Sql\Disa.sql" />
     <None Remove="Sql\Distritos.sql" />
     <None Remove="Sql\eSTABLECIMIENTO.sql" />
+    <None Remove="Sql\Etnia.sql" />
+    <None Remove="Sql\GrupoEtario.sql" />
     <None Remove="Sql\Meses.sql" />
     <None Remove="Sql\MicroRed.sql" />
     <None Remove="Sql\Provincias.sql" />
@@ -16,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sql\Etnia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sql\GrupoEtario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sql\Departamentos.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

@@ -17,6 +17,8 @@ using System;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Autofac;
+using Care.Minsa.DPVIH.Tablero.API.App_Start;
 
 namespace Care.Minsa.DPVIH.Tablero.API
 {
@@ -102,6 +104,13 @@ namespace Care.Minsa.DPVIH.Tablero.API
 
             // Is extensions from infraestructure to create dabase and execute the migrations
             app.MigrateDatabases();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //Register Types
+            BootstrapperContainer.Configuration = Configuration;
+            BootstrapperContainer.Register(builder);
         }
     }
 }
