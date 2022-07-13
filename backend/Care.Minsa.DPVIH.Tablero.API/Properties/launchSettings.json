@@ -7,9 +7,7 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "BACKEND_BP_DB": "database=DEVSU_BACKEND_BP;host=34.75.183.105;username=postgres;password=Pb%y!ul9Di^P77",
-        "LIMIT_BY_DAY": "1000"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

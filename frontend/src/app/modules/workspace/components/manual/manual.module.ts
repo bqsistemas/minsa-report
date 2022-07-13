@@ -27,10 +27,12 @@ import { CoreModule } from '../../../../core/core.module';
 
 import { ManualRoutingModule } from './manual-routing.module';
 import { ManualComponent } from './manual.component';
+import { IndicadorTableComponent } from './components/indicador-table/indicador-table.component';
+import { IndicadorDialogComponent } from './components/indicador-dialog/indicador-dialog.component';
 
 
 @NgModule({
-  declarations: [ManualComponent],
+  declarations: [ManualComponent, IndicadorTableComponent, IndicadorDialogComponent],
   imports: [
     CommonModule,
     ManualRoutingModule,

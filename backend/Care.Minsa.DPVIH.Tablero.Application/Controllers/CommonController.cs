@@ -17,14 +17,11 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
     public class CommonController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
         public CommonController(
-            IMediator mediator,
-            IMapper mapper
+            IMediator mediator
             )
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
         
         [HttpGet]

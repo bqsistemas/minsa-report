@@ -27,7 +27,7 @@ namespace Care.Minsa.DPVIH.Tablero.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            BackendBPDB = Environment.GetEnvironmentVariable("BACKEND_BP_DB") ?? Configuration.GetConnectionString("Database");
+            BackendBPDB = Environment.GetEnvironmentVariable("BACKEND_MINSA_DPVIH_BP_DB") ?? Configuration.GetConnectionString("Database");
         }
 
         public IConfiguration Configuration { get; }

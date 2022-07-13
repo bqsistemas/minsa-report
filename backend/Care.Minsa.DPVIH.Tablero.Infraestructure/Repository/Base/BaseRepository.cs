@@ -48,12 +48,17 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Repository
         {
             return _context.Update(entity).Entity;
         }
+
+        public void Delete(T entity)
+        {
+            _context.Remove(entity);
+        }
         public virtual bool ExistBySpec(BaseSpecification<T> spec)
         {
             return _context.Set<T>().Any(spec.Criteria());
         }
 
-        public virtual T Get(Guid id)
+        public virtual T Get(int id)
         {
             return _context.Find<T>(id);
         }

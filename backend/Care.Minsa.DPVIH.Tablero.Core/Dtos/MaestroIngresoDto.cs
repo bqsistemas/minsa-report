@@ -6,16 +6,24 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Dtos
 {
     public class MaestroIngresoDto
     {
+        public int IdMaestroIngreso { get; set; }
         public string Anio { get; set; }
         public string Mes { get; set; }
-        public string MesDsc { get; set; }
-        public string Departamento { get; set; }
-        public string DepartamentoDsc { get; set; }
-        public string Provincia { get; set; }
-        public string ProvinciaDsc { get; set; }
-        public string Distrito { get; set; }
-        public string DistritoDsc { get; set; }
+        public int Disa { get; set; }
+        public string Red { get; set; }
+        public string Mred { get; set; }
+        public int Renaes { get; set; }
+        public string Dep { get; set; }
+        public string Prov { get; set; }
+        public string Dis { get; set; }
+        public int Etapa { get; set; }
         public string Sexo { get; set; }
-        public string SexoDsc { get; set; }
+        public string Etnia { get; set; }
+        public string VinPersonaEstimada { get; set; }
+        public string ItsPersonaEstimadaTamizajeSifilis { get; set; }
+        public string ItsPersonaEstimadaDiagnosticoIts { get; set; }
+        public string TmiGestanteAtendidaVih { get; set; }
+        public string TmiGestanteAtendidaSifilis { get; set; }
+        public string TmiGestanteAtendidaHepatitisB { get; set; }
     }
 }

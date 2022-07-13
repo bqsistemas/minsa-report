@@ -12,6 +12,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<TbMaestroIngreso> builder)
         {
             builder.ToTable("TB_MAESTRO_INGRESO");
+            builder.HasKey(x => x.IdMaestroIngreso);
         }
     }
 }
