@@ -1,4 +1,4 @@
-<img height="60px" width="60px" style="float: left;" src="/assets/img/simon/logo-minsa.png" alt="Vex Logo">
+<img height="60px" width="60px" style="float: left;" src="/assets/img/minsa/logo-minsa.png" alt="Vex Logo">
 <h2 style="height: 60px; line-height: 60px; margin-left: 70px; font-weight: 500; border: none;">MINSA</h2>
 
 # Introduction

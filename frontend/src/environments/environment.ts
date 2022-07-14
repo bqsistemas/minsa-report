@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   encrypt: true,
-  simon: 'http://localhost:35510/',
   codeJwt: '_jbq|minsa|minedu',
   codeTokenRolSede: '_jbq|minsa|rs',
   apis: {

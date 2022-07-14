@@ -19,6 +19,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Autofac;
 using Care.Minsa.DPVIH.Tablero.API.App_Start;
+using System.Collections.Generic;
 
 namespace Care.Minsa.DPVIH.Tablero.API
 {
@@ -42,8 +43,7 @@ namespace Care.Minsa.DPVIH.Tablero.API
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   policy =>
                                   {
-                                      policy.WithOrigins("http://localhost",
-                                                          "http://localhost:4200")
+                                      policy.WithOrigins(Configuration.GetSection("CorsDomain").Get<string[]>())
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                                   });
@@ -86,7 +86,7 @@ namespace Care.Minsa.DPVIH.Tablero.API
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Devsu Backend Exam API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minsa Backend DPVIH API");
             });
 
             app.UseHttpsRedirection();

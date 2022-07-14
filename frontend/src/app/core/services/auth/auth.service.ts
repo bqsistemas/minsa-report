@@ -66,7 +66,8 @@ export class AuthService {
         apellidoPaterno: this.userData?.apellidoPaterno,
         apellidoMaterno: this.userData?.apellidoMaterno,
         numeroDocumento: this.userData?.numeroDocumento,
-        tipoDocumento: this.userData?.tipoDocumento
+        tipoDocumento: this.userData?.tipoDocumento,
+        diresa: this.userData?.diresa
       } as User);
     } else {
       return null;

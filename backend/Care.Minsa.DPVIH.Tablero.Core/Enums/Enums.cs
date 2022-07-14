@@ -12,4 +12,12 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Enums
         Mhtml = 4,
         Html4 = 5
     }
+
+    public enum MinsaReportType
+    {
+        VIH = 1,
+        TMI = 2,
+        HEPATITIS = 3,
+        ITS = 4
+    }
 }

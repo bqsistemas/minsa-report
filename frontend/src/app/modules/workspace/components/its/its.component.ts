@@ -48,6 +48,7 @@ export class ItsComponent implements OnInit {
 
   callReport(values) {
     this.urlReport = ''
+    values.reportType = 'ITS'
     this._reportService.postReportPDF(values)
     .subscribe(
       (data) => {

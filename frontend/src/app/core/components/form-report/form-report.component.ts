@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import icClose from '@iconify/icons-ic/twotone-close';
 // services
 import { CommonService } from '@core/services/common/common.service';
+import { AuthService } from '@core/services/auth/auth.service';
 //N models
 import { Disa } from '@core/models/disa/disa';
 import { Red } from '@core/models/red/red';
@@ -38,6 +39,8 @@ export class FormReportComponent implements OnInit {
   grupoEtarioData: GrupoEtario[] = []
   mesData: Mes[] = []
   etniaData: Etnia[] = []
+
+  user:any = null
 
   //mockup data
   sexoData = [{
@@ -75,12 +78,15 @@ export class FormReportComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _commonService: CommonService
+    private _commonService: CommonService,
+    private _authService: AuthService
   ) {
     this.form = this.createForm();
    }
 
   ngOnInit(): void {
+    this.user = this._authService.getUser()
+    
     this.fetchDisa()
     this.fetchDepartamento()
     this.fetchMeses()
@@ -102,13 +108,15 @@ export class FormReportComponent implements OnInit {
     this.form.controls.provincia.valueChanges.subscribe((provincia) => {
       this.fetchDistrito(this.form.value.departamento, provincia)
     })
+    console.log(this.user.diresa[0])
+    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
   createForm(): FormGroup {
     return new FormGroup({
-      disa: new FormControl('', []),
+      disa: new FormControl({value: null, disabled: true}, []),
       red: new FormControl('', []),
       microRed: new FormControl('', []),
       establecimiento: new FormControl('', []),
@@ -196,6 +204,7 @@ export class FormReportComponent implements OnInit {
   submitReport = () => {
     if (this.form.valid) {
       const values = Object.assign({}, this.form.value);
+      values.disa = this.user.diresa[0]
       this._commonService.setLoadingReport(true)
       this.callReport.emit(values);
     } else {

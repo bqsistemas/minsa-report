@@ -1,4 +1,5 @@
-﻿using NodaTime;
+﻿using Care.Minsa.DPVIH.Tablero.Core.Enums;
+using NodaTime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,5 +21,6 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests
         public string Sexo { get; set; }
         public string Anio { get; set; }
         public string Mes { get; set; }
+        public MinsaReportType ReportType { get; set; }
     }
 }

@@ -22,6 +22,7 @@ import { Ubigeo } from '@core/models/ubigeo/ubigeo';
 // services
 import { IndicadorService } from '@core/services/indicador/indicador.service';
 import { CommonService } from '@core/services/common/common.service';
+import { AuthService } from '@core/services/auth/auth.service';
 
 @Component({
   selector: 'vex-indicador-dialog',
@@ -35,6 +36,7 @@ export class IndicadorDialogComponent implements OnInit {
   action = 'new';
 
   statusButtonSave: FormControl = new FormControl(false);
+  user:any = null
   // ----------------------
   icClose = icClose;
   icSubject = icSubject;
@@ -85,6 +87,7 @@ export class IndicadorDialogComponent implements OnInit {
   constructor(
     private _indicadorService: IndicadorService,
     private _commonService: CommonService,
+    private _authService: AuthService,
     private dialogRef: MatDialogRef<IndicadorDialogComponent>,
     private _formBuilder: FormBuilder,
     private snackbar: MatSnackBar,
@@ -102,6 +105,8 @@ export class IndicadorDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this._authService.getUser()
+    
     this.fetchDisa()
     this.fetchDepartamento()
     this.fetchMeses()
@@ -123,11 +128,13 @@ export class IndicadorDialogComponent implements OnInit {
     this.form.controls.prov.valueChanges.subscribe((provincia) => {
       this.fetchDistrito(this.form.value.dep  ?? this.indicador.dep, provincia)
     })
+    if(this.action !== 'edit')
+      this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
   }
   createForm(): FormGroup {
     return new FormGroup({
-      id: new FormControl(null, []),
-      disa: new FormControl(null, [Validators.required]),
+      idMaestroIngreso: new FormControl(null, []),
+      disa: new FormControl({value: null, disabled: true}, [Validators.required]),
       red: new FormControl(null, [Validators.required]),
       mred: new FormControl(null, [Validators.required]),
       renaes: new FormControl(null, [Validators.required]),
@@ -167,7 +174,7 @@ export class IndicadorDialogComponent implements OnInit {
   fnEdit(event: Event) {
     if (this.form.valid) {
       const entidad = Object.assign({}, this.form.value);
-      entidad.disa = parseInt(entidad.disa)
+      entidad.disa = this.indicador.disa
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
       this._indicadorService.putUpdate(entidad).then((value: any) => {
@@ -180,6 +187,7 @@ export class IndicadorDialogComponent implements OnInit {
         });
         this.statusButtonSave.setValue(false); // volvemos a status ocioso el spinner del button save
       }).catch((error) => {
+        console.log(error)
         this.snackbar.open('Error de edición', 'Aviso!', {
           panelClass: 'bg-deep-orange-500',
           duration: 3500
@@ -194,7 +202,7 @@ export class IndicadorDialogComponent implements OnInit {
   fnAdd(event: Event) {
     if (this.form.valid) {
       const entidad = Object.assign({}, this.form.value);
-      entidad.disa = parseInt(entidad.disa)
+      entidad.disa = parseInt(this.user.diresa[0])
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
       this._indicadorService.postAdd(entidad).then((value: any) => {

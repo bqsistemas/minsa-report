@@ -34,8 +34,27 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             var excep = new Exception();
             var sr = new Release.Helper.StatusResponse();
             ReportFormat format = ReportFormat.PDF;
-            string rdl = "rptTipoReporte";//filter.Rdl;
-            string nombreReporte = "rptTipoReporte";//filter.Procedimiento.Replace(" ", "").Replace(".", "");
+            string rdl = "";//filter.Rdl;
+
+            switch (request.ReportType)
+            {
+                case Core.Enums.MinsaReportType.VIH:
+                    rdl = "RPT_VIH";
+                    break;
+                case Core.Enums.MinsaReportType.ITS:
+                    rdl = "RPT_ITS";
+                    break;
+                case Core.Enums.MinsaReportType.TMI:
+                    rdl = "RPT_TMI";
+                    break;
+                case Core.Enums.MinsaReportType.HEPATITIS:
+                    rdl = "RPT_HEPATITIS";
+                    break;
+                default:
+                    rdl = "rptTipoReporte";
+                    break;
+            }
+
             var rm = new Release.Helper.ReportingServices.FileResponse();
             try
             {
@@ -56,7 +75,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 
-                return File(rm.FileBytes, rm.ContentType, nombreReporte);
+                return File(rm.FileBytes, rm.ContentType, "Reporte");
             }
             catch (Exception ex)
             {

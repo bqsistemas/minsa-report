@@ -41,7 +41,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             var result = await _mediator.Send(_mapper.Map<RegistroIndicadorCommand>(request));
             return Ok(result);
         }
-        [HttpPatch]
+        [HttpPut]
         public async Task<IActionResult> Update(UpdateMaestroIngresoRequest request)
         {
             var result = await _mediator.Send(_mapper.Map<EditarIndicadorCommand>(request));

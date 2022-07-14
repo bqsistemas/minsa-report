@@ -52,7 +52,7 @@ export class CustomLayoutPagesComponent implements OnInit, OnDestroy {
       boxed: false,
       sidenav: {
         title: 'MINSA',
-        imageUrl: 'assets/img/simon/logo-simon.svg',
+        imageUrl: 'assets/img/minsa/isotipo.png',
         showCollapsePin: true,
         state: 'collapsed'
       },
