@@ -10,7 +10,6 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Base
         public int PageCount { get; set; }
         public int PageSize { get; set; }
         public int RowCount { get; set; }
-        public int TotalPages => (int)Math.Ceiling((double)RowCount / PageSize);
 
         public int FirstRowOnPage
         {

@@ -226,7 +226,8 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                     return new PagedResult<MaestroIngresoPagedDto>
                     {
                         Results = result.ToList(),
-                        RowCount = result.ToList().Count > 0 ? result.ToList().FirstOrDefault().RowCount : 0
+                        RowCount = result.ToList().Count > 0 ? result.ToList().FirstOrDefault().RowCount : 0,
+                        PageSize = filter.PageSize
                     };
                 }
             }
