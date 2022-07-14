@@ -15,9 +15,6 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Base
             result.PageSize = filter.PageSize;
             result.RowCount = query.Count();
 
-
-            result.PageCount = (int)Math.Ceiling((double)result.RowCount / filter.PageSize);
-
             var skip = (filter.Page - 1) * filter.PageSize;
             result.Results = query.Skip(skip).Take(filter.PageSize).ToList();
 
