@@ -1,4 +1,4 @@
 export class GrupoEtario {
-    grupoEtario: string
+    grupoEtario: number
     grupoEtarioDsc: string
 }

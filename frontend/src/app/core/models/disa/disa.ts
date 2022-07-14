@@ -1,4 +1,4 @@
 export class Disa {
-    disa: string
+    disa: number
     disaDsc: string
 }

@@ -27,9 +27,9 @@ export class IndicadorService {
   get(key: number) {
     return this.httpAjaxService.get(`${environment.apis.backend}/MaestroIngreso/${key}`);
   }
-  getPaginate(request: PageRequest, searchTerm: string) {
+  postPaginate(request: PageRequest, searchTerm: string) {
     let filtro: any = { page: request.page, pageSize: request.pageSize, searchTerm: searchTerm };
-    return this.httpAjaxService.get(`${environment.apis.backend}/MaestroIngreso/paged`,
-      filtro);
+    return this.httpAjaxService.post(`${environment.apis.backend}/MaestroIngreso/paged`,
+      filtro).toPromise();
   }
 }

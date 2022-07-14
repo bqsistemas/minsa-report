@@ -7,5 +7,4 @@ Modified by 		:
 Modification date	:
 Description			:
 -----------------------------------------------------------------------------------*/
-
-SELECT nro_Mes as Mes, desc_Mes as MesDsc FROM TB_MAESTRO_MESES
+SELECT RIGHT('0000' + CAST(nro_Mes AS nvarchar), 2) as Mes, desc_Mes as MesDsc FROM TB_MAESTRO_MESES

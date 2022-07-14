@@ -29,7 +29,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         }
         [HttpPost]
         [Route("ReportPdf")]
-        public async Task<IActionResult> ReportPdf()
+        public async Task<IActionResult> ReportPdf(ReportSummaryRequest request)
         {
             var excep = new Exception();
             var sr = new Release.Helper.StatusResponse();
@@ -41,11 +41,22 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("ID_TIPO_REPORTE", "1");
+                parameters.Add("ANIO", request.Anio);
+                parameters.Add("MES", request.Mes);
+                parameters.Add("DISA", request.Disa);
+                parameters.Add("RED", request.Red);
+                parameters.Add("MRED", request.MicroRed);
+                parameters.Add("ESTAB", request.Establecimiento);
+                parameters.Add("DPTO", request.Departamento);
+                parameters.Add("PROV", request.Provincia);
+                parameters.Add("DIST", request.Distrito);
+                parameters.Add("ETAPA", request.GrupoEtario);
+                parameters.Add("SEXO", request.Sexo);
+                parameters.Add("ETNIA", request.Etnia);
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 
                 return File(rm.FileBytes, rm.ContentType, nombreReporte);
-                //sr = new Release.Helper.StatusResponse(true, "Reporte generado", File(rm.FileBytes, rm.ContentType, nombreReporte));
             }
             catch (Exception ex)
             {

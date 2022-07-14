@@ -63,7 +63,6 @@ export class ItsComponent implements OnInit {
             document.body.appendChild(a);
             a.download = 'Reporte.pdf';
             a.href = URL.createObjectURL(downloadedFile);
-            console.log(a.href)
             this.urlReport = a.href
             document.querySelector("iframe").src = this.urlReport
             this._commonService.setLoadingReport(false)

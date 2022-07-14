@@ -8,13 +8,17 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests
 {
     public class ReportSummaryRequest
     {
+        public string Disa { get; set; }
+        public string Red { get; set; }
+        public string MicroRed { get; set; }
+        public string Establecimiento { get; set; }
         public string Departamento { get; set; }
         public string Provincia { get; set; }
         public string Distrito { get; set; }
-        public string TipoPoblacion { get; set; }
+        public string Etnia { get; set; }
         public string GrupoEtario { get; set; }
         public string Sexo { get; set; }
+        public string Anio { get; set; }
         public string Mes { get; set; }
-        public string Periodo { get; set; }
     }
 }

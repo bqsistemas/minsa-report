@@ -6,7 +6,7 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Dtos
 {
     public class EstablecimientoDto
     {
-        public string Establecimiento { get; set; }
+        public int Establecimiento { get; set; }
         public string EstablecimientoDsc { get; set; }
     }
 }

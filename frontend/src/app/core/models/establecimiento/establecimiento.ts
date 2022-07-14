@@ -1,4 +1,4 @@
 export class Establecimiento {
-    establecimiento: string
+    establecimiento: number
     establecimientoDsc: string
 }

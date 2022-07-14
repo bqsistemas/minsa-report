@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { TableColumn } from 'src/@vex/interfaces/table-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 // icons
 import icStar from '@iconify/icons-ic/twotone-star';
 import icStarBorder from '@iconify/icons-ic/twotone-star-border';
@@ -17,6 +18,9 @@ import icSearch from '@iconify/icons-ic/twotone-search';
 import icPlus from '@iconify/icons-ic/twotone-plus';
 import icDeleteForever from '@iconify/icons-ic/twotone-delete-forever';
 import icRefresh from '@iconify/icons-ic/twotone-refresh';
+import { stagger20ms } from '../../../../../../../@vex/animations/stagger.animation';
+import { fadeInUp400ms } from '../../../../../../../@vex/animations/fade-in-up.animation';
+import { scaleFadeIn400ms } from '../../../../../../../@vex/animations/scale-fade-in.animation';
 // models
 import { Indicador } from '@core/models/Indicador/indicador';
 // services
@@ -27,7 +31,20 @@ import { IndicadorDialogComponent } from '../indicador-dialog/indicador-dialog.c
 @Component({
   selector: 'vex-indicador-table',
   templateUrl: './indicador-table.component.html',
-  styleUrls: ['./indicador-table.component.scss']
+  styleUrls: ['./indicador-table.component.scss'],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'standard'
+      } as MatFormFieldDefaultOptions
+    }
+  ],
+  animations: [
+    stagger20ms,
+    fadeInUp400ms,
+    scaleFadeIn400ms
+  ]
 })
 export class IndicadorTableComponent implements OnInit, AfterViewInit {
   Indicadores: Indicador[] = [];
@@ -45,28 +62,28 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
 
   columns: TableColumn<Indicador>[] = [
     {
-      label: 'CÓDIGO',
-      property: 'codigo',
+      label: 'DISA',
+      property: 'disa',
       type: 'text',
       cssClasses: ['font-medium'], visible: true
     },
     {
-      label: 'NOMBRE',
-      property: 'nombre',
+      label: 'RED',
+      property: 'red',
       type: 'text',
       cssClasses: ['font-medium'], visible: true
     },
     {
-      label: 'DESCRIPCIÓN',
-      property: 'descripcion',
+      label: 'MICRORED',
+      property: 'mred',
       type: 'text',
       cssClasses: ['text-secondary'], visible: true
     },
     {
-      label: '',
-      property: 'esActivo',
-      type: 'button',
-      cssClasses: ['text-secondary', 'w-10'], visible: true
+      label: 'EESS',
+      property: 'renaes',
+      type: 'text',
+      cssClasses: ['text-secondary'], visible: true
     },
     {
       label: '',
@@ -99,6 +116,7 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
+    this.fnSearch(this.page + 1)
     this.subscriptions.add(
       this.searchCtrl.valueChanges.pipe(
         debounceTime(300)
@@ -122,7 +140,7 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
   }
   openIndicador(indicador: Indicador = null) {
     const dialogRef = this.dialog.open(IndicadorDialogComponent, {
-      width: '600px',
+      width: '1000px',
       data: {
         indicador: indicador ? indicador : null
       }
@@ -149,27 +167,28 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
 
     this.withError = false;
     this.isLoading = true; // encendemos el skeleton load
-    this._indicadorService.getPaginate(
+    this._indicadorService.postPaginate(
       { page, pageSize: this.pageSize } as any,
       this.searchCtrl.value).then((value: any) => {
         this.isLoading = false; // apagamos el skeleton load
-        if (!value.status.success) {
-          this.withError = true;
-          this.totalRows = 0;
-          this.Indicadores = [];
-          this.dataSource.data = [];
-        } else {
-
-          if (value['data'].length > 0) {
-            this.lastKeyForPaginate = value['data'][value['data'].length - 1].id;
-          }
-          this.totalRows = value['rowCount'];
-          this.Indicadores = value['data'];
-          this.dataSource.data = value['data'];
-        }
+        this.totalRows = value.rowCount;
+        this.Indicadores = value.results;
+        this.dataSource.data = value.results;
       }).catch((value) => {
         this.isLoading = false; // apagamos el skeleton load
         this.withError = true;
+      });
+  }
+  fnEliminar(row, e){
+    this._indicadorService.putDelete(row.idMaestroIngreso)
+      .then((value) => {
+        this.fnResetSearch()
+      })
+      .catch((error) => {
+        this.snackbar.open('Error de elimnación', 'Aviso!', {
+          panelClass: 'bg-deep-orange-500',
+          duration: 3500
+        });
       });
   }
   // methods

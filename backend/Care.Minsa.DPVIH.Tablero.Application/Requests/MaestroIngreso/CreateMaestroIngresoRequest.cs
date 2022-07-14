@@ -6,12 +6,12 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests.MaestroIngreso
 {
     public class CreateMaestroIngresoRequest
     {
-        public string Anio { get; set; }
-        public string Mes { get; set; }
         public int Disa { get; set; }
         public string Red { get; set; }
         public string Mred { get; set; }
         public int Renaes { get; set; }
+        public string Anio { get; set; }
+        public string Mes { get; set; }
         public string Dep { get; set; }
         public string Prov { get; set; }
         public string Dis { get; set; }

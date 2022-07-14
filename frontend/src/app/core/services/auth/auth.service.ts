@@ -35,7 +35,6 @@ export class AuthService {
       username: authParams.username,
       password: authParams.password
     }).pipe(map((data: any) => {
-      console.log(data)
       if (data.auth_token) {
         // this.setUser(data.data.user);
         localStorage.setItem(environment.codeJwt, data.auth_token);
