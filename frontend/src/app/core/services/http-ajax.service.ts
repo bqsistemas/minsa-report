@@ -60,6 +60,12 @@ export class HttpAjaxService {
   post<T>(url: string, parametros: any): Observable<T> {
     return this.httpClient.post<T>(url, parametros);
   }
+  put<T>(url: string, parametros: any): Observable<T> {
+    return this.httpClient.put<T>(url, parametros);
+  }
+  delete<T>(url: string): Observable<T> {
+    return this.httpClient.delete<T>(url);
+  }
   postFile(url: string, formData: FormData): any {
     var optionsHttp = this.getOptionsHttpFile();
     optionsHttp['reportProgress'] = true;

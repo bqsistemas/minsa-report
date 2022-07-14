@@ -8,6 +8,7 @@ using Dapper;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Care.Minsa.DPVIH.Tablero.Core.Base;
 
 namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
 {
@@ -18,7 +19,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
         {
             this._context = context;
         }
-
         public async Task<List<UbigeoDto>> GetDepartamentos()
         {
             try
@@ -57,7 +57,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-
         public async Task<List<UbigeoDto>> GetDistritos(string departamento, string provincia)
         {
             try
@@ -79,7 +78,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-
         public async Task<List<MesesDto>> GetMeses()
         {
             try
@@ -154,7 +152,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-
         public async Task<List<EstablecimientoDto>> GetEstablecimientos(string disa, string red, string microred)
         {
             try
@@ -177,7 +174,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-
         public async Task<List<GrupoEtarioDto>> GetGruposEtarios()
         {
             try
@@ -195,7 +191,6 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-
         public async Task<List<EtniaDto>> GetEtnias()
         {
             try
@@ -206,6 +201,33 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                     var sql = Resource.Query("Sql//Etnia.sql"); // on windows Sql//Demo.sql
                     var result = await connection.QueryAsync<EtniaDto>(sql);
                     return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<PagedResult<MaestroIngresoPagedDto>> GetMaestroIngresoPaged(string searchTerm, PagedFilter filter)
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+                    var parameters = new
+                    {
+                        @pageNumber = filter.Page,
+                        @rowsPerPage = filter.PageSize
+                    };
+
+                    var sql = Resource.Query("Sql//MaestroIngresoPaged.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<MaestroIngresoPagedDto>(sql, parameters);
+
+                    return new PagedResult<MaestroIngresoPagedDto>
+                    {
+                        Results = result.ToList(),
+                        RowCount = result.ToList().Count > 0 ? result.ToList().FirstOrDefault().RowCount : 0
+                    };
                 }
             }
             catch (Exception ex)

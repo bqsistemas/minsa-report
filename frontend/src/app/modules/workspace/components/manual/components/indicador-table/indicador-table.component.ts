@@ -132,17 +132,7 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
         this.fnResetSearch();
       }
       if (result && result.action === 'edit') {
-        this.fnSetAspectoWithIndicadorEdited(result.indicador);
       }
-    });
-  }
-  fnSetAspectoWithIndicadorEdited(indicador: Indicador) {
-    this.Indicadores.forEach((value) => {
-      // if (value.id === indicador.id) {
-      //   value.nombre = indicador.nombre;
-      //   value.descripcion = indicador.descripcion;
-      //   value.referencia = indicador.referencia;
-      // }
     });
   }
   fnResetSearch() {
@@ -173,7 +163,7 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
           if (value['data'].length > 0) {
             this.lastKeyForPaginate = value['data'][value['data'].length - 1].id;
           }
-          this.totalRows = value['totalRows'];
+          this.totalRows = value['rowCount'];
           this.Indicadores = value['data'];
           this.dataSource.data = value['data'];
         }

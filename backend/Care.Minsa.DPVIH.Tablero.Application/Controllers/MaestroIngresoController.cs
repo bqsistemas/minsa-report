@@ -32,28 +32,33 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Get([FromRoute(Name = "id")] int id)
         {
-            var client = await _mediator.Send(new ObtenerIndicadorCommand(id));
-            return Ok(client);
+            var result = await _mediator.Send(new ObtenerIndicadorCommand(id));
+            return Ok(result);
         }
         [HttpPost]
-        [Route("Add")]
         public async Task<IActionResult> Add(CreateMaestroIngresoRequest request)
         {
-            var entity = await _mediator.Send(_mapper.Map<RegistroIndicadorCommand>(request));
-            return Ok(entity);
+            var result = await _mediator.Send(_mapper.Map<RegistroIndicadorCommand>(request));
+            return Ok(result);
         }
         [HttpPatch]
-        [Route("Update")]
         public async Task<IActionResult> Update(UpdateMaestroIngresoRequest request)
         {
-            var client = await _mediator.Send(_mapper.Map<EditarIndicadorCommand>(request));
-            return Ok(client);
+            var result = await _mediator.Send(_mapper.Map<EditarIndicadorCommand>(request));
+            return Ok(result);
         }
         [HttpDelete]
-        [Route("Delete/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute(Name = "id")] int id)
         {
             var result = await _mediator.Send(new EliminarIndicadorCommand(id));
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("Paged")]
+        public async Task<IActionResult> Paged(MaestroIngresoPagedRequest filter)
+        {
+            var result = await _mediator.Send(new ListarPaginadoIndicadorCommand(filter));
             return Ok(result);
         }
     }

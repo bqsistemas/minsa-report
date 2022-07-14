@@ -1,4 +1,5 @@
-﻿using Care.Minsa.DPVIH.Tablero.Core.Dtos;
+﻿using Care.Minsa.DPVIH.Tablero.Core.Base;
+using Care.Minsa.DPVIH.Tablero.Core.Dtos;
 using Care.Minsa.DPVIH.Tablero.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Interfaces.Queries
         Task<List<EstablecimientoDto>> GetEstablecimientos(string disa, string red, string microred);
         Task<List<GrupoEtarioDto>> GetGruposEtarios();
         Task<List<EtniaDto>> GetEtnias();
+        Task<PagedResult<MaestroIngresoPagedDto>> GetMaestroIngresoPaged(string searchTerm, PagedFilter filter);
 
     }
 }

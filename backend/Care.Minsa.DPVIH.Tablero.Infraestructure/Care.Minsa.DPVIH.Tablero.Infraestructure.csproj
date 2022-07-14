@@ -11,6 +11,7 @@
     <None Remove="Sql\eSTABLECIMIENTO.sql" />
     <None Remove="Sql\Etnia.sql" />
     <None Remove="Sql\GrupoEtario.sql" />
+    <None Remove="Sql\MaestroIngresoPaged.sql" />
     <None Remove="Sql\Meses.sql" />
     <None Remove="Sql\MicroRed.sql" />
     <None Remove="Sql\Provincias.sql" />
@@ -18,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sql\MaestroIngresoPaged.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sql\Etnia.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -51,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="EFCore.NamingConventions" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />

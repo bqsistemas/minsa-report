@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PageRequest } from '@core/models/general/page-request/page-request';
+import { Indicador } from '@core/models/Indicador/indicador';
 import { environment } from 'src/environments/environment';
 import { HttpAjaxService } from '../http-ajax.service';
 
@@ -12,13 +13,23 @@ export class IndicadorService {
     private httpAjaxService: HttpAjaxService
   ) { }
 
-  // querys
-  get(key: string) {
-    return this.httpAjaxService.get(`${environment.apis.backend}/indicador/`, { id: key });
+  // commands
+  postAdd(indicador: Indicador) {
+    return this.httpAjaxService.post(`${environment.apis.backend}/MaestroIngreso`, indicador).toPromise();
   }
-  getPaginate(request: PageRequest, query: string) {
-    let filtro: any = { page: request.page, pageSize: request.pageSize, query };
-    return this.httpAjaxService.get(`${environment.apis.backend}/indicador/paginate`,
+  putUpdate(indicador: Indicador) {
+    return this.httpAjaxService.put(`${environment.apis.backend}/MaestroIngreso`, indicador).toPromise();
+  }
+  putDelete(id: number) {
+    return this.httpAjaxService.delete(`${environment.apis.backend}/MaestroIngreso/${id}`).toPromise();
+  }
+  // querys
+  get(key: number) {
+    return this.httpAjaxService.get(`${environment.apis.backend}/MaestroIngreso/${key}`);
+  }
+  getPaginate(request: PageRequest, searchTerm: string) {
+    let filtro: any = { page: request.page, pageSize: request.pageSize, searchTerm: searchTerm };
+    return this.httpAjaxService.get(`${environment.apis.backend}/MaestroIngreso/paged`,
       filtro);
   }
 }

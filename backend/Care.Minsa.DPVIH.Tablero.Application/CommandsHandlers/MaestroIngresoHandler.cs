@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Care.Minsa.DPVIH.Tablero.Application.Commands;
+using Care.Minsa.DPVIH.Tablero.Core.Base;
 using Care.Minsa.DPVIH.Tablero.Core.Dtos;
 using Care.Minsa.DPVIH.Tablero.Core.Exceptions;
 using Care.Minsa.DPVIH.Tablero.Domain.Entities;
@@ -18,17 +19,22 @@ namespace Care.Minsa.DPVIH.Tablero.Application.CommandsHandlers
         IRequestHandler<RegistroIndicadorCommand, MaestroIngresoDto>,
         IRequestHandler<EditarIndicadorCommand, MaestroIngresoDto>,
         IRequestHandler<EliminarIndicadorCommand, bool>,
-        IRequestHandler<ObtenerIndicadorCommand, MaestroIngresoDto>
+        IRequestHandler<ObtenerIndicadorCommand, MaestroIngresoDto>,
+        IRequestHandler<ListarPaginadoIndicadorCommand, PagedResult<MaestroIngresoPagedDto>>
     {
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
+        private readonly IFiltrosReporteQuery _filtrosReporteQuery;
+
         public MaestroIngresoHandler(
             IUnitOfWork context,
-            IMapper mapper
+            IMapper mapper,
+            IFiltrosReporteQuery filtrosReporteQuery
             )
         {
             _context = context;
             _mapper = mapper;
+            _filtrosReporteQuery = filtrosReporteQuery;
         }
 
         public async Task<MaestroIngresoDto> Handle(RegistroIndicadorCommand request, CancellationToken cancellationToken)
@@ -89,6 +95,12 @@ namespace Care.Minsa.DPVIH.Tablero.Application.CommandsHandlers
                 throw new BusinessException("NOT_EXISTS_CLIENT");
 
             return _mapper.Map<MaestroIngresoDto>(maestroIngreso);
+        }
+
+        public async Task<PagedResult<MaestroIngresoPagedDto>> Handle(ListarPaginadoIndicadorCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _filtrosReporteQuery.GetMaestroIngresoPaged(request.Filter.SearchTerm, request.Filter);
+            return result;
         }
     }
 }

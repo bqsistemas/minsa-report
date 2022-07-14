@@ -2,6 +2,7 @@
 using Care.Minsa.DPVIH.Tablero.Application.Commands;
 using Care.Minsa.DPVIH.Tablero.Application.Requests;
 using Care.Minsa.DPVIH.Tablero.Application.Requests.MaestroIngreso;
+using Care.Minsa.DPVIH.Tablero.Core.Base;
 using Care.Minsa.DPVIH.Tablero.Core.Dtos;
 using Care.Minsa.DPVIH.Tablero.Domain.Entities;
 using System;
@@ -22,6 +23,10 @@ namespace Care.Minsa.DPVIH.Tablero.Application
             CreateMap<RegistroIndicadorCommand, TbMaestroIngreso>();
             CreateMap<UpdateMaestroIngresoRequest, TbMaestroIngreso>();
             CreateMap<TbMaestroIngreso, MaestroIngresoDto>();
+
+            CreateMap<PagedResult<TbMaestroIngreso>, PagedResult<MaestroIngresoDto>>();
+            CreateMap<PagedResult<TbMaestroIngreso>, PagedResult<MaestroIngresoPagedDto>>();
+            
         }
     }
 }
