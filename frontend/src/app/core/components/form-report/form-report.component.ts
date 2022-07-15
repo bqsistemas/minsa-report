@@ -124,7 +124,7 @@ export class FormReportComponent implements OnInit {
       provincia: new FormControl('', []),
       distrito: new FormControl('', []),
       etnia: new FormControl('', []),
-      grupoEtario: new FormControl('', []),
+      grupoEtario: new FormControl(-1, []),
       sexo: new FormControl('', []),
       anio: new FormControl('', []),
       mes: new FormControl('', []),

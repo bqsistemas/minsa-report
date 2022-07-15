@@ -59,12 +59,7 @@ export class HepatitisComponent implements OnInit {
           case HttpEventType.Response:
             //this._snackBarService.setMensajeReactivo('Descarga culminada, espere unos segundos.');
             const downloadedFile = new Blob([data.body], { type: data.body.type });
-            const a = document.createElement('a');
-            a.setAttribute('style', 'display:none;');
-            document.body.appendChild(a);
-            a.download = 'Reporte.pdf';
-            a.href = URL.createObjectURL(downloadedFile);
-            this.urlReport = a.href
+            this.urlReport = URL.createObjectURL(downloadedFile);
             document.querySelector("iframe").src = `${this.urlReport}#toolbar=0&navpanes=0&scrollbar=0&zoom=200`
             this._commonService.setLoadingReport(false)
             break;
@@ -78,5 +73,15 @@ export class HepatitisComponent implements OnInit {
   }
   openMenu() {
     this.menuOpen = true;
+  }
+  downloadPdf(){
+    const a = document.createElement('a');
+    a.setAttribute('style', 'display:none;');
+    document.body.appendChild(a);
+    a.download = 'Reporte.pdf';
+    a.href = this.urlReport
+    a.target = '_blank';
+    a.click();
+    document.body.removeChild(a);
   }
 }

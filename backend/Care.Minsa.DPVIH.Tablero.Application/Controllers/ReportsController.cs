@@ -39,19 +39,19 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             switch (request.ReportType)
             {
                 case Core.Enums.MinsaReportType.VIH:
-                    rdl = "RPT_VIH";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.ITS:
-                    rdl = "RPT_ITS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.TMI:
-                    rdl = "RPT_TMI";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.HEPATITIS:
-                    rdl = "RPT_HEPATITIS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 default:
-                    rdl = "rptTipoReporte";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
             }
 
@@ -69,7 +69,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
                 parameters.Add("DPTO", request.Departamento == "" ? "-1" : request.Departamento);
                 parameters.Add("PROV", request.Provincia == "" ? "-1" : request.Provincia);
                 parameters.Add("DIST", request.Distrito == "" ? "-1" : request.Distrito);
-                parameters.Add("ETAPA", request.GrupoEtario.ToString() == "" ? "-1" : request.GrupoEtario.ToString());
+                parameters.Add("ETAPA", request.GrupoEtario.ToString());
                 parameters.Add("SEXO", request.Sexo == "" ? "-1" : request.Sexo);
                 parameters.Add("ETNIA", request.Etnia == "" ? "-1" : request.Etnia);
 

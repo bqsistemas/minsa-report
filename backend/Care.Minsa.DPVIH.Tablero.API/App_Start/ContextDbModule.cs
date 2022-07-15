@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Care.Minsa.DPVIH.Tablero.Application.Report;
 using Microsoft.Extensions.Configuration;
 using Release.Helper.ReportingServices;
 
@@ -13,7 +14,7 @@ namespace Care.Minsa.DPVIH.Tablero.API.App_Start
             var rc = new ReportConfig();
             Configuration.GetSection("ReportConfig").Bind(rc);
 
-            builder.RegisterType<ReportManager>().As<IReportManager>().WithParameter("config", rc);
+            builder.RegisterType<ReportOwnManager>().As<IReportManager>().WithParameter("config", rc);
         }
     }
 }
