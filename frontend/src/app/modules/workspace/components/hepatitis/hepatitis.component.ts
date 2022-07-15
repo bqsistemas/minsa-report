@@ -65,7 +65,7 @@ export class HepatitisComponent implements OnInit {
             a.download = 'Reporte.pdf';
             a.href = URL.createObjectURL(downloadedFile);
             this.urlReport = a.href
-            document.querySelector("iframe").src = this.urlReport
+            document.querySelector("iframe").src = `${this.urlReport}#toolbar=0&navpanes=0&scrollbar=0&zoom=200`
             this._commonService.setLoadingReport(false)
             break;
         }

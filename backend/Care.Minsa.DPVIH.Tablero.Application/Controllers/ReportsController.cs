@@ -63,15 +63,15 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
                 parameters.Add("ANIO", request.Anio);
                 parameters.Add("MES", request.Mes);
                 parameters.Add("DISA", request.Disa);
-                parameters.Add("RED", request.Red);
-                parameters.Add("MRED", request.MicroRed);
-                parameters.Add("ESTAB", request.Establecimiento);
-                parameters.Add("DPTO", request.Departamento);
-                parameters.Add("PROV", request.Provincia);
-                parameters.Add("DIST", request.Distrito);
-                parameters.Add("ETAPA", request.GrupoEtario);
-                parameters.Add("SEXO", request.Sexo);
-                parameters.Add("ETNIA", request.Etnia);
+                parameters.Add("RED", request.Red == "" ? "-1" : request.Red);
+                parameters.Add("MRED", request.MicroRed == "" ? "-1" : request.MicroRed);
+                parameters.Add("ESTAB", request.Establecimiento == "" ? "-1" : request.Establecimiento);
+                parameters.Add("DPTO", request.Departamento == "" ? "-1" : request.Departamento);
+                parameters.Add("PROV", request.Provincia == "" ? "-1" : request.Provincia);
+                parameters.Add("DIST", request.Distrito == "" ? "-1" : request.Distrito);
+                parameters.Add("ETAPA", request.GrupoEtario.ToString() == "" ? "-1" : request.GrupoEtario.ToString());
+                parameters.Add("SEXO", request.Sexo == "" ? "-1" : request.Sexo);
+                parameters.Add("ETNIA", request.Etnia == "" ? "-1" : request.Etnia);
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 
