@@ -10,5 +10,5 @@ Description			:
 
 SELECT 
    MRECMICRO as MicroRed, MRETDSCL as MicroRedDsc
-FROM db_recoleccion_vih.dbo.TB_MICRORED
+FROM dbo.TB_MICRORED
 WHERE MRECDISA = @disa AND MRECRED = @red AND MRECEST > 0

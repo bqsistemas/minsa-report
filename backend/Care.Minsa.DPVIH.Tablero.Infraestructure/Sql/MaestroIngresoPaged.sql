@@ -17,7 +17,7 @@ SELECT
 	microred.MRETDSCL as Mred,
 	renaes.Establecimiento as Renaes,
 	cast(COUNT(1) OVER(PARTITION By 0) as int) as [RowCount]
-INTO #consulta FROM [db_recoleccion_vih].[dbo].[TB_MAESTRO_INGRESO] indicador
+INTO #consulta FROM [dbo].[TB_MAESTRO_INGRESO] indicador
 -- DISA
 INNER JOIN TB_DISA_DIRESA disa on indicador.disa = disa.DISA_CODIGO
 -- RED
