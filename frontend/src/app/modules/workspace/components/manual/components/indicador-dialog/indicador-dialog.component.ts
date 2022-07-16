@@ -148,12 +148,12 @@ export class IndicadorDialogComponent implements OnInit {
       etapa: new FormControl(null, [Validators.required]),
       sexo: new FormControl(null, [Validators.required]),
       etnia: new FormControl(null, [Validators.required]),
-      vinPersonaEstimada: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
-      itsPersonaEstimadaTamizajeSifilis: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
-      itsPersonaEstimadaDiagnosticoIts: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
-      tmiGestanteAtendidaVih: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
-      tmiGestanteAtendidaSifilis: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
-      tmiGestanteAtendidaHepatitisB: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      vinPersonaEstimada: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
+      itsPersonaEstimadaTamizajeSifilis: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
+      itsPersonaEstimadaDiagnosticoIts: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaVih: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaSifilis: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaHepatitisB: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
     });
   }
   getDataToPatch(){
@@ -179,6 +179,13 @@ export class IndicadorDialogComponent implements OnInit {
       entidad.disa = this.indicador.disa
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
+      entidad.vinPersonaEstimada = parseInt(entidad.vinPersonaEstimada)
+      entidad.itsPersonaEstimadaTamizajeSifilis = parseInt(entidad.itsPersonaEstimadaTamizajeSifilis)
+      entidad.itsPersonaEstimadaDiagnosticoIts = parseInt(entidad.itsPersonaEstimadaDiagnosticoIts)
+      entidad.tmiGestanteAtendidaVih = parseInt(entidad.tmiGestanteAtendidaVih)
+      entidad.tmiGestanteAtendidaSifilis = parseInt(entidad.tmiGestanteAtendidaSifilis)
+      entidad.tmiGestanteAtendidaHepatitisB = parseInt(entidad.tmiGestanteAtendidaHepatitisB)
+
       this._indicadorService.putUpdate(entidad).then((value: any) => {
         this.snackbar.open('Se guardó con éxito.', 'Éxito!', {
           duration: 2500
@@ -207,6 +214,13 @@ export class IndicadorDialogComponent implements OnInit {
       entidad.disa = parseInt(this.user.diresa[0])
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
+      entidad.vinPersonaEstimada = parseInt(entidad.vinPersonaEstimada)
+      entidad.itsPersonaEstimadaTamizajeSifilis = parseInt(entidad.itsPersonaEstimadaTamizajeSifilis)
+      entidad.itsPersonaEstimadaDiagnosticoIts = parseInt(entidad.itsPersonaEstimadaDiagnosticoIts)
+      entidad.tmiGestanteAtendidaVih = parseInt(entidad.tmiGestanteAtendidaVih)
+      entidad.tmiGestanteAtendidaSifilis = parseInt(entidad.tmiGestanteAtendidaSifilis)
+      entidad.tmiGestanteAtendidaHepatitisB = parseInt(entidad.tmiGestanteAtendidaHepatitisB)
+
       this._indicadorService.postAdd(entidad).then((value: any) => {
         this.action = 'edit';
         this.form.controls.id.setValue(value.idMaestroIngreso);
