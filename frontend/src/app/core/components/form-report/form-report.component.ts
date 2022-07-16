@@ -127,7 +127,7 @@ export class FormReportComponent implements OnInit {
       grupoEtario: new FormControl(-1, []),
       sexo: new FormControl('', []),
       anio: new FormControl('', [Validators.required]),
-      mes: new FormControl('', []),
+      mes: new FormControl('', [Validators.required]),
     });
   }
   fetchDepartamento = () => {
