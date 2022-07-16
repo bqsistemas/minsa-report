@@ -49,7 +49,7 @@ export class VihComponent implements OnInit {
 
   callReport(values) {
     this.urlReport = ''
-    values.reportType = 'HEPATITIS'
+    values.reportType = 'VIH'
     this._reportService.postReportPDF(values)
     .subscribe(
       (data) => {
