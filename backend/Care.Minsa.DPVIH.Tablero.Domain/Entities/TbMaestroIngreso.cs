@@ -35,16 +35,16 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Entities
         [Column("etnia")]
         public string Etnia { get; set; }
         [Column("vin_persona_estimada")]
-        public string VinPersonaEstimada { get; set; }
+        public int VinPersonaEstimada { get; set; }
         [Column("its_persona_estimada_tamizaje_sifilis")]
-        public string ItsPersonaEstimadaTamizajeSifilis { get; set; }
+        public int ItsPersonaEstimadaTamizajeSifilis { get; set; }
         [Column("its_persona_estimada_diagnostico_its")]
-        public string ItsPersonaEstimadaDiagnosticoIts { get; set; }
+        public int ItsPersonaEstimadaDiagnosticoIts { get; set; }
         [Column("tmi_gestante_atendida_vih")]
-        public string TmiGestanteAtendidaVih { get; set; }
+        public int TmiGestanteAtendidaVih { get; set; }
         [Column("tmi_gestante_atendida_sifilis")]
-        public string TmiGestanteAtendidaSifilis { get; set; }
+        public int TmiGestanteAtendidaSifilis { get; set; }
         [Column("tmi_gestante_atendida_hepatitis_b")]
-        public string TmiGestanteAtendidaHepatitisB { get; set; }
+        public int TmiGestanteAtendidaHepatitisB { get; set; }
     }
 }

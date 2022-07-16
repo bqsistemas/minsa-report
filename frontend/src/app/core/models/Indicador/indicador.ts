@@ -12,12 +12,12 @@ export class Indicador {
     etapa: number
     sexo: string
     etnia: string
-    vinPersonaEstimada: string
-    itsPersonaEstimadaTamizajeSifilis: string
-    itsPersonaEstimadaDiagnosticoIts: string
-    tmiGestanteAtendidaVih: string
-    tmiGestanteAtendidaSifilis: string
-    tmiGestanteAtendidaHepatitisB: string
+    vinPersonaEstimada: number
+    itsPersonaEstimadaTamizajeSifilis: number
+    itsPersonaEstimadaDiagnosticoIts: number
+    tmiGestanteAtendidaVih: number
+    tmiGestanteAtendidaSifilis: number
+    tmiGestanteAtendidaHepatitisB: number
 
     constructor(data: any = null) {
         if(data){

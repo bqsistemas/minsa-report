@@ -21,9 +21,9 @@ INTO #consulta FROM [dbo].[TB_MAESTRO_INGRESO] indicador
 -- DISA
 INNER JOIN TB_DISA_DIRESA disa on indicador.disa = disa.DISA_CODIGO
 -- RED
-INNER JOIN TB_RED red on indicador.red = red.REDCCODRED AND red.REDCDISA = indicador.disa
+INNER JOIN TB_RED red on indicador.red = red.REDCCODRED collate Modern_Spanish_CI_AS AND red.REDCDISA = indicador.disa 
 -- MICRORED
-INNER JOIN TB_MICRORED microred on indicador.mred = microred.MRECMICRO AND microred.MRECDISA = indicador.disa AND microred.MRECRED = indicador.red
+INNER JOIN TB_MICRORED microred on indicador.mred collate Modern_Spanish_CI_AS = microred.MRECMICRO AND microred.MRECDISA = indicador.disa AND microred.MRECRED collate Modern_Spanish_CI_AS = indicador.red 
 -- RENAES
 INNER JOIN TB_MAESTRO_RENAES renaes on indicador.renaes = renaes.RenaesKey AND renaes.cod_disa = indicador.disa AND renaes.cod_red = indicador.red AND renaes.cod_microred = indicador.mred
 -- MES

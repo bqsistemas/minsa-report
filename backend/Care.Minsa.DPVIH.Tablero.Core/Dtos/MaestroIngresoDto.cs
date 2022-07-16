@@ -19,11 +19,11 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Dtos
         public int Etapa { get; set; }
         public string Sexo { get; set; }
         public string Etnia { get; set; }
-        public string VinPersonaEstimada { get; set; }
-        public string ItsPersonaEstimadaTamizajeSifilis { get; set; }
-        public string ItsPersonaEstimadaDiagnosticoIts { get; set; }
-        public string TmiGestanteAtendidaVih { get; set; }
-        public string TmiGestanteAtendidaSifilis { get; set; }
-        public string TmiGestanteAtendidaHepatitisB { get; set; }
+        public int VinPersonaEstimada { get; set; }
+        public int ItsPersonaEstimadaTamizajeSifilis { get; set; }
+        public int ItsPersonaEstimadaDiagnosticoIts { get; set; }
+        public int TmiGestanteAtendidaVih { get; set; }
+        public int TmiGestanteAtendidaSifilis { get; set; }
+        public int TmiGestanteAtendidaHepatitisB { get; set; }
     }
 }

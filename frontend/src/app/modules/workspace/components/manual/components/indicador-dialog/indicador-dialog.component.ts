@@ -23,6 +23,8 @@ import { Ubigeo } from '@core/models/ubigeo/ubigeo';
 import { IndicadorService } from '@core/services/indicador/indicador.service';
 import { CommonService } from '@core/services/common/common.service';
 import { AuthService } from '@core/services/auth/auth.service';
+// validators
+import { Numeric } from '@core/validators/numeric';
 
 @Component({
   selector: 'vex-indicador-dialog',
@@ -146,12 +148,12 @@ export class IndicadorDialogComponent implements OnInit {
       etapa: new FormControl(null, [Validators.required]),
       sexo: new FormControl(null, [Validators.required]),
       etnia: new FormControl(null, [Validators.required]),
-      vinPersonaEstimada: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      itsPersonaEstimadaTamizajeSifilis: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      itsPersonaEstimadaDiagnosticoIts: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      tmiGestanteAtendidaVih: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      tmiGestanteAtendidaSifilis: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      tmiGestanteAtendidaHepatitisB: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
+      vinPersonaEstimada: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      itsPersonaEstimadaTamizajeSifilis: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      itsPersonaEstimadaDiagnosticoIts: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaVih: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaSifilis: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
+      tmiGestanteAtendidaHepatitisB: new FormControl(null, [Validators.required, Validators.maxLength(5), Numeric]),
     });
   }
   getDataToPatch(){
