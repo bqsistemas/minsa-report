@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import icClose from '@iconify/icons-ic/twotone-close';
@@ -126,7 +126,7 @@ export class FormReportComponent implements OnInit {
       etnia: new FormControl('', []),
       grupoEtario: new FormControl(-1, []),
       sexo: new FormControl('', []),
-      anio: new FormControl('', []),
+      anio: new FormControl('', [Validators.required]),
       mes: new FormControl('', []),
     });
   }
