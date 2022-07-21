@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Release.Helper;
 using Release.Helper.ReportingServices;
 using HtmlAgilityPack;
+using System.IO;
+using Care.Minsa.DPVIH.Tablero.Application.Converter;
 
 namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
 {
@@ -33,25 +35,25 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         {
             var excep = new Exception();
             var sr = new Release.Helper.StatusResponse();
-            ReportFormat format = ReportFormat.PDF;
+            ReportFormat format = ReportFormat.MHTML;
             string rdl = "";//filter.Rdl;
 
             switch (request.ReportType)
             {
                 case Core.Enums.MinsaReportType.VIH:
-                    rdl = "/SSRS_VIH/RPT_VIH";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.ITS:
-                    rdl = "/SSRS_ITS/RPT_ITS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.TMI:
-                    rdl = "/SSRS_TMI/RPT_TMI";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.HEPATITIS:
-                    rdl = "/SSRS_HEPATITIS/RPT_HEPATITIS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 default:
-                    rdl = "rptTipoReporte";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
             }
 
@@ -75,7 +77,14 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 
-                return File(rm.FileBytes, rm.ContentType, "Reporte");
+                string htmlText = System.Text.Encoding.Default.GetString(rm.FileBytes);
+                MHTMLParser parser = new MHTMLParser(htmlText);
+                string html = parser.getHTMLText();
+
+                return Ok(new
+                {
+                    template = html
+                });
             }
             catch (Exception ex)
             {

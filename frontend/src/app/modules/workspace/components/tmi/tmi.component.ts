@@ -49,28 +49,14 @@ export class TmiComponent implements OnInit {
 
   callReport(values) {
     this.urlReport = ''
-    values.reportType = 'TMI'
-    this._reportService.postReportPDF(values)
-    .subscribe(
-      (data) => {
-        switch (data.type) {
-          case HttpEventType.DownloadProgress:
-            //this._snackBarService.setMensajeReactivo('Descargando: ' + Math.round((data.loaded / data.total) * 100) + ' %.');
-            break;
-          case HttpEventType.Response:
-            //this._snackBarService.setMensajeReactivo('Descarga culminada, espere unos segundos.');
-            const downloadedFile = new Blob([data.body], { type: data.body.type });
-            this.urlReport = URL.createObjectURL(downloadedFile);
-            document.querySelector("iframe").src = `${this.urlReport}#toolbar=0&navpanes=0&scrollbar=0&zoom=200`
-            this._commonService.setLoadingReport(false)
-            break;
-        }
-      },
-      (error) => {
-        this._commonService.setLoadingReport(false)
-        //this._snackBarService.setMensajeReactivo('Error en la descarga');
-        //this._snackBar.dismiss();
-      });
+    values.reportType = 'VIH'
+    this._reportService.postReportPDF2(values)
+    .then(
+      (data: any) => {
+        document.querySelector("iframe").srcdoc = data.template
+        this.urlReport = "-"
+      })
+    .catch((err) => console.log(err));
   }
   openMenu() {
     this.menuOpen = true;
