@@ -55,6 +55,7 @@ export class TmiComponent implements OnInit {
       (data: any) => {
         document.querySelector("iframe").srcdoc = data.template
         this.urlReport = "-"
+        this._commonService.setLoadingReport(false)
       })
     .catch((err) => console.log(err));
   }
