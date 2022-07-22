@@ -41,19 +41,19 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             switch (request.ReportType)
             {
                 case Core.Enums.MinsaReportType.VIH:
-                    rdl = "/SSRS_VIH/RPT_VIH";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.ITS:
-                    rdl = "/SSRS_ITS/RPT_ITS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.TMI:
-                    rdl = "/SSRS_TMI/RPT_TMI";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 case Core.Enums.MinsaReportType.HEPATITIS:
-                    rdl = "/SSRS_HEPATITIS/RPT_HEPATITIS";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
                 default:
-                    rdl = "rptTipoReporte";
+                    rdl = "/MINSA/rptTipoReporte";
                     break;
             }
 

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   encrypt: true,
-  codeJwt: '_jbq|minsa|minedu',
+  codeJwt: '_jbq|minsa|__',
   codeTokenRolSede: '_jbq|minsa|rs',
   apis: {
     backend: 'https://localhost:5001/api',
