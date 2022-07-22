@@ -49,7 +49,7 @@ export class TmiComponent implements OnInit {
 
   callReport(values) {
     this.urlReport = ''
-    values.reportType = 'VIH'
+    values.reportType = 'TMI'
     this._reportService.postReportPDF2(values)
     .then(
       (data: any) => {

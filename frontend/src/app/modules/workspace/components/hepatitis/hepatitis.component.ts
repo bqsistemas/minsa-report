@@ -48,7 +48,7 @@ export class HepatitisComponent implements OnInit {
 
   callReport(values) {
     this.urlReport = ''
-    values.reportType = 'VIH'
+    values.reportType = 'HEPATITIS'
     this._reportService.postReportPDF2(values)
     .then(
       (data: any) => {
