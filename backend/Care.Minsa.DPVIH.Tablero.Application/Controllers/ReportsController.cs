@@ -23,11 +23,14 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly IReportManager _reportManager;
+        private readonly IConfiguration _configuration;
         public ReportsController(
-            IReportManager reportManager
+            IReportManager reportManager,
+            IConfiguration configuration
             )
         {
             _reportManager = reportManager;
+            _configuration = configuration;
         }
         [HttpPost]
         [Route("ReportPdf")]
@@ -41,19 +44,19 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             switch (request.ReportType)
             {
                 case Core.Enums.MinsaReportType.VIH:
-                    rdl = "/SSRS_VIH/RPT_VIH";
+                    rdl = _configuration.GetValue<string>("ReportConfig:ReportVIH");
                     break;
                 case Core.Enums.MinsaReportType.ITS:
-                    rdl = "/SSRS_ITS/RPT_ITS";
+                    rdl = _configuration.GetValue<string>("ReportConfig:ReportITS");
                     break;
                 case Core.Enums.MinsaReportType.TMI:
-                    rdl = "/SSRS_TMI/RPT_TMI";
+                    rdl = _configuration.GetValue<string>("ReportConfig:ReportTMI");
                     break;
                 case Core.Enums.MinsaReportType.HEPATITIS:
-                    rdl = "/SSRS_HEPATITIS/RPT_HEPATITIS";
+                    rdl = _configuration.GetValue<string>("ReportConfig:ReportHEPATITIS");
                     break;
                 default:
-                    rdl = "/MINSA/rptTipoReporte";
+                    rdl = "";
                     break;
             }
 

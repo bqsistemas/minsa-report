@@ -5,9 +5,10 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 // services
 import { AuthService } from '../../services/auth/auth.service';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 // models
 import { User } from '@core/models/user/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ResolveUser implements Resolve<any> {
@@ -29,7 +30,10 @@ export class ResolveUser implements Resolve<any> {
                     diresa: response.authorization.diresa
                   } as User);
                 return response;
-            })
+            }, catchError((err, caught) => {
+                localStorage.removeItem(environment.codeJwt);
+                return null  
+            }))
         ).toPromise();
     }
 }
