@@ -81,14 +81,12 @@ namespace Care.Minsa.DPVIH.Tablero.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minsa Backend DPVIH API");
+                });
             }
-
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Minsa Backend DPVIH API");
-            });
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
