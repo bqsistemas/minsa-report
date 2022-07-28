@@ -34,7 +34,7 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Entities
         public string Sexo { get; set; }
         [Column("etnia")]
         public string Etnia { get; set; }
-        [Column("vin_persona_estimada")]
+        [Column("vih_persona_estimada")]
         public int VinPersonaEstimada { get; set; }
         [Column("its_persona_estimada_tamizaje_sifilis")]
         public int ItsPersonaEstimadaTamizajeSifilis { get; set; }

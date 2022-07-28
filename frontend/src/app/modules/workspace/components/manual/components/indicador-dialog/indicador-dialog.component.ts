@@ -109,6 +109,11 @@ export class IndicadorDialogComponent implements OnInit {
   ngOnInit(): void {
     this.user = this._authService.getUser()
     
+    if(this.action == 'new')
+      this.indicador = new Indicador({
+        disa: this.user.diresa[0]
+      })
+
     this.fetchDisa()
     this.fetchDepartamento()
     this.fetchMeses()

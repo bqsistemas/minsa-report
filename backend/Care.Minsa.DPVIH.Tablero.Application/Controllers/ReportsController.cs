@@ -32,6 +32,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             _reportManager = reportManager;
             _configuration = configuration;
         }
+
         [HttpPost]
         [Route("ReportPdf")]
         public async Task<IActionResult> ReportPdf(ReportSummaryRequest request)

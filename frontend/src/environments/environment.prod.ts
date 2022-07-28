@@ -8,7 +8,7 @@ export const environment = {
   codeJwt: '_jbq|minsa|__',
   codeTokenRolSede: '_jbq|minsa|rs',
   apis: {
-    backend: 'https://localhost:5001/api',
+    backend: 'http://dew.minsa.gob.pe/tablero-vih-api/api',
     apiLogin: 'http://devlogin.minsa.gob.pe/auth/login/',
     apiSecurity: 'http://devlogin.minsa.gob.pe/api/v1'
   },
