@@ -108,7 +108,6 @@ export class FormReportComponent implements OnInit {
     this.form.controls.provincia.valueChanges.subscribe((provincia) => {
       this.fetchDistrito(this.form.value.departamento, provincia)
     })
-    console.log(this.user.diresa[0])
     this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
   }
   ngOnDestroy() {

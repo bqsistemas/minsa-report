@@ -166,7 +166,6 @@ export class IndicadorDialogComponent implements OnInit {
       .then((value: Indicador) => {
         this.indicador = new Indicador(value)
         // this.indicador.setMes()
-        console.log(this.indicador)
         this.form.patchValue(value);
       })
   }
@@ -225,10 +224,10 @@ export class IndicadorDialogComponent implements OnInit {
       entidad.tmiGestanteAtendidaVih = parseInt(entidad.tmiGestanteAtendidaVih)
       entidad.tmiGestanteAtendidaSifilis = parseInt(entidad.tmiGestanteAtendidaSifilis)
       entidad.tmiGestanteAtendidaHepatitisB = parseInt(entidad.tmiGestanteAtendidaHepatitisB)
+      delete entidad.idMaestroIngreso
 
       this._indicadorService.postAdd(entidad).then((value: any) => {
         this.action = 'edit';
-        this.form.controls.id.setValue(value.idMaestroIngreso);
         this.indicador = value;
         this.snackbar.open('Se guardó con éxito.', 'Éxito!', {
           duration: 2500

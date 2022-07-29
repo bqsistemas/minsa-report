@@ -48,7 +48,7 @@ export class AuthService {
   postLogout() {
     localStorage.removeItem(environment.codeJwt);
     this.stopRefreshTokenTimer();
-    location.href = "/";
+    location.href = "/tablero-vih/";
   }
   setPermisos() {
     return this.httpAjaxService.getWithOutPromise(`${environment.apis.apiSecurity}/permisos/`)
