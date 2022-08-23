@@ -23,17 +23,17 @@ namespace Care.Minsa.DPVIH.Tablero.Application.CommandsHandlers
 
         public Task<List<UbigeoDto>> Handle(ListarDepartamentoCommand request, CancellationToken cancellationToken)
         {
-            return _filtrosReporteQuery.GetDepartamentos();
+            return _filtrosReporteQuery.GetDepartamentos(request.Disa);
         }
 
         public Task<List<UbigeoDto>> Handle(ListarProvinciaCommand request, CancellationToken cancellationToken)
         {
-            return _filtrosReporteQuery.GetProvincias(request.Departamento);
+            return _filtrosReporteQuery.GetProvincias(request.Disa, request.Departamento);
         }
 
         public Task<List<UbigeoDto>> Handle(ListarDistritoCommand request, CancellationToken cancellationToken)
         {
-            return _filtrosReporteQuery.GetDistritos(request.Departamento, request.Provincia);
+            return _filtrosReporteQuery.GetDistritos(request.Disa, request.Departamento, request.Provincia);
         }
     }
 }

@@ -8,5 +8,6 @@ namespace Care.Minsa.DPVIH.Tablero.Core.Dtos
     {
         public int Establecimiento { get; set; }
         public string EstablecimientoDsc { get; set; }
+        public string Ubigeo { get; set; }
     }
 }

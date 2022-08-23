@@ -16,14 +16,14 @@ export class CommonService {
     private httpAjaxService: HttpAjaxService
   ) { }
 
-  getDepartamentos(){
-    return this.httpAjaxService.get(`${environment.apis.backend}/common/departamentos`)
+  getDepartamentos(disa: string){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/departamentos/${disa}`)
   }
-  getProvincias(departamento: string){
-    return this.httpAjaxService.get(`${environment.apis.backend}/common/provincias/${departamento}`)
+  getProvincias(disa: string, departamento: string){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/provincias/${disa}/${departamento}`)
   }
-  getDistritos(departamento: string, provincia: string){
-    return this.httpAjaxService.get(`${environment.apis.backend}/common/distritos/${departamento}/${provincia}`)
+  getDistritos(disa: string, departamento: string, provincia: string){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/distritos/${disa}/${departamento}/${provincia}`)
   }
   getMeses(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/meses`)

@@ -10,9 +10,9 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Interfaces.Queries
 {
     public interface IFiltrosReporteQuery
     {
-        Task<List<UbigeoDto>> GetDepartamentos();
-        Task<List<UbigeoDto>> GetProvincias(string departamento);
-        Task<List<UbigeoDto>> GetDistritos(string departamento, string provincia);
+        Task<List<UbigeoDto>> GetDepartamentos(string disa);
+        Task<List<UbigeoDto>> GetProvincias(string disa, string departamento);
+        Task<List<UbigeoDto>> GetDistritos(string disa, string departamento, string provincia);
         Task<List<MesesDto>> GetMeses();
         Task<List<DisaDto>> GetDisas();
         Task<List<RedDto>> GetRedes(string disa);

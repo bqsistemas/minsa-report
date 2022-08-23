@@ -8,6 +8,11 @@ Modification date	:
 Description			:
 -----------------------------------------------------------------------------------*/
 
+SELECT DISTINCT SUBSTRING(ubigeo, 5, 2) as ubigeo
+INTO #ubigeo_distritos
+FROM [db_recoleccion_vih].[dbo].[TB_MAESTRO_RENAES]
+WHERE cod_disa = @disa
+
 SELECT 
 	Departamento as DepartamentoDsc
 	,CodDepInei as Departamento
@@ -17,4 +22,5 @@ SELECT
 	,CodDistInei as Distrito
   FROM [dbo].[TB_MAESTRO_UBIGEO]
   WHERE CodDepInei = @departamento AND CodProvInei = @provincia
+  AND CodDistInei in (SELECT ubigeo FROM #ubigeo_distritos)
   GROUP BY Departamento, CodDepInei, Provincia, CodProvInei, Distrito, CodDistInei

@@ -51,28 +51,7 @@ export class FormReportComponent implements OnInit {
     name: 'Femenino'
   }]
  
-  anioData = [{
-    id: '2019',
-    name: '2019'
-  },{
-    id: '2020',
-    name: '2020'
-  },{
-    id: '2021',
-    name: '2021'
-  },{
-    id: '2022',
-    name: '2022'
-  },{
-    id: '2023',
-    name: '2023'
-  },{
-    id: '2024',
-    name: '2024'
-  },{
-    id: '2025',
-    name: '2025'
-  }]
+  anioData = []
 
   @Output() callReport = new EventEmitter<any[]>();
 
@@ -86,29 +65,40 @@ export class FormReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this._authService.getUser()
-    
+    this.setContentArray()
+
+    // set years
+    const year = (new Date()).getFullYear()
+    for(let i = year; i >= year - 3; i--){
+      this.anioData.push({
+        id: i.toString(),
+        name: i
+      })
+    }
+
+    this.form.controls.disa.valueChanges.subscribe((disa) => {
+      if(disa) this.fetchRed(disa)
+    })
+    this.form.controls.red.valueChanges.subscribe((red) => {
+      if(red) this.fetchMicroRed(this.form.getRawValue().disa, red)
+    })
+    this.form.controls.microRed.valueChanges.subscribe((microRed) => {
+      if(microRed) this.fetchEstablecimiento(this.form.getRawValue().disa, this.form.getRawValue().red, microRed)
+    })
+    this.form.controls.departamento.valueChanges.subscribe((departamento) => {
+      if(departamento) this.fetchProvincia(this.form.getRawValue().disa, departamento)
+    })
+    this.form.controls.provincia.valueChanges.subscribe((provincia) => {
+      if(provincia) this.fetchDistrito(this.form.getRawValue().disa, this.form.getRawValue().departamento, provincia)
+    })
+
+    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
+
     this.fetchDisa()
-    this.fetchDepartamento()
+    this.fetchDepartamento(this.form.getRawValue().disa)
     this.fetchMeses()
     this.fetchEtnia()
     this.fetchGrupoEtario()
-
-    this.form.controls.disa.valueChanges.subscribe((disa) => {
-      this.fetchRed(disa)
-    })
-    this.form.controls.red.valueChanges.subscribe((red) => {
-      this.fetchMicroRed(this.form.value.disa, red)
-    })
-    this.form.controls.microRed.valueChanges.subscribe((microRed) => {
-      this.fetchEstablecimiento(this.form.value.disa, this.form.value.red, microRed)
-    })
-    this.form.controls.departamento.valueChanges.subscribe((departamento) => {
-      this.fetchProvincia(departamento)
-    })
-    this.form.controls.provincia.valueChanges.subscribe((provincia) => {
-      this.fetchDistrito(this.form.value.departamento, provincia)
-    })
-    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -118,7 +108,7 @@ export class FormReportComponent implements OnInit {
       disa: new FormControl({value: null, disabled: true}, []),
       red: new FormControl('', []),
       microRed: new FormControl('', []),
-      establecimiento: new FormControl('', []),
+      establecimiento: new FormControl(-1, []),
       departamento: new FormControl('', []),
       provincia: new FormControl('', []),
       distrito: new FormControl('', []),
@@ -129,22 +119,22 @@ export class FormReportComponent implements OnInit {
       mes: new FormControl('', [Validators.required]),
     });
   }
-  fetchDepartamento = () => {
-    this._commonService.getDepartamentos()
+  fetchDepartamento = (disa) => {
+    this._commonService.getDepartamentos(disa)
       .then((response: any) => {
         this.departamentoData = response
       })
       .catch((err) => console.log(err))
   }
-  fetchProvincia = (departamento) => {
-    this._commonService.getProvincias(departamento)
+  fetchProvincia = (disa, departamento) => {
+    this._commonService.getProvincias(disa, departamento)
       .then((response: any) => {
         this.provinciaData = response
       })
       .catch((err) => console.log(err))
   }
-  fetchDistrito = (departamento, provincia) => {
-    this._commonService.getDistritos(departamento, provincia)
+  fetchDistrito = (disa, departamento, provincia) => {
+    this._commonService.getDistritos(disa, departamento, provincia)
       .then((response: any) => {
         this.distritoData = response
       })
@@ -160,21 +150,21 @@ export class FormReportComponent implements OnInit {
   fetchRed = (disa) => {
     this._commonService.getRedes(disa)
       .then((response: any) => {
-        this.redData = response
+        this.redData = [...this.redData, ...response]
       })
       .catch((err) => console.log(err))
   }
   fetchMicroRed = (disa, red) => {
     this._commonService.getMicroRedes(disa, red)
       .then((response: any) => {
-        this.microRedData = response
+        this.microRedData = [...this.microRedData, ...response]
       })
       .catch((err) => console.log(err))
   }
   fetchEstablecimiento = (disa, red, microRed) => {
     this._commonService.getEstablecimientos(disa, red, microRed)
       .then((response: any) => {
-        this.establecimientoData = response
+        this.establecimientoData = [...this.establecimientoData, ...response]
       })
       .catch((err) => console.log(err))
   }
@@ -202,12 +192,36 @@ export class FormReportComponent implements OnInit {
 
   submitReport = () => {
     if (this.form.valid) {
-      const values = Object.assign({}, this.form.value);
+      const values = Object.assign({}, this.form.getRawValue());
       values.disa = this.user.diresa[0]
+      values.establecimiento = values.establecimiento === -1 ? '' : values.establecimiento
       this._commonService.setLoadingReport(true)
       this.callReport.emit(values);
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  clear = () => {
+    this.setContentArray()
+    this.form.reset()
+    this.form.patchValue({
+      red:'',
+      microRed:'',
+      establecimiento:'',
+      departamento:'',
+      provincia:'',
+      distrito:'',
+      etnia:'',
+      grupoEtario:-1,
+      sexo:'',
+    })
+    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
+  }
+
+  setContentArray() {
+    this.redData = [{  red: '', redDsc: 'TODOS' }]
+    this.microRedData = [{ microRed: '', microRedDsc: 'TODOS' }]
+    this.establecimientoData = [{ establecimiento: -1, establecimientoDsc: 'TODOS', ubigeo: '' }]
   }
 }

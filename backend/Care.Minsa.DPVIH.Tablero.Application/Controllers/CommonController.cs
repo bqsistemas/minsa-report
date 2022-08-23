@@ -25,24 +25,24 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         }
         
         [HttpGet]
-        [Route("departamentos")]
-        public async Task<IActionResult> GetDepartamentos()
+        [Route("departamentos/{disa}")]
+        public async Task<IActionResult> GetDepartamentos([FromRoute(Name = "disa")] string disa)
         { 
-            var departamentos = await _mediator.Send(new ListarDepartamentoCommand());
+            var departamentos = await _mediator.Send(new ListarDepartamentoCommand(disa));
             return Ok(departamentos);
         }
         [HttpGet]
-        [Route("provincias/{departamento}")]
-        public async Task<IActionResult> GetProvincias([FromRoute(Name = "departamento")] string departamento)
+        [Route("provincias/{disa}/{departamento}")]
+        public async Task<IActionResult> GetProvincias([FromRoute(Name = "disa")] string disa, [FromRoute(Name = "departamento")] string departamento)
         {
-            var provincias = await _mediator.Send(new ListarProvinciaCommand(departamento));
+            var provincias = await _mediator.Send(new ListarProvinciaCommand(disa, departamento));
             return Ok(provincias);
         }
         [HttpGet]
-        [Route("distritos/{departamento}/{provincia}")]
-        public async Task<IActionResult> GetDistritos([FromRoute(Name = "departamento")] string departamento, [FromRoute(Name = "provincia")] string provincia)
+        [Route("distritos/{disa}/{departamento}/{provincia}")]
+        public async Task<IActionResult> GetDistritos([FromRoute(Name = "disa")] string disa, [FromRoute(Name = "departamento")] string departamento, [FromRoute(Name = "provincia")] string provincia)
         {
-            var distritos = await _mediator.Send(new ListarDistritoCommand(departamento, provincia));
+            var distritos = await _mediator.Send(new ListarDistritoCommand(disa, departamento, provincia));
             return Ok(distritos);
         }
         [HttpGet]

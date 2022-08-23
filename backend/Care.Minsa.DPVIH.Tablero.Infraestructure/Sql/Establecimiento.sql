@@ -9,6 +9,6 @@ Description			:
 -----------------------------------------------------------------------------------*/
 
 SELECT 
-   RenaesKey as Establecimiento, estab_nombre as EstablecimientoDsc
+   RenaesKey as Establecimiento, estab_nombre as EstablecimientoDsc, ubigeo as Ubigeo
 FROM dbo.TB_MAESTRO_RENAES
 WHERE cod_disa = @disa AND cod_red = @red AND cod_microred = @microred

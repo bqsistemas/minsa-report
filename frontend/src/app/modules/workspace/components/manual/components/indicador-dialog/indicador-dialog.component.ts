@@ -25,6 +25,7 @@ import { CommonService } from '@core/services/common/common.service';
 import { AuthService } from '@core/services/auth/auth.service';
 // validators
 import { Numeric } from '@core/validators/numeric';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'vex-indicador-dialog',
@@ -63,28 +64,7 @@ export class IndicadorDialogComponent implements OnInit {
     name: 'Femenino'
   }]
  
-  anioData = [{
-    id: '2019',
-    name: '2019'
-  },{
-    id: '2020',
-    name: '2020'
-  },{
-    id: '2021',
-    name: '2021'
-  },{
-    id: '2022',
-    name: '2022'
-  },{
-    id: '2023',
-    name: '2023'
-  },{
-    id: '2024',
-    name: '2024'
-  },{
-    id: '2025',
-    name: '2025'
-  }]
+  anioData = []
 
   constructor(
     private _indicadorService: IndicadorService,
@@ -108,14 +88,24 @@ export class IndicadorDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this._authService.getUser()
+
+    // set years
+    const year = (new Date()).getFullYear()
+    for(let i = year; i >= year - 3; i--){
+      this.anioData.push({
+        id: i.toString(),
+        name: i
+      })
+    }
     
-    if(this.action == 'new')
+    if(this.action == 'new'){
       this.indicador = new Indicador({
         disa: this.user.diresa[0]
       })
-
+      this.fetchDepartamento(this.indicador.disa)
+    }
+      
     this.fetchDisa()
-    this.fetchDepartamento()
     this.fetchMeses()
     this.fetchEtnia()
     this.fetchGrupoEtario()
@@ -124,16 +114,22 @@ export class IndicadorDialogComponent implements OnInit {
       this.fetchRed(disa)
     })
     this.form.controls.red.valueChanges.subscribe((red) => {
-      this.fetchMicroRed(this.form.value.disa ?? this.indicador.disa, red)
+      this.fetchMicroRed(this.form.getRawValue().disa ?? this.indicador.disa, red)
     })
     this.form.controls.mred.valueChanges.subscribe((microRed) => {
-      this.fetchEstablecimiento(this.form.value.disa ?? this.indicador.disa, this.form.value.red  ?? this.indicador.red, microRed)
+      this.fetchEstablecimiento(this.form.getRawValue().disa ?? this.indicador.disa, this.form.getRawValue().red  ?? this.indicador.red, microRed)
+    })
+    this.form.controls.renaes.valueChanges.subscribe((renaes) => {
+      const { ubigeo } = this.establecimientoData.find(x => x.establecimiento === renaes)
+      this.form.get('dep').setValue(ubigeo.substring(0, 2))
+      this.form.get('prov').setValue(ubigeo.substring(2, 4))
+      this.form.get('dis').setValue(ubigeo.substring(4, 6))
     })
     this.form.controls.dep.valueChanges.subscribe((departamento) => {
-      this.fetchProvincia(departamento)
+      this.fetchProvincia(this.indicador.disa, departamento)
     })
     this.form.controls.prov.valueChanges.subscribe((provincia) => {
-      this.fetchDistrito(this.form.value.dep  ?? this.indicador.dep, provincia)
+      this.fetchDistrito(this.indicador.disa, this.form.getRawValue().dep  ?? this.indicador.dep, provincia)
     })
     if(this.action !== 'edit')
       this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
@@ -165,6 +161,7 @@ export class IndicadorDialogComponent implements OnInit {
     this._indicadorService.get(this.indicador.idMaestroIngreso)
       .then((value: Indicador) => {
         this.indicador = new Indicador(value)
+        this.fetchDepartamento(this.indicador.disa)
         // this.indicador.setMes()
         this.form.patchValue(value);
       })
@@ -179,7 +176,7 @@ export class IndicadorDialogComponent implements OnInit {
   }
   fnEdit(event: Event) {
     if (this.form.valid) {
-      const entidad = Object.assign({}, this.form.value);
+      const entidad = Object.assign({}, this.form.getRawValue().value);
       entidad.disa = this.indicador.disa
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
@@ -214,7 +211,7 @@ export class IndicadorDialogComponent implements OnInit {
   }
   fnAdd(event: Event) {
     if (this.form.valid) {
-      const entidad = Object.assign({}, this.form.value);
+      const entidad = Object.assign({}, this.form.getRawValue());
       entidad.disa = parseInt(this.user.diresa[0])
       entidad.renaes = parseInt(entidad.renaes)
       entidad.etapa = parseInt(entidad.etapa)
@@ -254,22 +251,22 @@ export class IndicadorDialogComponent implements OnInit {
   }
 
   // fetch
-  fetchDepartamento = () => {
-    this._commonService.getDepartamentos()
+  fetchDepartamento = (disa) => {
+    this._commonService.getDepartamentos(disa)
       .then((response: any) => {
         this.departamentoData = response
       })
       .catch((err) => console.log(err))
   }
-  fetchProvincia = (departamento) => {
-    this._commonService.getProvincias(departamento)
+  fetchProvincia = (disa, departamento) => {
+    this._commonService.getProvincias(disa, departamento)
       .then((response: any) => {
         this.provinciaData = response
       })
       .catch((err) => console.log(err))
   }
-  fetchDistrito = (departamento, provincia) => {
-    this._commonService.getDistritos(departamento, provincia)
+  fetchDistrito = (disa, departamento, provincia) => {
+    this._commonService.getDistritos(disa, departamento, provincia)
       .then((response: any) => {
         this.distritoData = response
       })

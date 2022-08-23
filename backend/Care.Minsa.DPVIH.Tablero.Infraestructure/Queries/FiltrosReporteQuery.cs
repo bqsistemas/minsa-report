@@ -19,15 +19,19 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
         {
             this._context = context;
         }
-        public async Task<List<UbigeoDto>> GetDepartamentos()
+        public async Task<List<UbigeoDto>> GetDepartamentos(string disa)
         {
             try
             {
                 using (var connection = _context.CreateConnection())
                 {
+                    var parameters = new
+                    {
+                        @disa = disa,
+                    };
 
                     var sql = Resource.Query("Sql//Departamentos.sql"); // on windows Sql//Demo.sql
-                    var result = await connection.QueryAsync<UbigeoDto>(sql);
+                    var result = await connection.QueryAsync<UbigeoDto>(sql, parameters);
                     return result.ToList();
                 }
             }
@@ -36,7 +40,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-        public async Task<List<UbigeoDto>> GetProvincias(string departamento)
+        public async Task<List<UbigeoDto>> GetProvincias(string disa, string departamento)
         {
             try
             {
@@ -44,6 +48,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 {
                     var parameters = new
                     {
+                        @disa = disa,
                         @departamento = departamento,
                     };
 
@@ -57,7 +62,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
-        public async Task<List<UbigeoDto>> GetDistritos(string departamento, string provincia)
+        public async Task<List<UbigeoDto>> GetDistritos(string disa, string departamento, string provincia)
         {
             try
             {
@@ -65,6 +70,7 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 {
                     var parameters = new
                     {
+                        @disa = disa,
                         @departamento = departamento,
                         @provincia = provincia,
                     };

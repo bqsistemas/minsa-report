@@ -9,8 +9,10 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Commands
 {
     public class ListarDepartamentoCommand : IRequest<List<UbigeoDto>>
     {
-        public ListarDepartamentoCommand()
+        public string Disa { get; set; }
+        public ListarDepartamentoCommand(string disa)
         {
+            Disa = disa;
         }
     }
 }
