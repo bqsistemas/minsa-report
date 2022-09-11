@@ -78,6 +78,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
                 parameters.Add("ETAPA", request.GrupoEtario.ToString());
                 parameters.Add("SEXO", request.Sexo == "" ? "-1" : request.Sexo);
                 parameters.Add("ETNIA", request.Etnia == "" ? "-1" : request.Etnia);
+                parameters.Add("POBLACION", request.TipoPoblacion == "" ? "-1" : request.TipoPoblacion);
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 

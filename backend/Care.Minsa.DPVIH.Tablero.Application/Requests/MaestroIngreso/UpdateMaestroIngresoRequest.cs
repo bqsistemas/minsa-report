@@ -19,6 +19,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests.MaestroIngreso
         public int Etapa { get; set; }
         public string Sexo { get; set; }
         public string Etnia { get; set; }
+        public string TipoPoblacion { get; set; }
         public int VinPersonaEstimada { get; set; }
         public int ItsPersonaEstimadaTamizajeSifilis { get; set; }
         public int ItsPersonaEstimadaDiagnosticoIts { get; set; }

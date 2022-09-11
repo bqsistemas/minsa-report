@@ -17,6 +17,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests
         public string Provincia { get; set; }
         public string Distrito { get; set; }
         public string Etnia { get; set; }
+        public string TipoPoblacion { get; set; }
         public int GrupoEtario { get; set; }
         public string Sexo { get; set; }
         public string Anio { get; set; }

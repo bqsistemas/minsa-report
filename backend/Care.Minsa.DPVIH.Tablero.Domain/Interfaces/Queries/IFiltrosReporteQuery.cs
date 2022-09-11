@@ -20,7 +20,7 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Interfaces.Queries
         Task<List<EstablecimientoDto>> GetEstablecimientos(string disa, string red, string microred);
         Task<List<GrupoEtarioDto>> GetGruposEtarios();
         Task<List<EtniaDto>> GetEtnias();
+        Task<List<TipoPoblacionDto>> GetTipoPoblacion();
         Task<PagedResult<MaestroIngresoPagedDto>> GetMaestroIngresoPaged(string searchTerm, PagedFilter filter);
-
     }
 }
