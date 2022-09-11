@@ -214,6 +214,23 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
+        public async Task<List<TipoPoblacionDto>> GetTipoPoblacion()
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+
+                    var sql = Resource.Query("Sql//TipoPoblacion.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<TipoPoblacionDto>(sql);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public async Task<PagedResult<MaestroIngresoPagedDto>> GetMaestroIngresoPaged(string searchTerm, PagedFilter filter)
         {
             try

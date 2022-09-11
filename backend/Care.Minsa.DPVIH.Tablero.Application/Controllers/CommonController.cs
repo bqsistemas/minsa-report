@@ -63,8 +63,8 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         [Route("redes/{disa}")]
         public async Task<IActionResult> GetRedes([FromRoute(Name = "disa")] string disa)
         {
-            var disas = await _mediator.Send(new ListarRedCommand(disa));
-            return Ok(disas);
+            var redes = await _mediator.Send(new ListarRedCommand(disa));
+            return Ok(redes);
         }
         [HttpGet]
         [Route("microredes/{disa}/{red}")]
@@ -84,15 +84,22 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
         [Route("etnias")]
         public async Task<IActionResult> GetEtnias()
         {
-            var meses = await _mediator.Send(new ListarEtniaCommand());
-            return Ok(meses);
+            var etnias = await _mediator.Send(new ListarEtniaCommand());
+            return Ok(etnias);
+        }
+        [HttpGet]
+        [Route("tipopoblacion")]
+        public async Task<IActionResult> GetTipoPoblacion()
+        {
+            var tipopoblacion = await _mediator.Send(new ListarTipoPoblacionCommand());
+            return Ok(tipopoblacion);
         }
         [HttpGet]
         [Route("grupoEtarios")]
         public async Task<IActionResult> GetGrupoEtarios()
         {
-            var meses = await _mediator.Send(new ListarGrupoEtarioCommand());
-            return Ok(meses);
+            var grupoetario = await _mediator.Send(new ListarGrupoEtarioCommand());
+            return Ok(grupoetario);
         }
     }
 }
