@@ -43,6 +43,9 @@ export class CommonService {
   getEtnias(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/etnias`)
   }
+  getTipoPoblacion(){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/tipoPoblacion`)
+  }
   getGrupoEtarios(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/grupoEtarios`)
   }

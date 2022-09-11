@@ -15,6 +15,7 @@ import { Establecimiento } from '@core/models/establecimiento/establecimiento';
 import { GrupoEtario } from '@core/models/grupoEtario/grupo-etario';
 import { Mes } from '@core/models/mes/mes';
 import { Etnia } from '@core/models/etnia/etnia';
+import { TipoPoblacion } from '@core/models/tipoPoblacion/tipo-poblacion';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class FormReportComponent implements OnInit {
   grupoEtarioData: GrupoEtario[] = []
   mesData: Mes[] = []
   etniaData: Etnia[] = []
+  tipoPoblacionData: TipoPoblacion[] = []
 
   user:any = null
 
@@ -98,6 +100,7 @@ export class FormReportComponent implements OnInit {
     this.fetchDepartamento(this.form.getRawValue().disa)
     this.fetchMeses()
     this.fetchEtnia()
+    this.fetchTipoPoblacion()
     this.fetchGrupoEtario()
   }
   ngOnDestroy() {
@@ -113,6 +116,7 @@ export class FormReportComponent implements OnInit {
       provincia: new FormControl('', []),
       distrito: new FormControl('', []),
       etnia: new FormControl('', []),
+      tipoPoblacion: new FormControl('', []),
       grupoEtario: new FormControl(-1, []),
       sexo: new FormControl('', []),
       anio: new FormControl('', [Validators.required]),
@@ -182,6 +186,13 @@ export class FormReportComponent implements OnInit {
       })
       .catch((err) => console.log(err))
   }
+  fetchTipoPoblacion = () => {
+    this._commonService.getTipoPoblacion()
+      .then((response: any) => {
+        this.tipoPoblacionData = response
+      })
+      .catch((err) => console.log(err))
+  }
   fetchGrupoEtario = () => {
     this._commonService.getGrupoEtarios()
       .then((response: any) => {
@@ -213,6 +224,7 @@ export class FormReportComponent implements OnInit {
       provincia:'',
       distrito:'',
       etnia:'',
+      tipoPoblacion:-1,
       grupoEtario:-1,
       sexo:'',
     })
