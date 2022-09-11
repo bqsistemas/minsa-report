@@ -53,6 +53,13 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             return Ok(meses);
         }
         [HttpGet]
+        [Route("periodo")]
+        public async Task<IActionResult> GetPeriodo()
+        {
+            var periodo = await _mediator.Send(new ListarPeriodoCommand());
+            return Ok(periodo);
+        }
+        [HttpGet]
         [Route("disas")]
         public async Task<IActionResult> GetDisas()
         {

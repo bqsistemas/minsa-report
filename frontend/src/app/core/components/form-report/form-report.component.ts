@@ -14,6 +14,7 @@ import { Ubigeo } from '@core/models/ubigeo/ubigeo';
 import { Establecimiento } from '@core/models/establecimiento/establecimiento';
 import { GrupoEtario } from '@core/models/grupoEtario/grupo-etario';
 import { Mes } from '@core/models/mes/mes';
+import { Periodo } from '@core/models/periodo/periodo';
 import { Etnia } from '@core/models/etnia/etnia';
 import { TipoPoblacion } from '@core/models/tipoPoblacion/tipo-poblacion';
 
@@ -39,6 +40,7 @@ export class FormReportComponent implements OnInit {
   establecimientoData: Establecimiento[] = []
   grupoEtarioData: GrupoEtario[] = []
   mesData: Mes[] = []
+  periodoData: Periodo[] = []
   etniaData: Etnia[] = []
   tipoPoblacionData: TipoPoblacion[] = []
 
@@ -99,6 +101,7 @@ export class FormReportComponent implements OnInit {
     this.fetchDisa()
     this.fetchDepartamento(this.form.getRawValue().disa)
     this.fetchMeses()
+    this.fetchPeriodo()
     this.fetchEtnia()
     this.fetchTipoPoblacion()
     this.fetchGrupoEtario()
@@ -121,6 +124,7 @@ export class FormReportComponent implements OnInit {
       sexo: new FormControl('', []),
       anio: new FormControl('', [Validators.required]),
       mes: new FormControl('', [Validators.required]),
+      periodo: new FormControl('', []),
     });
   }
   fetchDepartamento = (disa) => {
@@ -176,6 +180,13 @@ export class FormReportComponent implements OnInit {
     this._commonService.getMeses()
       .then((response: any) => {
         this.mesData = response
+      })
+      .catch((err) => console.log(err))
+  }
+  fetchPeriodo = () => {
+    this._commonService.getPeriodo()
+      .then((response: any) => {
+        this.periodoData = response
       })
       .catch((err) => console.log(err))
   }

@@ -28,6 +28,9 @@ export class CommonService {
   getMeses(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/meses`)
   }
+  getPeriodo(){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/periodo`)
+  }
   getDisas(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/disas`)
   }

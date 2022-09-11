@@ -14,6 +14,7 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Interfaces.Queries
         Task<List<UbigeoDto>> GetProvincias(string disa, string departamento);
         Task<List<UbigeoDto>> GetDistritos(string disa, string departamento, string provincia);
         Task<List<MesesDto>> GetMeses();
+        Task<List<PeriodoDto>> GetPeriodo();
         Task<List<DisaDto>> GetDisas();
         Task<List<RedDto>> GetRedes(string disa);
         Task<List<MicroRedDto>> GetMicroRedes(string disa, string red);

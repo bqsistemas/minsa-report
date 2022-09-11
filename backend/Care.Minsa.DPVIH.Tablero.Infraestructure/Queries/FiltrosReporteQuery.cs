@@ -100,6 +100,22 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
+        public async Task<List<PeriodoDto>> GetPeriodo()
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+                    var sql = Resource.Query("Sql//Periodo.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<PeriodoDto>(sql);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public async Task<List<DisaDto>> GetDisas()
         {
             try

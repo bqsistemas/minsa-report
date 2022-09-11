@@ -14,12 +14,16 @@
     <None Remove="Sql\MaestroIngresoPaged.sql" />
     <None Remove="Sql\Meses.sql" />
     <None Remove="Sql\MicroRed.sql" />
+    <None Remove="Sql\Periodo.sql" />
     <None Remove="Sql\Provincias.sql" />
     <None Remove="Sql\Red.sql" />
     <None Remove="Sql\TipoPoblacion.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sql\Periodo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sql\TipoPoblacion.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

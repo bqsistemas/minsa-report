@@ -14,6 +14,8 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Entities
         public string Anio { get; set; }
         [Column("mes")]
         public string Mes { get; set; }
+        [Column("periodo")]
+        public string Periodo { get; set; }
         [Column("disa")]
         public int Disa { get; set; }
         [Column("red")]

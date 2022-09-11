@@ -68,6 +68,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
                 parameters.Add("ID_TIPO_REPORTE", "1");
                 parameters.Add("ANIO", request.Anio);
                 parameters.Add("MES", request.Mes);
+                parameters.Add("TRIMESTRE", request.Periodo);
                 parameters.Add("DISA", request.Disa);
                 parameters.Add("RED", request.Red == "" ? "-1" : request.Red);
                 parameters.Add("MRED", request.MicroRed == "" ? "-1" : request.MicroRed);

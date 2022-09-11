@@ -13,6 +13,7 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Requests.MaestroIngreso
         public int Renaes { get; set; }
         public string Anio { get; set; }
         public string Mes { get; set; }
+        public string Periodo { get; set; }
         public string Dep { get; set; }
         public string Prov { get; set; }
         public string Dis { get; set; }

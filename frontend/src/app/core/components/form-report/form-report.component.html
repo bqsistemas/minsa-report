@@ -38,6 +38,9 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            
+        </div>
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>Departamento</mat-label>
                 <mat-select matInput [formControl]="form.controls.departamento">
@@ -54,8 +57,6 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>Distrito</mat-label>
                 <mat-select matInput [formControl]="form.controls.distrito">
@@ -81,6 +82,14 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
+                <mat-label>Tipo Población</mat-label>
+                <mat-select matInput [formControl]="form.controls.tipoPoblacion">
+                    <mat-option *ngFor="let item of tipoPoblacionData" [value]="item.tipoPoblacion">
+                        {{item.tipoPoblacionDsc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="auto">
                 <mat-label>Sexo</mat-label>
                 <mat-select matInput [formControl]="form.controls.sexo">
                     <mat-option *ngFor="let item of sexoData" [value]="item.id">
@@ -88,6 +97,9 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            
+        </div>
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
                 <mat-label>Año</mat-label>
                 <mat-select matInput [formControl]="form.controls.anio">
@@ -104,13 +116,11 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>Tipo Población</mat-label>
-                <mat-select matInput [formControl]="form.controls.tipoPoblacion">
-                    <mat-option *ngFor="let item of tipoPoblacionData" [value]="item.tipoPoblacion">
-                        {{item.tipoPoblacionDsc}}
+                <mat-label>Periodo</mat-label>
+                <mat-select matInput [formControl]="form.controls.periodo">
+                    <mat-option *ngFor="let item of periodoData" [value]="item.periodo">
+                        {{item.periodoDsc}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
