@@ -11,6 +11,7 @@ export class User {
     ultimoInicioSesion: Date;
     idInicioSesion: string;
     roles: Rol[];
+    permissions: any;
 
     // minsa
     userName: string;

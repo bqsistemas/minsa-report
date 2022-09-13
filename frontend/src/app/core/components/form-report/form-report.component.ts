@@ -17,6 +17,7 @@ import { Mes } from '@core/models/mes/mes';
 import { Periodo } from '@core/models/periodo/periodo';
 import { Etnia } from '@core/models/etnia/etnia';
 import { TipoPoblacion } from '@core/models/tipoPoblacion/tipo-poblacion';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -96,6 +97,7 @@ export class FormReportComponent implements OnInit {
       if(provincia) this.fetchDistrito(this.form.getRawValue().disa, this.form.getRawValue().departamento, provincia)
     })
 
+    this.getTransformPermissions(this.user?.permissions ?? {})
     this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
 
     this.fetchDisa()
@@ -127,6 +129,45 @@ export class FormReportComponent implements OnInit {
       periodo: new FormControl('', []),
     });
   }
+
+  getTransformPermissions(permissions: any) {
+    console.log(permissions)
+    let keys: string[] = []
+    let entities = {
+      diresa: [],
+      red: [],
+      microred: [],
+      establecimiento: []
+    }
+    for(const k in permissions){
+      if(permissions[k][environment.appName]) keys.push(k)
+    }
+
+    keys.forEach((k) => {
+      k.split(',').forEach((e) => {
+        const [ ent, val ] = e.split(':')
+        switch(ent){
+          case 'diresa':
+            entities.diresa.push(val)
+            break
+          case 'red':
+            entities.red.push(val)
+            break
+          case 'microred':
+            entities.microred.push(val)
+            break
+          case 'estab':
+            entities.establecimiento.push(val)
+            break
+        }
+      })
+    })
+
+    console.log(entities)
+
+    return {}
+  }
+
   fetchDepartamento = (disa) => {
     this._commonService.getDepartamentos(disa)
       .then((response: any) => {

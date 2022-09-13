@@ -20,6 +20,10 @@ export class ResolveUser implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot) {
         return this._authService.setPermisos().pipe(
             map(async (response: any) => {
+                if(!response?.authorization?.auth_apps[environment.appName]){
+                    localStorage.removeItem(environment.codeJwt);
+                    location.reload()
+                }
                 this._authService.setUser({
                     apellidoMaterno: response.lastname_mother,
                     apellidoPaterno: response.lastname_father,
@@ -27,7 +31,8 @@ export class ResolveUser implements Resolve<any> {
                     numeroDocumento: response.document_number,
                     tipoDocumento: response.document_type,
                     userName: response.username,
-                    diresa: response.authorization.diresa
+                    diresa: response.authorization.diresa,
+                    permissions: response?.authorization?.permissions
                   } as User);
                 return response;
             }, catchError((err, caught) => {

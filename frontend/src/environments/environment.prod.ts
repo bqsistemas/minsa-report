@@ -7,6 +7,7 @@ export const environment = {
   encrypt: true,
   codeJwt: '_jbq|minsa|__',
   codeTokenRolSede: '_jbq|minsa|rs',
+  appName: 'pe.gob.minsa.vih',
   apis: {
     backend: 'http://dew.minsa.gob.pe/tablero-vih-api/api',
     apiLogin: 'http://devlogin.minsa.gob.pe/auth/login/',

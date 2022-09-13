@@ -49,7 +49,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         }
       }).catch((error) => {
-        console.log(error);
+        this.snackbar.open('No se puede iniciar sesión con las credenciales proporcionadas.', 'Aviso!', {
+          panelClass: 'bg-deep-orange-500',
+          duration: 3500
+        });
       });
     } else {
       this.form.markAllAsTouched();
