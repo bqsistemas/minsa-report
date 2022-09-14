@@ -148,16 +148,16 @@ export class FormReportComponent implements OnInit {
         const [ ent, val ] = e.split(':')
         switch(ent){
           case 'diresa':
-            entities.diresa.push(val)
+            if(entities.diresa.indexOf(val) < 0) entities.diresa.push(val)
             break
           case 'red':
-            entities.red.push(val)
+            if(entities.red.indexOf(val) < 0) entities.red.push(val)
             break
           case 'microred':
-            entities.microred.push(val)
+            if(entities.microred.indexOf(val) < 0) entities.microred.push(val)
             break
           case 'estab':
-            entities.establecimiento.push(val)
+            if(entities.establecimiento.indexOf(val) < 0) entities.establecimiento.push(val)
             break
         }
       })

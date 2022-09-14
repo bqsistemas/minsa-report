@@ -8,6 +8,8 @@ export const environment = {
   codeJwt: '_jbq|minsa|__',
   codeTokenRolSede: '_jbq|minsa|rs',
   appName: 'pe.gob.minsa.vih',
+  module: 'EVIH0',
+  role: '121',
   apis: {
     backend: 'http://dew.minsa.gob.pe/tablero-vih-api/api',
     apiLogin: 'http://devlogin.minsa.gob.pe/auth/login/',

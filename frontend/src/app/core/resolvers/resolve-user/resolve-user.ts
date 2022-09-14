@@ -20,10 +20,21 @@ export class ResolveUser implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot) {
         return this._authService.setPermisos().pipe(
             map(async (response: any) => {
-                if(!response?.authorization?.auth_apps[environment.appName]){
+                const appName = response?.authorization?.auth_apps[environment.appName]
+
+                let hasRole121 = false
+                for(const k in response?.authorization?.permissions){
+                    const objectAppPermissions = response?.authorization?.permissions[k][environment.appName]
+                    if(objectAppPermissions 
+                        && objectAppPermissions[environment.module] 
+                        && objectAppPermissions[environment.module].indexOf(environment.role) >= 0) hasRole121 = true
+                }
+
+                if(!appName || !hasRole121){
                     localStorage.removeItem(environment.codeJwt);
                     location.reload()
                 }
+
                 this._authService.setUser({
                     apellidoMaterno: response.lastname_mother,
                     apellidoPaterno: response.lastname_father,
