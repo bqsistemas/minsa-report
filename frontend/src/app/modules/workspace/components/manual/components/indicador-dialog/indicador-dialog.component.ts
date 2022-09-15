@@ -131,8 +131,20 @@ export class IndicadorDialogComponent implements OnInit {
     this.form.controls.prov.valueChanges.subscribe((provincia) => {
       this.fetchDistrito(this.indicador.disa, this.form.getRawValue().dep  ?? this.indicador.dep, provincia)
     })
-    if(this.action !== 'edit')
-      this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
+    if(this.action !== 'edit'){
+      const claims = this.getTransformPermissions(this.user?.permissions ?? {})
+      console.log(claims)
+      if(claims.diresa.length > 0)
+        this.form.get('disa').setValue(parseInt(claims.diresa[0]))
+      if(claims.red.length > 0){
+        this.form.get('red').setValue(claims.red[0])
+        this.form.get('red').disable({onlySelf: true})
+      }
+      if(claims.microred.length > 0){
+        this.form.get('microRed').setValue(claims.microred[0])
+        this.form.get('microRed').disable({onlySelf: true})
+      }
+    }
   }
   createForm(): FormGroup {
     return new FormGroup({
@@ -156,6 +168,40 @@ export class IndicadorDialogComponent implements OnInit {
       tmiGestanteAtendidaSifilis: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
       tmiGestanteAtendidaHepatitisB: new FormControl(0, [Validators.required, Validators.maxLength(5), Numeric]),
     });
+  }
+  getTransformPermissions(permissions: any) {
+    let keys: string[] = []
+    let entities = {
+      diresa: [],
+      red: [],
+      microred: [],
+      establecimiento: []
+    }
+    for(const k in permissions){
+      if(permissions[k][environment.appName]) keys.push(k)
+    }
+
+    keys.forEach((k) => {
+      k.split(',').forEach((e) => {
+        const [ ent, val ] = e.split(':')
+        switch(ent){
+          case 'diresa':
+            if(entities.diresa.indexOf(val) < 0) entities.diresa.push(val)
+            break
+          case 'red':
+            if(entities.red.indexOf(val) < 0) entities.red.push(val)
+            break
+          case 'microred':
+            if(entities.microred.indexOf(val) < 0) entities.microred.push(val)
+            break
+          case 'estab':
+            if(entities.establecimiento.indexOf(val) < 0) entities.establecimiento.push(val)
+            break
+        }
+      })
+    })
+
+    return entities
   }
   getDataToPatch(){
     this._indicadorService.get(this.indicador.idMaestroIngreso)

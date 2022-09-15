@@ -97,8 +97,19 @@ export class FormReportComponent implements OnInit {
       if(provincia) this.fetchDistrito(this.form.getRawValue().disa, this.form.getRawValue().departamento, provincia)
     })
 
-    this.getTransformPermissions(this.user?.permissions ?? {})
-    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
+    const claims = this.getTransformPermissions(this.user?.permissions ?? {})
+    console.log(claims)
+    if(claims.diresa.length > 0)
+      this.form.get('disa').setValue(parseInt(claims.diresa[0]))
+    if(claims.red.length > 0){
+      this.form.get('red').setValue(claims.red[0])
+      this.form.get('red').disable({onlySelf: true})
+    }
+    if(claims.microred.length > 0){
+      this.form.get('microRed').setValue(claims.microred[0])
+      this.form.get('microRed').disable({onlySelf: true})
+    }
+      
 
     this.fetchDisa()
     this.fetchDepartamento(this.form.getRawValue().disa)
@@ -131,7 +142,6 @@ export class FormReportComponent implements OnInit {
   }
 
   getTransformPermissions(permissions: any) {
-    console.log(permissions)
     let keys: string[] = []
     let entities = {
       diresa: [],
@@ -163,9 +173,7 @@ export class FormReportComponent implements OnInit {
       })
     })
 
-    console.log(entities)
-
-    return {}
+    return entities
   }
 
   fetchDepartamento = (disa) => {

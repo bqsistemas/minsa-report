@@ -29,7 +29,6 @@ export class ResolveUser implements Resolve<any> {
                         && objectAppPermissions[environment.module] 
                         && objectAppPermissions[environment.module].indexOf(environment.role) >= 0) hasRole121 = true
                 }
-
                 if(!appName || !hasRole121){
                     localStorage.removeItem(environment.codeJwt);
                     location.reload()
