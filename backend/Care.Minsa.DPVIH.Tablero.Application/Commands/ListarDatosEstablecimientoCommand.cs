@@ -7,16 +7,15 @@ using System.Text;
 
 namespace Care.Minsa.DPVIH.Tablero.Application.Commands
 {
-    public class ListarEstablecimientoCommand : IRequest<List<EstablecimientoDto>>
+    public class ListarDatosEstablecimientoCommand : IRequest<List<EstablecimientoDto>>
     {
         public string Disa { get; set; }
         public string Red { get; set; }
-        public string MicroRed { get; set; }        
-        public ListarEstablecimientoCommand(string disa, string red, string microred)
+        public string MicroRed { get; set; }
+        public int Establecimiento { get; set; }
+        public ListarDatosEstablecimientoCommand(int establecimiento)
         {
-            Disa = disa;
-            Red = red;
-            MicroRed = microred;
+            Establecimiento = establecimiento;
         }
     }
 }

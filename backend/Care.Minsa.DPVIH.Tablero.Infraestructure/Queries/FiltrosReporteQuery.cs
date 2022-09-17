@@ -196,6 +196,26 @@ namespace Care.Minsa.DPVIH.Tablero.Infraestructure.Queries
                 return null;
             }
         }
+        public async Task<List<EstablecimientoDto>> GetDatosEstablecimiento(int establecimiento)
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+                    var parameters = new
+                    {
+                        @establecimiento = establecimiento
+                    };
+                    var sql = Resource.Query("Sql//DatosEstablecimiento.sql"); // on windows Sql//Demo.sql
+                    var result = await connection.QueryAsync<EstablecimientoDto>(sql, parameters);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public async Task<List<GrupoEtarioDto>> GetGruposEtarios()
         {
             try
