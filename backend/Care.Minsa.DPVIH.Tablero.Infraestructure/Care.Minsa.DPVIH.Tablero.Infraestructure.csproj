@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Sql\DatosEstablecimiento.sql" />
     <None Remove="Sql\Departamentos.sql" />
     <None Remove="Sql\Disa.sql" />
     <None Remove="Sql\Distritos.sql" />
@@ -21,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sql\DatosEstablecimiento.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sql\Periodo.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

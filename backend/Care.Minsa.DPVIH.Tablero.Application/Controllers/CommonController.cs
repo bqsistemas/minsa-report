@@ -88,6 +88,13 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
             return Ok(establecimientos);
         }
         [HttpGet]
+        [Route("datosestablecimiento/{establecimiento}")]
+        public async Task<IActionResult> GetDatosEstablecimiento([FromRoute(Name = "establecimiento")] int establecimiento)
+        {
+            var datosestablecimientos = await _mediator.Send(new ListarDatosEstablecimientoCommand(establecimiento));
+            return Ok(datosestablecimientos);
+        }
+        [HttpGet]
         [Route("etnias")]
         public async Task<IActionResult> GetEtnias()
         {
