@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -26,9 +26,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./form-report.component.scss']
 })
 export class FormReportComponent implements OnInit {
+  @Input() reportType: string = ''
 
   form: FormGroup;
   subscriptions: Subscription = new Subscription();
+  
 
   icClose = icClose
 
@@ -46,6 +48,8 @@ export class FormReportComponent implements OnInit {
   tipoPoblacionData: TipoPoblacion[] = []
 
   user:any = null
+
+  permissions: any = null
 
   //mockup data
   sexoData = [{
@@ -97,19 +101,9 @@ export class FormReportComponent implements OnInit {
       if(provincia) this.fetchDistrito(this.form.getRawValue().disa, this.form.getRawValue().departamento, provincia)
     })
 
-    const claims = this.getTransformPermissions(this.user?.permissions ?? {})
-    console.log(claims)
-    if(claims.diresa.length > 0)
-      this.form.get('disa').setValue(parseInt(claims.diresa[0]))
-    if(claims.red.length > 0){
-      this.form.get('red').setValue(claims.red[0])
-      this.form.get('red').disable({onlySelf: true})
-    }
-    if(claims.microred.length > 0){
-      this.form.get('microRed').setValue(claims.microred[0])
-      this.form.get('microRed').disable({onlySelf: true})
-    }
-      
+    this.permissions = this.getTransformPermissions(this.user?.permissions ?? {})
+    console.log(this.permissions)
+    this.setValueByPermissions()
 
     this.fetchDisa()
     this.fetchDepartamento(this.form.getRawValue().disa)
@@ -132,12 +126,12 @@ export class FormReportComponent implements OnInit {
       provincia: new FormControl('', []),
       distrito: new FormControl('', []),
       etnia: new FormControl('', []),
-      tipoPoblacion: new FormControl('', []),
+      tipoPoblacion: new FormControl(-1, []),
       grupoEtario: new FormControl(-1, []),
       sexo: new FormControl('', []),
       anio: new FormControl('', [Validators.required]),
-      mes: new FormControl('', [Validators.required]),
-      periodo: new FormControl('', []),
+      mes: new FormControl('', []),
+      periodo: new FormControl(-1, []),
     });
   }
 
@@ -174,6 +168,19 @@ export class FormReportComponent implements OnInit {
     })
 
     return entities
+  }
+
+  setValueByPermissions() {
+    if(this.permissions.diresa.length > 0)
+      this.form.get('disa').setValue(parseInt(this.permissions.diresa[0]))
+    if(this.permissions.red.length > 0){
+      this.form.get('red').setValue(this.permissions.red[0])
+      this.form.get('red').disable({onlySelf: true})
+    }
+    if(this.permissions.microred.length > 0){
+      this.form.get('microRed').setValue(this.permissions.microred[0])
+      this.form.get('microRed').disable({onlySelf: true})
+    }
   }
 
   fetchDepartamento = (disa) => {
@@ -266,6 +273,12 @@ export class FormReportComponent implements OnInit {
       const values = Object.assign({}, this.form.getRawValue());
       values.disa = this.user.diresa[0]
       values.establecimiento = values.establecimiento === -1 ? '' : values.establecimiento
+      
+      if(values.anio && values.anio !== '' && values.mes && values.mes !== '')
+        values.periodo = -1
+      if(values.anio && values.anio !== '' && values.periodo && values.periodo !== -1)
+        values.mes = -1
+
       this._commonService.setLoadingReport(true)
       this.callReport.emit(values);
     } else {
@@ -287,13 +300,22 @@ export class FormReportComponent implements OnInit {
       tipoPoblacion:-1,
       grupoEtario:-1,
       sexo:'',
+      periodo: -1
     })
-    this.form.get('disa').setValue(parseInt(this.user.diresa[0]))
+    this.setValueByPermissions()
   }
 
   setContentArray() {
     this.redData = [{  red: '', redDsc: 'TODOS' }]
     this.microRedData = [{ microRed: '', microRedDsc: 'TODOS' }]
     this.establecimientoData = [{ establecimiento: -1, establecimientoDsc: 'TODOS', ubigeo: '' }]
+  }
+
+  showField(field: string){
+    if(field === 'POBLACION' && this.reportType === 'HEPATITIS') return true
+    if(field === 'POBLACION' && this.reportType === 'VIH') return true
+    if((field === 'POBLACION' || field === 'PERIODO') && this.reportType === 'TMI') return true
+
+    return false
   }
 }

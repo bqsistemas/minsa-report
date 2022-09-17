@@ -13,7 +13,7 @@
     </div>
 
     <div class="card h-auto overflow-hidden" style="height: 100%;">
-        <vex-form-report (callReport)="callReport($event)"></vex-form-report>
+        <vex-form-report (callReport)="callReport($event)" [reportType]="'ITS'"></vex-form-report>
         <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center">Cargando reporte ...</div>
         <!-- <div *ngIf="urlReport" fxLayout="row" fxLayoutAlign="end" class="px-4"><a href="javascript:void(0)" (click)="downloadPdf()" style="color: blue;">Descargar</a></div> -->
         <div id="my-container" class="pdfobject-container" style="height: calc(100% - 175px)">

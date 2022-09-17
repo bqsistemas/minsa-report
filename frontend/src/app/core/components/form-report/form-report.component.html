@@ -83,7 +83,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field fxFlex="auto">
+            <mat-form-field *ngIf="showField('POBLACION')" fxFlex="auto">
                 <mat-label>Tipo Población</mat-label>
                 <mat-select matInput [formControl]="form.controls.tipoPoblacion">
                     <mat-option *ngFor="let item of tipoPoblacionData" [value]="item.tipoPoblacion">
@@ -118,7 +118,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field fxFlex="auto">
+            <mat-form-field *ngIf="showField('PERIODO')" fxFlex="auto">
                 <mat-label>Periodo</mat-label>
                 <mat-select matInput [formControl]="form.controls.periodo">
                     <mat-option *ngFor="let item of periodoData" [value]="item.periodo">

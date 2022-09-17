@@ -45,9 +45,14 @@ export class LoginComponent implements OnInit {
   send() {
     if (this.form.valid) {
       this._authService.postLogin(this.form.value).then((value: any) => {
-        if (value.auth_token) {
+        if (value?.auth_token) {
           this.router.navigate(['']);
         }
+        if(value === -1)
+          this.snackbar.open('No tienes los permisos necesarios para ingresar.', 'Aviso!', {
+            panelClass: 'bg-deep-orange-500',
+            duration: 3500
+          });
       }).catch((error) => {
         this.snackbar.open('No se puede iniciar sesión con las credenciales proporcionadas.', 'Aviso!', {
           panelClass: 'bg-deep-orange-500',
