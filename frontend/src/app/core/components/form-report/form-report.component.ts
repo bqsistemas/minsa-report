@@ -277,7 +277,7 @@ export class FormReportComponent implements OnInit {
       if(values.anio && values.anio !== '' && values.mes && values.mes !== '')
         values.periodo = -1
       if(values.anio && values.anio !== '' && values.periodo && values.periodo !== -1)
-        values.mes = -1
+        values.mes = '-1'
 
       this._commonService.setLoadingReport(true)
       this.callReport.emit(values);
