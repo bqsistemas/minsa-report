@@ -67,19 +67,19 @@ namespace Care.Minsa.DPVIH.Tablero.Application.Controllers
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("ID_TIPO_REPORTE", "1");
                 parameters.Add("ANIO", request.Anio);
-                parameters.Add("MES", request.Mes);
-                parameters.Add("TRIMESTRE", request.Periodo == "" ? "-1" : request.Periodo);
+                parameters.Add("MES", request.Mes == "" ? "-1" : request.Mes);
+                parameters.Add("TRIMESTRE", request.Periodo.ToString());
                 parameters.Add("DISA", request.Disa);
                 parameters.Add("RED", request.Red == "" ? "-1" : request.Red);
                 parameters.Add("MRED", request.MicroRed == "" ? "-1" : request.MicroRed);
-                parameters.Add("ESTAB", request.Establecimiento == "" ? "-1" : request.Establecimiento);
+                parameters.Add("ESTAB", request.Establecimiento.ToString());
                 parameters.Add("DPTO", request.Departamento == "" ? "-1" : request.Departamento);
                 parameters.Add("PROV", request.Provincia == "" ? "-1" : request.Provincia);
                 parameters.Add("DIST", request.Distrito == "" ? "-1" : request.Distrito);
                 parameters.Add("ETAPA", request.GrupoEtario.ToString());
                 parameters.Add("SEXO", request.Sexo == "" ? "-1" : request.Sexo);
                 parameters.Add("ETNIA", request.Etnia == "" ? "-1" : request.Etnia);
-                parameters.Add("POBLACION", request.TipoPoblacion == "" ? "-1" : request.TipoPoblacion);
+                parameters.Add("POBLACION", request.TipoPoblacion.ToString());
 
                 rm = _reportManager.GetReportFromServer(rdl, format, parameters);
 
