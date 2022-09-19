@@ -103,9 +103,9 @@ export class FormReportComponent implements OnInit {
 
     this.permissions = this.getTransformPermissions(this.user?.permissions ?? {})
     console.log(this.permissions)
-    this.setValueByPermissions()
 
     this.fetchDisa()
+    this.setValueByPermissions()
     this.fetchDepartamento(this.form.getRawValue().disa)
     this.fetchMeses()
     this.fetchPeriodo()
@@ -170,7 +170,7 @@ export class FormReportComponent implements OnInit {
     return entities
   }
 
-  setValueByPermissions() {
+  async setValueByPermissions() {
     if(this.permissions.diresa.length > 0)
       this.form.get('disa').setValue(parseInt(this.permissions.diresa[0]))
     if(this.permissions.red.length > 0){
@@ -180,6 +180,21 @@ export class FormReportComponent implements OnInit {
     if(this.permissions.microred.length > 0){
       this.form.get('microRed').setValue(this.permissions.microred[0])
       this.form.get('microRed').disable({onlySelf: true})
+    }
+
+    if(this.permissions.diresa.length == 0 && this.permissions.establecimiento.length > 0){
+      const establecimiento: any = await this._commonService.getEstablecimiento(this.permissions.establecimiento[0])
+      if(establecimiento?.length > 0){
+        this.form.get('disa').setValue(parseInt(establecimiento[0].disa))
+        this.form.get('red').setValue(establecimiento[0].red)
+        this.form.get('red').disable({onlySelf: true})
+        this.form.get('microRed').setValue(establecimiento[0].microRed)
+        this.form.get('microRed').disable({onlySelf: true})
+        this.form.get('establecimiento').setValue(establecimiento[0].establecimiento)
+        this.form.get('establecimiento').disable({onlySelf: true})
+
+      }
+      console.log(establecimiento)
     }
   }
 

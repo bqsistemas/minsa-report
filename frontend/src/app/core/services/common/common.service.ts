@@ -43,6 +43,9 @@ export class CommonService {
   getEstablecimientos(disa: string, red: string, microred: string){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/establecimientos/${disa}/${red}/${microred}`)
   }
+  getEstablecimiento(establecimiento: string){
+    return this.httpAjaxService.get(`${environment.apis.backend}/common/datosestablecimiento/${establecimiento}`)
+  }
   getEtnias(){
     return this.httpAjaxService.get(`${environment.apis.backend}/common/etnias`)
   }
