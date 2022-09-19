@@ -102,7 +102,6 @@ export class FormReportComponent implements OnInit {
     })
 
     this.permissions = this.getTransformPermissions(this.user?.permissions ?? {})
-    console.log(this.permissions)
 
     this.fetchDisa()
     this.setValueByPermissions()
@@ -194,7 +193,6 @@ export class FormReportComponent implements OnInit {
         this.form.get('establecimiento').disable({onlySelf: true})
 
       }
-      console.log(establecimiento)
     }
   }
 
