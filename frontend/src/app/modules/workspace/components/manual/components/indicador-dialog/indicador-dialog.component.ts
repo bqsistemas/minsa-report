@@ -40,6 +40,7 @@ export class IndicadorDialogComponent implements OnInit {
 
   statusButtonSave: FormControl = new FormControl(false);
   user:any = null
+  permissions: any = null
   // ----------------------
   icClose = icClose;
   icSubject = icSubject;
@@ -120,10 +121,14 @@ export class IndicadorDialogComponent implements OnInit {
       this.fetchEstablecimiento(this.form.getRawValue().disa ?? this.indicador.disa, this.form.getRawValue().red  ?? this.indicador.red, microRed)
     })
     this.form.controls.renaes.valueChanges.subscribe((renaes) => {
-      const { ubigeo } = this.establecimientoData.find(x => x.establecimiento === renaes)
-      this.form.get('dep').setValue(ubigeo.substring(0, 2))
-      this.form.get('prov').setValue(ubigeo.substring(2, 4))
-      this.form.get('dis').setValue(ubigeo.substring(4, 6))
+      if(this.establecimientoData && this.establecimientoData?.length) {
+        const { ubigeo } = this.establecimientoData.find(x => x.establecimiento === renaes)
+        if(ubigeo) {
+          this.form.get('dep').setValue(ubigeo.substring(0, 2))
+          this.form.get('prov').setValue(ubigeo.substring(2, 4))
+          this.form.get('dis').setValue(ubigeo.substring(4, 6))
+        }
+      }
     })
     this.form.controls.dep.valueChanges.subscribe((departamento) => {
       this.fetchProvincia(this.indicador.disa, departamento)
@@ -132,18 +137,8 @@ export class IndicadorDialogComponent implements OnInit {
       this.fetchDistrito(this.indicador.disa, this.form.getRawValue().dep  ?? this.indicador.dep, provincia)
     })
     if(this.action !== 'edit'){
-      const claims = this.getTransformPermissions(this.user?.permissions ?? {})
-      console.log(claims)
-      if(claims.diresa.length > 0)
-        this.form.get('disa').setValue(parseInt(claims.diresa[0]))
-      if(claims.red.length > 0){
-        this.form.get('red').setValue(claims.red[0])
-        this.form.get('red').disable({onlySelf: true})
-      }
-      if(claims.microred.length > 0){
-        this.form.get('microRed').setValue(claims.microred[0])
-        this.form.get('microRed').disable({onlySelf: true})
-      }
+      this.permissions = this.getTransformPermissions(this.user?.permissions ?? {})
+      this.setValueByPermissions()
     }
   }
   createForm(): FormGroup {
@@ -203,6 +198,36 @@ export class IndicadorDialogComponent implements OnInit {
 
     return entities
   }
+
+  async setValueByPermissions() {
+    if(this.permissions.diresa.length > 0)
+      this.form.get('disa').setValue(parseInt(this.permissions.diresa[0]))
+
+    if(this.permissions.red.length > 0){
+      this.form.get('red').setValue(this.permissions.red[0])
+      this.form.get('red').disable({onlySelf: true})
+    }
+
+    if(this.permissions.microred.length > 0){
+      this.form.get('mred').setValue(this.permissions.microred[0])
+      this.form.get('mred').disable({onlySelf: true})
+    }
+
+    if(this.permissions.diresa.length == 0 && this.permissions.establecimiento.length > 0){
+      const establecimiento: any = await this._commonService.getEstablecimiento(this.permissions.establecimiento[0])
+      console.log(establecimiento)
+      if(establecimiento?.length > 0){
+        this.form.get('disa').setValue(parseInt(establecimiento[0].disa))
+        this.form.get('red').setValue(establecimiento[0].red)
+        this.form.get('red').disable({onlySelf: true})
+        this.form.get('mred').setValue(establecimiento[0].microRed)
+        this.form.get('mred').disable({onlySelf: true})
+        this.form.get('renaes').setValue(establecimiento[0].establecimiento)
+        this.form.get('renaes').disable({onlySelf: true})
+      }
+    }
+  }
+
   getDataToPatch(){
     this._indicadorService.get(this.indicador.idMaestroIngreso)
       .then((value: Indicador) => {
