@@ -100,6 +100,14 @@ export class FormReportComponent implements OnInit {
     this.form.controls.provincia.valueChanges.subscribe((provincia) => {
       if(provincia) this.fetchDistrito(this.form.getRawValue().disa, this.form.getRawValue().departamento, provincia)
     })
+    this.form.controls.mes.valueChanges.subscribe((value) => {
+      if(value)
+        this.form.get('periodo').setValue(-1)
+    })
+    this.form.controls.periodo.valueChanges.subscribe((value) => {
+      if(value)
+        this.form.get('mes').setValue('')
+    })
 
     this.permissions = this.getTransformPermissions(this.user?.permissions ?? {})
 
