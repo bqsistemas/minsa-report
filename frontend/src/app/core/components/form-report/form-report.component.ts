@@ -285,7 +285,7 @@ export class FormReportComponent implements OnInit {
     if (this.form.valid) {
       const values = Object.assign({}, this.form.getRawValue());
       values.disa = this.user.diresa[0]
-      values.establecimiento = values.establecimiento === -1 ? '' : values.establecimiento
+      values.establecimiento = values.establecimiento
       
       if(values.anio && values.anio !== '' && values.mes && values.mes !== '')
         values.periodo = -1
