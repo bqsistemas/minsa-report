@@ -14,8 +14,6 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Entities
         public string Anio { get; set; }
         [Column("mes")]
         public string Mes { get; set; }
-        [Column("periodo")]
-        public string Periodo { get; set; }
         [Column("disa")]
         public int Disa { get; set; }
         [Column("red")]
@@ -36,8 +34,6 @@ namespace Care.Minsa.DPVIH.Tablero.Domain.Entities
         public string Sexo { get; set; }
         [Column("etnia")]
         public string Etnia { get; set; }
-        [Column("tipopoblacion")]
-        public string TipoPoblacion { get; set; }
         [Column("vih_persona_estimada")]
         public int VinPersonaEstimada { get; set; }
         [Column("its_persona_estimada_tamizaje_sifilis")]
