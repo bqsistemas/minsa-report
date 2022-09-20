@@ -305,7 +305,7 @@ export class FormReportComponent implements OnInit {
     this.form.patchValue({
       red:'',
       microRed:'',
-      establecimiento:'',
+      establecimiento:-1,
       departamento:'',
       provincia:'',
       distrito:'',
