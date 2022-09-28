@@ -31,7 +31,6 @@ export class FormReportComponent implements OnInit {
   form: FormGroup;
   subscriptions: Subscription = new Subscription();
   
-
   icClose = icClose
 
   disaData: Disa[] = []
@@ -188,7 +187,6 @@ export class FormReportComponent implements OnInit {
       this.form.get('microRed').setValue(this.permissions.microred[0])
       this.form.get('microRed').disable({onlySelf: true})
     }
-
     if(this.permissions.diresa.length == 0 && this.permissions.establecimiento.length > 0){
       const establecimiento: any = await this._commonService.getEstablecimiento(this.permissions.establecimiento[0])
       if(establecimiento?.length > 0){
@@ -199,12 +197,12 @@ export class FormReportComponent implements OnInit {
         this.form.get('microRed').disable({onlySelf: true})
         this.form.get('establecimiento').setValue(establecimiento[0].establecimiento)
         this.form.get('establecimiento').disable({onlySelf: true})
-
       }
     }
   }
 
   fetchDepartamento = (disa) => {
+    this.departamentoData = [];
     this._commonService.getDepartamentos(disa)
       .then((response: any) => {
         this.departamentoData = response
@@ -212,6 +210,7 @@ export class FormReportComponent implements OnInit {
       .catch((err) => console.log(err))
   }
   fetchProvincia = (disa, departamento) => {
+    this.provinciaData = [];
     this._commonService.getProvincias(disa, departamento)
       .then((response: any) => {
         this.provinciaData = response
@@ -219,6 +218,7 @@ export class FormReportComponent implements OnInit {
       .catch((err) => console.log(err))
   }
   fetchDistrito = (disa, departamento, provincia) => {
+    this.distritoData = [];
     this._commonService.getDistritos(disa, departamento, provincia)
       .then((response: any) => {
         this.distritoData = response
@@ -233,6 +233,7 @@ export class FormReportComponent implements OnInit {
       .catch((err) => console.log(err))
   }
   fetchRed = (disa) => {
+    this.redData = [];
     this._commonService.getRedes(disa)
       .then((response: any) => {
         this.redData = [...this.redData, ...response]
@@ -240,13 +241,15 @@ export class FormReportComponent implements OnInit {
       .catch((err) => console.log(err))
   }
   fetchMicroRed = (disa, red) => {
+    this.microRedData = [];
     this._commonService.getMicroRedes(disa, red)
-      .then((response: any) => {
+      .then((response: any) => {        
         this.microRedData = [...this.microRedData, ...response]
       })
       .catch((err) => console.log(err))
   }
   fetchEstablecimiento = (disa, red, microRed) => {
+    this.establecimientoData = [];
     this._commonService.getEstablecimientos(disa, red, microRed)
       .then((response: any) => {
         this.establecimientoData = [...this.establecimientoData, ...response]
