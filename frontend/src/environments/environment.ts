@@ -12,8 +12,8 @@ export const environment = {
   role: '121',
   apis: {
     backend: 'https://localhost:5001/api',
-    apiLogin: 'https://dsihce.minsa.gob.pe/login/auth/login/',              
-    apiSecurity: 'http://devlogin.minsa.gob.pe/api/v1'
+    apiLogin: 'https://dsihce.minsa.gob.pe/login/auth/login/',
+    apiSecurity: 'https://dsihce.minsa.gob.pe/login/api/v1'
   },
   enums: {}
 };
