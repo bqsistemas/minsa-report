@@ -13,7 +13,7 @@ export const environment = {
   apis: {
     backend: 'http://dew.minsa.gob.pe/tablero-vih-api/api',
     apiLogin: 'https://dsihce.minsa.gob.pe/login/auth/login/',
-    apiSecurity: 'http://devlogin.minsa.gob.pe/api/v1'
+    apiSecurity: 'https://dsihce.minsa.gob.pe/login/api/v1'
   },
   enums: {
   }
