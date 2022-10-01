@@ -233,26 +233,24 @@ export class FormReportComponent implements OnInit {
       .catch((err) => console.log(err))
   }
   fetchRed = (disa) => {
-    this.redData = [];
     this._commonService.getRedes(disa)
       .then((response: any) => {
-        this.redData = [...this.redData, ...response]
+        this.redData = [...[this.redData[0]], ...response]
       })
       .catch((err) => console.log(err))
   }
   fetchMicroRed = (disa, red) => {
-    this.microRedData = [];
     this._commonService.getMicroRedes(disa, red)
       .then((response: any) => {        
-        this.microRedData = [...this.microRedData, ...response]
+
+        this.microRedData = [...[this.microRedData[0]], ...response]
       })
       .catch((err) => console.log(err))
   }
   fetchEstablecimiento = (disa, red, microRed) => {
-    this.establecimientoData = [];
     this._commonService.getEstablecimientos(disa, red, microRed)
       .then((response: any) => {
-        this.establecimientoData = [...this.establecimientoData, ...response]
+        this.establecimientoData = [...[this.establecimientoData[0]], ...response]
       })
       .catch((err) => console.log(err))
   }
