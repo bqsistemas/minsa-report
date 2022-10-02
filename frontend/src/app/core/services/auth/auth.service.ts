@@ -41,6 +41,18 @@ export class AuthService {
         const permisos: any = await this.httpAjaxService.getWithOutPromise(`${environment.apis.apiSecurity}/permisos/`).toPromise()
         const appName = permisos?.authorization?.auth_apps[environment.appName]
 
+        let hasRole121 = false
+        for(const k in permisos?.authorization?.permissions){
+            const objectAppPermissions = permisos?.authorization?.permissions[k][environment.appName]
+            if(objectAppPermissions 
+                && objectAppPermissions[environment.module] 
+                && objectAppPermissions[environment.module].indexOf(environment.role) >= 0) hasRole121 = true
+        }
+
+        if(!appName || !hasRole121){
+            localStorage.removeItem(environment.codeJwt);
+            return -1
+        }
 
         return data;
       } else {
