@@ -38,6 +38,7 @@ export class AuthService {
       if (data.auth_token) {
         // this.setUser(data.data.user);
         localStorage.setItem(environment.codeJwt, data.auth_token);
+        console.log('EPALE')
         const permisos: any = await this.httpAjaxService.getWithOutPromise(`${environment.apis.apiSecurity}/permisos/`).toPromise()
         const appName = permisos?.authorization?.auth_apps[environment.appName]
 
@@ -66,6 +67,7 @@ export class AuthService {
     location.href = "/tablero-vih/";
   }
   setPermisos() {
+    console.log('EPALE 2')
     return this.httpAjaxService.getWithOutPromise(`${environment.apis.apiSecurity}/permisos/`)
   }
 
