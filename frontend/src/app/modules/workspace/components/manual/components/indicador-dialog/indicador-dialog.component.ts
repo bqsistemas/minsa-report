@@ -215,7 +215,6 @@ export class IndicadorDialogComponent implements OnInit {
 
     if(this.permissions.diresa.length == 0 && this.permissions.establecimiento.length > 0){
       const establecimiento: any = await this._commonService.getEstablecimiento(this.permissions.establecimiento[0])
-      console.log(establecimiento)
       if(establecimiento?.length > 0){
         this.form.get('disa').setValue(parseInt(establecimiento[0].disa))
         this.form.get('red').setValue(establecimiento[0].red)
@@ -268,7 +267,6 @@ export class IndicadorDialogComponent implements OnInit {
         });
         this.statusButtonSave.setValue(false); // volvemos a status ocioso el spinner del button save
       }).catch((error) => {
-        console.log(error)
         this.snackbar.open('Error de edición', 'Aviso!', {
           panelClass: 'bg-deep-orange-500',
           duration: 3500
