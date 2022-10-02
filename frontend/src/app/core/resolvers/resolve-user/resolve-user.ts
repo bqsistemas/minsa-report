@@ -20,6 +20,7 @@ export class ResolveUser implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot) {
         return this._authService.setPermisos().pipe(
             map(async (response: any) => {
+                console.log('response', response)
                 const appName = response?.authorization?.auth_apps[environment.appName]
 
                 let hasRole121 = false
@@ -46,6 +47,7 @@ export class ResolveUser implements Resolve<any> {
                   } as User);
                 return response;
             }, catchError((err, caught) => {
+                console.log('catch', err)
                 localStorage.removeItem(environment.codeJwt);
                 return null  
             }))
