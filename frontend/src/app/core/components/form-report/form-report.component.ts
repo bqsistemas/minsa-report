@@ -242,7 +242,8 @@ export class FormReportComponent implements OnInit {
   fetchMicroRed = (disa, red) => {
     this._commonService.getMicroRedes(disa, red)
       .then((response: any) => {        
-
+        this.form.get('microRed').setValue('')
+        this.form.get('establecimiento').setValue(-1)
         this.microRedData = [...[this.microRedData[0]], ...response]
         if(this.establecimientoData.length > 1)
           this.establecimientoData = [...this.establecimientoData.slice(0, 1)]
