@@ -244,6 +244,8 @@ export class FormReportComponent implements OnInit {
       .then((response: any) => {        
 
         this.microRedData = [...[this.microRedData[0]], ...response]
+        if(this.establecimientoData.length > 1)
+          this.establecimientoData = [...this.establecimientoData.slice(0, 1)]
       })
       .catch((err) => console.log(err))
   }
