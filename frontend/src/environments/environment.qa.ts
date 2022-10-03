@@ -11,7 +11,7 @@ export const environment = {
   module: 'EVIH0',
   role: '121',
   apis: {
-    backend: 'http://dew.minsa.gob.pe/tablero-vih-api/api',
+    backend: 'https://dew.minsa.gob.pe/tablero-vih-api/api',
     apiLogin: 'https://dsihce.minsa.gob.pe/login/auth/login/',
     apiSecurity: 'https://dsihce.minsa.gob.pe/login/api/v1'
   },
