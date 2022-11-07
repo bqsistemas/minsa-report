@@ -92,6 +92,10 @@ export class FormReportComponent implements OnInit {
     })
     this.form.controls.microRed.valueChanges.subscribe((microRed) => {
       if(microRed) this.fetchEstablecimiento(this.form.getRawValue().disa, this.form.getRawValue().red, microRed)
+      else {
+        this.establecimientoData = [{ establecimiento: -1, establecimientoDsc: 'TODOS', ubigeo: '' }]
+        this.form.get('establecimiento').setValue(-1)
+      }
     })
     this.form.controls.departamento.valueChanges.subscribe((departamento) => {
       if(departamento) this.fetchProvincia(this.form.getRawValue().disa, departamento)
