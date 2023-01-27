@@ -27,6 +27,7 @@ import { Indicador } from '@core/models/Indicador/indicador';
 import { IndicadorService } from '@core/services/indicador/indicador.service';
 // Indicadores
 import { IndicadorDialogComponent } from '../indicador-dialog/indicador-dialog.component';
+import { TranslateItemsPerPage } from '@core/adapters/translate-items-per-page';
 
 @Component({
   selector: 'vex-indicador-table',
@@ -36,7 +37,8 @@ import { IndicadorDialogComponent } from '../indicador-dialog/indicador-dialog.c
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
-        appearance: 'standard'
+        appearance: 'standard',
+        hideRequiredMarker: false
       } as MatFormFieldDefaultOptions
     }
   ],
@@ -116,6 +118,9 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
+    this.paginator._intl.itemsPerPageLabel = "Ítems por página";
+    this.paginator._intl.getRangeLabel = TranslateItemsPerPage;
+    
     this.fnSearch(this.page + 1)
     this.subscriptions.add(
       this.searchCtrl.valueChanges.pipe(
