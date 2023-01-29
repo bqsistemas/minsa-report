@@ -270,7 +270,7 @@ export class FormReportComponent implements OnInit {
   }
   fetchPeriodo = () => {
     this._commonService.getPeriodo()
-      .then((response: any) => {
+      .then((response: any) => {        
         this.periodoData = response
       })
       .catch((err) => console.log(err))
@@ -307,6 +307,8 @@ export class FormReportComponent implements OnInit {
         values.periodo = -1
       if(values.anio && values.anio !== '' && values.periodo && values.periodo !== -1)
         values.mes = '-1'
+      if(values.periodo && typeof values.periodo === 'string')
+        values.periodo = parseInt(values.periodo)
 
       this._commonService.setLoadingReport(true)
       this.callReport.emit(values);
@@ -343,7 +345,7 @@ export class FormReportComponent implements OnInit {
   showField(field: string){
     if(field === 'POBLACION' && this.reportType === 'HEPATITIS') return true
     if(field === 'POBLACION' && this.reportType === 'VIH') return true
-    if((field === 'POBLACION' || field === 'PERIODO') && this.reportType === 'TMI') return true
+    if(field === 'PERIODO' && this.reportType === 'TMI') return true
 
     return false
   }

@@ -20,7 +20,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>RED</mat-label>
+                <mat-label>RED (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.red">
                     <mat-option *ngFor="let item of redData" [value]="item.red">
                         {{item.redDsc}}
@@ -28,7 +28,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>MICRORED</mat-label>
+                <mat-label>MICRORED (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.mred">
                     <mat-option *ngFor="let item of microRedData" [value]="item.microRed">
                         {{item.microRedDsc}}
@@ -38,7 +38,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>ESTABLECIMIENTO</mat-label>
+                <mat-label>ESTABLECIMIENTO (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.renaes">
                     <mat-option *ngFor="let item of establecimientoData" [value]="item.establecimiento">
                         {{item.establecimientoDsc}}
@@ -48,7 +48,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>Departamento</mat-label>
+                <mat-label>Departamento (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.dep">
                     <mat-option *ngFor="let item of departamentoData" [value]="item.departamento">
                         {{item.departamentoDsc}}
@@ -56,7 +56,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Provincia</mat-label>
+                <mat-label>Provincia (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.prov">
                     <mat-option *ngFor="let item of provinciaData" [value]="item.provincia">
                         {{item.provinciaDsc}}
@@ -64,7 +64,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Distrito</mat-label>
+                <mat-label>Distrito (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.dis">
                     <mat-option *ngFor="let item of distritoData" [value]="item.distrito">
                         {{item.distritoDsc}}
@@ -74,7 +74,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>Sexo</mat-label>
+                <mat-label>Sexo (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.sexo">
                     <mat-option *ngFor="let item of sexoData" [value]="item.id">
                         {{item.name}}
@@ -82,7 +82,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Etnia</mat-label>
+                <mat-label>Etnia (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.etnia">
                     <mat-option *ngFor="let item of etniaData" [value]="item.etnia">
                         {{item.etniaDsc}}
@@ -90,7 +90,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Grupo Etario</mat-label>
+                <mat-label>Grupo Etario (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.etapa">
                     <mat-option *ngFor="let item of grupoEtarioData" [value]="item.grupoEtario">
                         {{item.grupoEtarioDsc}}
@@ -100,7 +100,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>Año</mat-label>
+                <mat-label>Año (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.anio">
                     <mat-option *ngFor="let item of anioData" [value]="item.id">
                         {{item.name}}
@@ -108,7 +108,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
-                <mat-label>Mes</mat-label>
+                <mat-label>Mes (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.mes">
                     <mat-option *ngFor="let item of mesData" [value]="item.mes">
                         {{item.mesDsc}}

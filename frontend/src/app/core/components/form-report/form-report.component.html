@@ -103,7 +103,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
             <mat-form-field fxFlex="auto">
-                <mat-label>Año</mat-label>
+                <mat-label>Año (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.anio">
                     <mat-option *ngFor="let item of anioData" [value]="item.id">
                         {{item.name}}

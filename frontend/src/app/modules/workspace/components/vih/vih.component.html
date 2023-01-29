@@ -15,7 +15,7 @@
         <vex-form-report (callReport)="callReport($event)" [reportType]="'VIH'"></vex-form-report>
         <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center">Cargando reporte ...</div>
         <!-- <div *ngIf="urlReport" fxLayout="row" fxLayoutAlign="end" class="px-4"><a href="javascript:void(0)" (click)="downloadPdf()" style="color: blue;">Descargar</a></div> -->
-        <div id="my-container" class="pdfobject-container" style="height: calc(100% - 175px)">
+        <div id="my-container" class="pdfobject-container" style="height: calc(100% - 350px)">
             <iframe srcdoc="" width="100%" height="100%" style="overflow: auto;">
             </iframe>
         </div>
