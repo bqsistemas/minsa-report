@@ -257,6 +257,7 @@ export class IndicadorDialogComponent implements OnInit {
       entidad.tmiGestanteAtendidaSifilis = parseInt(entidad.tmiGestanteAtendidaSifilis)
       entidad.tmiGestanteAtendidaHepatitisB = parseInt(entidad.tmiGestanteAtendidaHepatitisB)
 
+      console.log(entidad)
       this._indicadorService.putUpdate(entidad).then((value: any) => {
         this.snackbar.open('Se guardó con éxito.', 'Éxito!', {
           duration: 2500
