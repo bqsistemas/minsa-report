@@ -39,7 +39,7 @@
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>ESTABLECIMIENTO (*)</mat-label>
-                <mat-autocomplete #auto="matAutocomplete" [formControl]="form.controls.renaes">
+                <mat-autocomplete matInput #auto="matAutocomplete" [formControl]="form.controls.renaes">
                     <mat-option *ngFor="let item of establecimientoData" [value]="item.establecimiento">
                         {{item.establecimientoDsc}}
                     </mat-option>
