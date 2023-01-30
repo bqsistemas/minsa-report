@@ -10,7 +10,7 @@
     <mat-divider class="-mx-6 text-border"></mat-divider>
 
     <mat-dialog-content fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>DIRESA</mat-label>
                 <mat-select matInput [formControl]="form.controls.disa">
@@ -36,17 +36,17 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>ESTABLECIMIENTO (*)</mat-label>
-                <mat-select matInput [formControl]="form.controls.renaes">
+                <mat-autocomplete #auto="matAutocomplete" [formControl]="form.controls.renaes">
                     <mat-option *ngFor="let item of establecimientoData" [value]="item.establecimiento">
                         {{item.establecimientoDsc}}
                     </mat-option>
-                </mat-select>
+                </mat-autocomplete>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>Departamento (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.dep">
@@ -72,7 +72,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>Sexo (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.sexo">
@@ -98,7 +98,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>Año (*)</mat-label>
                 <mat-select matInput [formControl]="form.controls.anio">
@@ -116,7 +116,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>vih_persona_estimada</mat-label>
                 <input #lengtVinPersonaEstimada cdkFocusInitial formControlName="vinPersonaEstimada" matInput>
@@ -124,16 +124,18 @@
             </mat-form-field>
             <mat-form-field fxFlex="auto">
                 <mat-label>its_persona_estimada_tamizaje_sifilis</mat-label>
-                <input #lengthItsPersonaEstimadaTamizajeSifilis cdkFocusInitial formControlName="itsPersonaEstimadaTamizajeSifilis" matInput>
+                <input #lengthItsPersonaEstimadaTamizajeSifilis cdkFocusInitial
+                    formControlName="itsPersonaEstimadaTamizajeSifilis" matInput>
                 <mat-icon [icIcon]="icShortText" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
                 <mat-label>its_persona_estimada_diagnostico_its</mat-label>
-                <input #lengthItsPersonaEstimadaDiagnosticoIts cdkFocusInitial formControlName="itsPersonaEstimadaDiagnosticoIts" matInput>
+                <input #lengthItsPersonaEstimadaDiagnosticoIts cdkFocusInitial
+                    formControlName="itsPersonaEstimadaDiagnosticoIts" matInput>
                 <mat-icon [icIcon]="icShortText" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0" >
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutGap.lt-sm="0">
             <mat-form-field fxFlex="auto">
                 <mat-label>tmi_gestante_atentida_vih</mat-label>
                 <input #lengtVinPersonaEstimada cdkFocusInitial formControlName="tmiGestanteAtendidaVih" matInput>
@@ -141,12 +143,14 @@
             </mat-form-field>
             <mat-form-field fxFlex="auto">
                 <mat-label>tmi_gestante_atentida_sifilis</mat-label>
-                <input #lengthItsPersonaEstimadaTamizajeSifilis cdkFocusInitial formControlName="tmiGestanteAtendidaSifilis" matInput>
+                <input #lengthItsPersonaEstimadaTamizajeSifilis cdkFocusInitial
+                    formControlName="tmiGestanteAtendidaSifilis" matInput>
                 <mat-icon [icIcon]="icShortText" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
             </mat-form-field>
             <mat-form-field fxFlex="auto">
                 <mat-label>tmi_gestante_atendida_hepatitis_b</mat-label>
-                <input #lengthItsPersonaEstimadaDiagnosticoIts cdkFocusInitial formControlName="tmiGestanteAtendidaHepatitisB" matInput>
+                <input #lengthItsPersonaEstimadaDiagnosticoIts cdkFocusInitial
+                    formControlName="tmiGestanteAtendidaHepatitisB" matInput>
                 <mat-icon [icIcon]="icShortText" class="ltr:mr-3 rtl:ml-3" matPrefix></mat-icon>
             </mat-form-field>
         </div>
@@ -154,7 +158,7 @@
 
     <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close type="button">Cancelar</button>
-        <vex-button-action-form [textButton]="'Guardar'"
-            [statusButton]="statusButtonSave" (actionFunction)="fnAction()"></vex-button-action-form>
+        <vex-button-action-form [textButton]="'Guardar'" [statusButton]="statusButtonSave"
+            (actionFunction)="fnAction()"></vex-button-action-form>
     </mat-dialog-actions>
 </form>

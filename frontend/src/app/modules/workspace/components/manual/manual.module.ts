@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { SkeletonModule } from '../../../../fake/skeleton/skeleton.module';
 
@@ -50,6 +51,7 @@ import { IndicadorDialogComponent } from './components/indicador-dialog/indicado
     MatMenuModule,
     MatRippleModule,
     MatDialogModule,
+    MatAutocompleteModule,
     ScrollbarModule,
     ReactiveFormsModule,
     ContainerModule,
