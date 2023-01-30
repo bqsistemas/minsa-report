@@ -302,6 +302,7 @@ export class FormReportComponent implements OnInit {
       const values = this.form.getRawValue();
       values.disa = this.user.diresa[0]
       values.establecimiento = values.establecimiento
+      values.tipoPoblacion = parseInt(values.tipoPoblacion)
       
       if(values.anio && values.anio !== '' && values.mes && values.mes !== '')
         values.periodo = -1
