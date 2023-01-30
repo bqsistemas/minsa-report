@@ -246,6 +246,9 @@ export class IndicadorDialogComponent implements OnInit {
   }
   fnEdit(event: Event) {
     if (this.form.valid) {
+      console.log('RAW VALUE', this.form.getRawValue())
+      console.log('WITHOUT RAW VALUE', Object.assign({}, this.form.getRawValue().value))
+
       const entidad = Object.assign({}, this.form.getRawValue().value);
       entidad.disa = this.indicador.disa
       entidad.renaes = parseInt(entidad.renaes)
