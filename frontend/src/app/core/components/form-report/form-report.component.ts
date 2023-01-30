@@ -299,7 +299,7 @@ export class FormReportComponent implements OnInit {
 
   submitReport = () => {
     if (this.form.valid) {
-      const values = Object.assign({}, this.form.getRawValue());
+      const values = this.form.getRawValue();
       values.disa = this.user.diresa[0]
       values.establecimiento = values.establecimiento
       

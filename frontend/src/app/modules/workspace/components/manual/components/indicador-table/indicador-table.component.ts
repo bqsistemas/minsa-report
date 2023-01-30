@@ -145,7 +145,7 @@ export class IndicadorTableComponent implements OnInit, AfterViewInit {
   }
   openIndicador(indicador: Indicador = null) {
     const dialogRef = this.dialog.open(IndicadorDialogComponent, {
-      width: '950px',
+      width: '1000px',
       data: {
         indicador: indicador ? indicador : null
       }
